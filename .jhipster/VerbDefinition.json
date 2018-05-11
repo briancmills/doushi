@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "verb",
+            "otherEntityName": "verb",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "verbText"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "definition",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": "1"
+        }
+    ],
+    "changelogDate": "20180511185057",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "verb_definition",
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
+}

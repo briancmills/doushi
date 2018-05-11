@@ -1,0 +1,70 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "definitions",
+            "otherEntityName": "verbDefinition",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "verb"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "VerbType",
+            "fieldValues": "GODAN, ICHIDAN, IRREGULAR",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "definition",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": "1"
+        },
+        {
+            "fieldName": "jlptLevel",
+            "fieldType": "JlptLevel",
+            "fieldValues": "N5, N4, N3, N2, N1",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "gradeLevel",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": "1",
+            "fieldValidateRulesMax": "12"
+        },
+        {
+            "fieldName": "ending",
+            "fieldType": "VerbEnding",
+            "fieldValues": "u, tsu, ru, ku, gu, nu, bu, mu, su, iru, eru, suru, kuru",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "verbText",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": "1"
+        }
+    ],
+    "changelogDate": "20180511182756",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "verb",
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
+}

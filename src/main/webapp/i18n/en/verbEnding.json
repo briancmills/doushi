@@ -1,0 +1,20 @@
+{
+    "doushiApp": {
+        "VerbEnding" : {
+            "null": "",
+            "u": "u",
+            "tsu": "tsu",
+            "ru": "ru",
+            "ku": "ku",
+            "gu": "gu",
+            "nu": "nu",
+            "bu": "bu",
+            "mu": "mu",
+            "su": "su",
+            "iru": "iru",
+            "eru": "eru",
+            "suru": "suru",
+            "kuru": "kuru"
+        }
+    }
+}

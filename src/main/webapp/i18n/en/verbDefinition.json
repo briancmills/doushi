@@ -1,0 +1,23 @@
+
+{
+    "doushiApp": {
+        "verbDefinition" : {
+            "home": {
+                "title": "Verb Definitions",
+                "createLabel": "Create a new Verb Definition",
+                "createOrEditLabel": "Create or edit a Verb Definition"
+            },
+            "created": "A new Verb Definition is created with identifier {{ param }}",
+            "updated": "A Verb Definition is updated with identifier {{ param }}",
+            "deleted": "A Verb Definition is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Verb Definition {{ id }}?"
+            },
+            "detail": {
+                "title": "Verb Definition"
+            },
+            "definition": "Definition",
+            "verb": "Verb"
+        }
+    }
+}

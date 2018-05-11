@@ -1,0 +1,10 @@
+{
+    "doushiApp": {
+        "VerbType" : {
+            "null": "",
+            "GODAN": "GODAN",
+            "ICHIDAN": "ICHIDAN",
+            "IRREGULAR": "IRREGULAR"
+        }
+    }
+}

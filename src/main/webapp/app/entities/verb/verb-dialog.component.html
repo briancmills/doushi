@@ -1,0 +1,126 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myVerbLabel" jhiTranslate="doushiApp.verb.home.createOrEditLabel">Create or edit a Verb</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!verb.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="verb.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="doushiApp.verb.type" for="field_type">Type</label>
+            <select class="form-control" name="type" [(ngModel)]="verb.type" id="field_type" >
+                <option value="GODAN">{{'doushiApp.VerbType.GODAN' | translate}}</option>
+                <option value="ICHIDAN">{{'doushiApp.VerbType.ICHIDAN' | translate}}</option>
+                <option value="IRREGULAR">{{'doushiApp.VerbType.IRREGULAR' | translate}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="doushiApp.verb.definition" for="field_definition">Definition</label>
+            <input type="text" class="form-control" name="definition" id="field_definition"
+                [(ngModel)]="verb.definition" required minlength="1"/>
+            <div [hidden]="!(editForm.controls.definition?.dirty && editForm.controls.definition?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.definition?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.definition?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 1 }">
+                   This field is required to be at least 1 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="doushiApp.verb.jlptLevel" for="field_jlptLevel">Jlpt Level</label>
+            <select class="form-control" name="jlptLevel" [(ngModel)]="verb.jlptLevel" id="field_jlptLevel"  required>
+                <option value="N5">{{'doushiApp.JlptLevel.N5' | translate}}</option>
+                <option value="N4">{{'doushiApp.JlptLevel.N4' | translate}}</option>
+                <option value="N3">{{'doushiApp.JlptLevel.N3' | translate}}</option>
+                <option value="N2">{{'doushiApp.JlptLevel.N2' | translate}}</option>
+                <option value="N1">{{'doushiApp.JlptLevel.N1' | translate}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.jlptLevel?.dirty && editForm.controls.jlptLevel?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.jlptLevel?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="doushiApp.verb.gradeLevel" for="field_gradeLevel">Grade Level</label>
+            <input type="number" class="form-control" name="gradeLevel" id="field_gradeLevel"
+                [(ngModel)]="verb.gradeLevel" required min="1" max="12"/>
+            <div [hidden]="!(editForm.controls.gradeLevel?.dirty && editForm.controls.gradeLevel?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.gradeLevel?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.gradeLevel?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 1 }">
+                    This field should be at least 1.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.gradeLevel?.errors?.max" jhiTranslate="entity.validation.max" translateValues="{ max: 12 }">
+                    This field cannot be more than 12.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.gradeLevel?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="doushiApp.verb.ending" for="field_ending">Ending</label>
+            <select class="form-control" name="ending" [(ngModel)]="verb.ending" id="field_ending"  required>
+                <option value="u">{{'doushiApp.VerbEnding.u' | translate}}</option>
+                <option value="tsu">{{'doushiApp.VerbEnding.tsu' | translate}}</option>
+                <option value="ru">{{'doushiApp.VerbEnding.ru' | translate}}</option>
+                <option value="ku">{{'doushiApp.VerbEnding.ku' | translate}}</option>
+                <option value="gu">{{'doushiApp.VerbEnding.gu' | translate}}</option>
+                <option value="nu">{{'doushiApp.VerbEnding.nu' | translate}}</option>
+                <option value="bu">{{'doushiApp.VerbEnding.bu' | translate}}</option>
+                <option value="mu">{{'doushiApp.VerbEnding.mu' | translate}}</option>
+                <option value="su">{{'doushiApp.VerbEnding.su' | translate}}</option>
+                <option value="iru">{{'doushiApp.VerbEnding.iru' | translate}}</option>
+                <option value="eru">{{'doushiApp.VerbEnding.eru' | translate}}</option>
+                <option value="suru">{{'doushiApp.VerbEnding.suru' | translate}}</option>
+                <option value="kuru">{{'doushiApp.VerbEnding.kuru' | translate}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.ending?.dirty && editForm.controls.ending?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.ending?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="doushiApp.verb.verbText" for="field_verbText">Verb Text</label>
+            <input type="text" class="form-control" name="verbText" id="field_verbText"
+                [(ngModel)]="verb.verbText" required minlength="1"/>
+            <div [hidden]="!(editForm.controls.verbText?.dirty && editForm.controls.verbText?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.verbText?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.verbText?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 1 }">
+                   This field is required to be at least 1 characters.
+                </small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

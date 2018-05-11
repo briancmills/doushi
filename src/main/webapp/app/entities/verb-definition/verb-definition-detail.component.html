@@ -1,0 +1,32 @@
+
+<div *ngIf="verbDefinition">
+    <h2><span jhiTranslate="doushiApp.verbDefinition.detail.title">Verb Definition</span> {{verbDefinition.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="doushiApp.verbDefinition.definition">Definition</span></dt>
+        <dd>
+            <span>{{verbDefinition.definition}}</span>
+        </dd>
+        <dt><span jhiTranslate="doushiApp.verbDefinition.verb">Verb</span></dt>
+        <dd>
+            <div *ngIf="verbDefinition.verb">
+                <a [routerLink]="['/verb', verbDefinition.verb?.id]">{{verbDefinition.verb?.verbText}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'verb-definition/'+ verbDefinition.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

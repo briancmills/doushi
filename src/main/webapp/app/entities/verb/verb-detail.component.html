@@ -1,0 +1,46 @@
+
+<div *ngIf="verb">
+    <h2><span jhiTranslate="doushiApp.verb.detail.title">Verb</span> {{verb.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="doushiApp.verb.type">Type</span></dt>
+        <dd>
+            <span jhiTranslate="{{'doushiApp.VerbType.' + verb.type}}">{{verb.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="doushiApp.verb.definition">Definition</span></dt>
+        <dd>
+            <span>{{verb.definition}}</span>
+        </dd>
+        <dt><span jhiTranslate="doushiApp.verb.jlptLevel">Jlpt Level</span></dt>
+        <dd>
+            <span jhiTranslate="{{'doushiApp.JlptLevel.' + verb.jlptLevel}}">{{verb.jlptLevel}}</span>
+        </dd>
+        <dt><span jhiTranslate="doushiApp.verb.gradeLevel">Grade Level</span></dt>
+        <dd>
+            <span>{{verb.gradeLevel}}</span>
+        </dd>
+        <dt><span jhiTranslate="doushiApp.verb.ending">Ending</span></dt>
+        <dd>
+            <span jhiTranslate="{{'doushiApp.VerbEnding.' + verb.ending}}">{{verb.ending}}</span>
+        </dd>
+        <dt><span jhiTranslate="doushiApp.verb.verbText">Verb Text</span></dt>
+        <dd>
+            <span>{{verb.verbText}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'verb/'+ verb.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
