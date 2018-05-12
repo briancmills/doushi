@@ -1,11 +1,9 @@
 
 {
     "doushiApp": {
-        "verb" : {
+        "studySheet" : {
             "home": {
-                "title": "Verbs",
-                "createLabel": "Create a new Verb",
-                "createOrEditLabel": "Create or edit a Verb"
+                "title": "Study Sheet"
             },
             "created": "A new Verb is created with identifier {{ param }}",
             "updated": "A Verb is updated with identifier {{ param }}",

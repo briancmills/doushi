@@ -17,6 +17,7 @@ import { DoushiAdminModule } from './admin/admin.module';
 import { DoushiAccountModule } from './account/account.module';
 import { DoushiEntityModule } from './entities/entity.module';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
+import { DoushiStudySheetModule } from './entities/study-sheet/study-sheet.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import {
     JhiMainComponent,
@@ -38,6 +39,7 @@ import {
         DoushiAdminModule,
         DoushiAccountModule,
         DoushiEntityModule,
+        DoushiStudySheetModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
