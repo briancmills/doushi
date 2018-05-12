@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity ConjugatedVerbDefinition.
+    -->
+    <changeSet id="20180511194142-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="conjugated_verb_id"
+                                 baseTableName="conjugated_verb_definition"
+                                 constraintName="fk_conjugated_verb_definition_conjugated_verb_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="conjugated_verb"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -42,6 +42,10 @@ describe('Verb e2e test', () => {
         verbDialogPage.endingSelectLastOption();
         verbDialogPage.setVerbTextInput('verbText');
         expect(verbDialogPage.getVerbTextInput()).toMatch('verbText');
+        verbDialogPage.setKanjiTextInput('kanjiText');
+        expect(verbDialogPage.getKanjiTextInput()).toMatch('kanjiText');
+        verbDialogPage.setRomanjiTextInput('romanjiText');
+        expect(verbDialogPage.getRomanjiTextInput()).toMatch('romanjiText');
         verbDialogPage.save();
         expect(verbDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -74,6 +78,8 @@ export class VerbDialogPage {
     gradeLevelInput = element(by.css('input#field_gradeLevel'));
     endingSelect = element(by.css('select#field_ending'));
     verbTextInput = element(by.css('input#field_verbText'));
+    kanjiTextInput = element(by.css('input#field_kanjiText'));
+    romanjiTextInput = element(by.css('input#field_romanjiText'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -134,6 +140,22 @@ export class VerbDialogPage {
 
     getVerbTextInput = function() {
         return this.verbTextInput.getAttribute('value');
+    };
+
+    setKanjiTextInput = function(kanjiText) {
+        this.kanjiTextInput.sendKeys(kanjiText);
+    };
+
+    getKanjiTextInput = function() {
+        return this.kanjiTextInput.getAttribute('value');
+    };
+
+    setRomanjiTextInput = function(romanjiText) {
+        this.romanjiTextInput.sendKeys(romanjiText);
+    };
+
+    getRomanjiTextInput = function() {
+        return this.romanjiTextInput.getAttribute('value');
     };
 
     save() {

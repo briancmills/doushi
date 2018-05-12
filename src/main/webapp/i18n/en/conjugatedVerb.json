@@ -1,0 +1,26 @@
+
+{
+    "doushiApp": {
+        "conjugatedVerb" : {
+            "home": {
+                "title": "Conjugated Verbs",
+                "createLabel": "Create a new Conjugated Verb",
+                "createOrEditLabel": "Create or edit a Conjugated Verb"
+            },
+            "created": "A new Conjugated Verb is created with identifier {{ param }}",
+            "updated": "A Conjugated Verb is updated with identifier {{ param }}",
+            "deleted": "A Conjugated Verb is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Conjugated Verb {{ id }}?"
+            },
+            "detail": {
+                "title": "Conjugated Verb"
+            },
+            "conjugationType": "Conjugation Type",
+            "english": "English",
+            "japanese": "Japanese",
+            "verb": "Verb",
+            "definitions": "Definitions"
+        }
+    }
+}

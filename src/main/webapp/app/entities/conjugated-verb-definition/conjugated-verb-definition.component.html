@@ -1,0 +1,64 @@
+<div>
+    <h2>
+        <span jhiTranslate="doushiApp.conjugatedVerbDefinition.home.title">Conjugated Verb Definitions</span>
+        <button class="btn btn-primary float-right jh-create-entity create-conjugated-verb-definition" [routerLink]="['/', { outlets: { popup: ['conjugated-verb-definition-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="doushiApp.conjugatedVerbDefinition.home.createLabel">
+            Create new Conjugated Verb Definition
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="conjugatedVerbDefinitions">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="definition"><span jhiTranslate="doushiApp.conjugatedVerbDefinition.definition">Definition</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="conjugatedVerb.japanese"><span jhiTranslate="doushiApp.conjugatedVerbDefinition.conjugatedVerb">Conjugated Verb</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let conjugatedVerbDefinition of conjugatedVerbDefinitions ;trackBy: trackId">
+                <td><a [routerLink]="['../conjugated-verb-definition', conjugatedVerbDefinition.id ]">{{conjugatedVerbDefinition.id}}</a></td>
+                <td>{{conjugatedVerbDefinition.definition}}</td>
+                <td>
+                    <div *ngIf="conjugatedVerbDefinition.conjugatedVerb">
+                        <a [routerLink]="['../conjugated-verb', conjugatedVerbDefinition.conjugatedVerb?.id ]" >{{conjugatedVerbDefinition.conjugatedVerb?.japanese}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../conjugated-verb-definition', conjugatedVerbDefinition.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'conjugated-verb-definition/'+ conjugatedVerbDefinition.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'conjugated-verb-definition/'+ conjugatedVerbDefinition.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

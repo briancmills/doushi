@@ -39,6 +39,8 @@ export class Verb implements BaseEntity {
         public gradeLevel?: number,
         public ending?: VerbEnding,
         public verbText?: string,
+        public kanjiText?: string,
+        public romanjiText?: string,
         public definitions?: BaseEntity[],
     ) {
     }

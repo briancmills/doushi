@@ -41,6 +41,18 @@
                             <span jhiTranslate="global.menu.entities.verbDefinition">Verb Definition</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="conjugated-verb" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.conjugatedVerb">Conjugated Verb</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="conjugated-verb-definition" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.conjugatedVerbDefinition">Conjugated Verb Definition</span>
+                        </a>
+                    </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>

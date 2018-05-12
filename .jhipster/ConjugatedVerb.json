@@ -1,0 +1,58 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "verb",
+            "otherEntityName": "verb",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "verbText"
+        },
+        {
+            "relationshipName": "definitions",
+            "otherEntityName": "conjugatedVerbDefinition",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "conjugatedVerb"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "conjugationType",
+            "fieldType": "ConjugationType",
+            "fieldValues": "dictionary, masu, nai, te, ta, potential, conditional, volitional",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "english",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "2",
+            "fieldValidateRulesMaxlength": "100"
+        },
+        {
+            "fieldName": "japanese",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "2",
+            "fieldValidateRulesMaxlength": "100"
+        }
+    ],
+    "changelogDate": "20180511193846",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "conjugated_verb",
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
+}

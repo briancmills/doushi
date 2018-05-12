@@ -22,6 +22,8 @@
             "gradeLevel": "Grade Level",
             "ending": "Ending",
             "verbText": "Verb Text",
+            "kanjiText": "Kanji Text",
+            "romanjiText": "Romanji Text",
             "definitions": "Definitions"
         }
     }

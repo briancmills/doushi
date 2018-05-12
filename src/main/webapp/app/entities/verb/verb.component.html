@@ -23,6 +23,8 @@
             <th jhiSortBy="gradeLevel"><span jhiTranslate="doushiApp.verb.gradeLevel">Grade Level</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="ending"><span jhiTranslate="doushiApp.verb.ending">Ending</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="verbText"><span jhiTranslate="doushiApp.verb.verbText">Verb Text</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="kanjiText"><span jhiTranslate="doushiApp.verb.kanjiText">Kanji Text</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="romanjiText"><span jhiTranslate="doushiApp.verb.romanjiText">Romanji Text</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -35,6 +37,8 @@
                 <td>{{verb.gradeLevel}}</td>
                 <td jhiTranslate="{{'doushiApp.VerbEnding.' + verb.ending}}">{{verb.ending}}</td>
                 <td>{{verb.verbText}}</td>
+                <td>{{verb.kanjiText}}</td>
+                <td>{{verb.romanjiText}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

@@ -1,0 +1,18 @@
+{
+    "doushiApp": {
+        "ConjugationType" : {
+            "null": "",
+            "dictionary": "Dictionary Form",
+            "masu": "Masu Form",
+            "nai": "Nai Form",
+            "te": "Te Form",
+            "ta": "Ta Form",
+            "potential": "Potential Form",
+            "conditional": "Conditional (Tara) Form",
+            "volitional": "Volitional Form",
+            "provisional": "Provisional (Ba) Form",
+            "negative_provisional": "Negative Provisional (Nakereba) Form",
+            "negative_potential": "Negative Potential Form"
+        }
+    }
+}

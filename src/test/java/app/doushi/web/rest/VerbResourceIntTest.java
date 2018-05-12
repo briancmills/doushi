@@ -60,6 +60,12 @@ public class VerbResourceIntTest {
     private static final String DEFAULT_VERB_TEXT = "AAAAAAAAAA";
     private static final String UPDATED_VERB_TEXT = "BBBBBBBBBB";
 
+    private static final String DEFAULT_KANJI_TEXT = "AAAAAAAAAA";
+    private static final String UPDATED_KANJI_TEXT = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ROMANJI_TEXT = "AAAAAAAAAA";
+    private static final String UPDATED_ROMANJI_TEXT = "BBBBBBBBBB";
+
     @Autowired
     private VerbRepository verbRepository;
 
@@ -106,7 +112,9 @@ public class VerbResourceIntTest {
             .jlptLevel(DEFAULT_JLPT_LEVEL)
             .gradeLevel(DEFAULT_GRADE_LEVEL)
             .ending(DEFAULT_ENDING)
-            .verbText(DEFAULT_VERB_TEXT);
+            .verbText(DEFAULT_VERB_TEXT)
+            .kanjiText(DEFAULT_KANJI_TEXT)
+            .romanjiText(DEFAULT_ROMANJI_TEXT);
         return verb;
     }
 
@@ -136,6 +144,8 @@ public class VerbResourceIntTest {
         assertThat(testVerb.getGradeLevel()).isEqualTo(DEFAULT_GRADE_LEVEL);
         assertThat(testVerb.getEnding()).isEqualTo(DEFAULT_ENDING);
         assertThat(testVerb.getVerbText()).isEqualTo(DEFAULT_VERB_TEXT);
+        assertThat(testVerb.getKanjiText()).isEqualTo(DEFAULT_KANJI_TEXT);
+        assertThat(testVerb.getRomanjiText()).isEqualTo(DEFAULT_ROMANJI_TEXT);
     }
 
     @Test
@@ -249,6 +259,24 @@ public class VerbResourceIntTest {
 
     @Test
     @Transactional
+    public void checkRomanjiTextIsRequired() throws Exception {
+        int databaseSizeBeforeTest = verbRepository.findAll().size();
+        // set the field null
+        verb.setRomanjiText(null);
+
+        // Create the Verb, which fails.
+
+        restVerbMockMvc.perform(post("/api/verbs")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(verb)))
+            .andExpect(status().isBadRequest());
+
+        List<Verb> verbList = verbRepository.findAll();
+        assertThat(verbList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllVerbs() throws Exception {
         // Initialize the database
         verbRepository.saveAndFlush(verb);
@@ -263,7 +291,9 @@ public class VerbResourceIntTest {
             .andExpect(jsonPath("$.[*].jlptLevel").value(hasItem(DEFAULT_JLPT_LEVEL.toString())))
             .andExpect(jsonPath("$.[*].gradeLevel").value(hasItem(DEFAULT_GRADE_LEVEL)))
             .andExpect(jsonPath("$.[*].ending").value(hasItem(DEFAULT_ENDING.toString())))
-            .andExpect(jsonPath("$.[*].verbText").value(hasItem(DEFAULT_VERB_TEXT.toString())));
+            .andExpect(jsonPath("$.[*].verbText").value(hasItem(DEFAULT_VERB_TEXT.toString())))
+            .andExpect(jsonPath("$.[*].kanjiText").value(hasItem(DEFAULT_KANJI_TEXT.toString())))
+            .andExpect(jsonPath("$.[*].romanjiText").value(hasItem(DEFAULT_ROMANJI_TEXT.toString())));
     }
 
     @Test
@@ -282,7 +312,9 @@ public class VerbResourceIntTest {
             .andExpect(jsonPath("$.jlptLevel").value(DEFAULT_JLPT_LEVEL.toString()))
             .andExpect(jsonPath("$.gradeLevel").value(DEFAULT_GRADE_LEVEL))
             .andExpect(jsonPath("$.ending").value(DEFAULT_ENDING.toString()))
-            .andExpect(jsonPath("$.verbText").value(DEFAULT_VERB_TEXT.toString()));
+            .andExpect(jsonPath("$.verbText").value(DEFAULT_VERB_TEXT.toString()))
+            .andExpect(jsonPath("$.kanjiText").value(DEFAULT_KANJI_TEXT.toString()))
+            .andExpect(jsonPath("$.romanjiText").value(DEFAULT_ROMANJI_TEXT.toString()));
     }
 
     @Test
@@ -311,7 +343,9 @@ public class VerbResourceIntTest {
             .jlptLevel(UPDATED_JLPT_LEVEL)
             .gradeLevel(UPDATED_GRADE_LEVEL)
             .ending(UPDATED_ENDING)
-            .verbText(UPDATED_VERB_TEXT);
+            .verbText(UPDATED_VERB_TEXT)
+            .kanjiText(UPDATED_KANJI_TEXT)
+            .romanjiText(UPDATED_ROMANJI_TEXT);
 
         restVerbMockMvc.perform(put("/api/verbs")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -328,6 +362,8 @@ public class VerbResourceIntTest {
         assertThat(testVerb.getGradeLevel()).isEqualTo(UPDATED_GRADE_LEVEL);
         assertThat(testVerb.getEnding()).isEqualTo(UPDATED_ENDING);
         assertThat(testVerb.getVerbText()).isEqualTo(UPDATED_VERB_TEXT);
+        assertThat(testVerb.getKanjiText()).isEqualTo(UPDATED_KANJI_TEXT);
+        assertThat(testVerb.getRomanjiText()).isEqualTo(UPDATED_ROMANJI_TEXT);
     }
 
     @Test

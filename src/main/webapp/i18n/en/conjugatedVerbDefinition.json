@@ -1,0 +1,23 @@
+
+{
+    "doushiApp": {
+        "conjugatedVerbDefinition" : {
+            "home": {
+                "title": "Conjugated Verb Definitions",
+                "createLabel": "Create a new Conjugated Verb Definition",
+                "createOrEditLabel": "Create or edit a Conjugated Verb Definition"
+            },
+            "created": "A new Conjugated Verb Definition is created with identifier {{ param }}",
+            "updated": "A Conjugated Verb Definition is updated with identifier {{ param }}",
+            "deleted": "A Conjugated Verb Definition is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Conjugated Verb Definition {{ id }}?"
+            },
+            "detail": {
+                "title": "Conjugated Verb Definition"
+            },
+            "definition": "Definition",
+            "conjugatedVerb": "Conjugated Verb"
+        }
+    }
+}

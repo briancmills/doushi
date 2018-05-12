@@ -1,0 +1,40 @@
+
+<div *ngIf="conjugatedVerb">
+    <h2><span jhiTranslate="doushiApp.conjugatedVerb.detail.title">Conjugated Verb</span> {{conjugatedVerb.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="doushiApp.conjugatedVerb.conjugationType">Conjugation Type</span></dt>
+        <dd>
+            <span jhiTranslate="{{'doushiApp.ConjugationType.' + conjugatedVerb.conjugationType}}">{{conjugatedVerb.conjugationType}}</span>
+        </dd>
+        <dt><span jhiTranslate="doushiApp.conjugatedVerb.english">English</span></dt>
+        <dd>
+            <span>{{conjugatedVerb.english}}</span>
+        </dd>
+        <dt><span jhiTranslate="doushiApp.conjugatedVerb.japanese">Japanese</span></dt>
+        <dd>
+            <span>{{conjugatedVerb.japanese}}</span>
+        </dd>
+        <dt><span jhiTranslate="doushiApp.conjugatedVerb.verb">Verb</span></dt>
+        <dd>
+            <div *ngIf="conjugatedVerb.verb">
+                <a [routerLink]="['/verb', conjugatedVerb.verb?.id]">{{conjugatedVerb.verb?.verbText}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'conjugated-verb/'+ conjugatedVerb.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

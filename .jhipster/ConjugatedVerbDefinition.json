@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "conjugatedVerb",
+            "otherEntityName": "conjugatedVerb",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "japanese"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "definition",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": "1"
+        }
+    ],
+    "changelogDate": "20180511194142",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "conjugated_verb_definition",
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
+}

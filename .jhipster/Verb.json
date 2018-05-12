@@ -59,6 +59,19 @@
                 "minlength"
             ],
             "fieldValidateRulesMinlength": "1"
+        },
+        {
+            "fieldName": "kanjiText",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "romanjiText",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": "1"
         }
     ],
     "changelogDate": "20180511182756",

@@ -9,6 +9,8 @@
                 "main": "Entities",
                 "verb": "Verb",
                 "verbDefinition": "Verb Definition",
+                "conjugatedVerb": "Conjugated Verb",
+                "conjugatedVerbDefinition": "Conjugated Verb Definition",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

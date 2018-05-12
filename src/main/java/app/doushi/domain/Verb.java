@@ -1,20 +1,14 @@
 package app.doushi.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
+import java.util.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import app.doushi.domain.enumeration.VerbType;
-
-import app.doushi.domain.enumeration.JlptLevel;
-
-import app.doushi.domain.enumeration.VerbEnding;
+import app.doushi.domain.enumeration.*;
 
 /**
  * A Verb.
@@ -31,7 +25,7 @@ public class Verb implements Serializable {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "jhi_type")
+    @Column(name = "type")
     private VerbType type;
 
     @NotNull
@@ -59,6 +53,14 @@ public class Verb implements Serializable {
     @Size(min = 1)
     @Column(name = "verb_text", nullable = false)
     private String verbText;
+
+    @Column(name = "kanji_text")
+    private String kanjiText;
+
+    @NotNull
+    @Size(min = 1)
+    @Column(name = "romanji_text", nullable = false)
+    private String romanjiText;
 
     @OneToMany(mappedBy = "verb")
     @JsonIgnore
@@ -151,6 +153,32 @@ public class Verb implements Serializable {
         this.verbText = verbText;
     }
 
+    public String getKanjiText() {
+        return kanjiText;
+    }
+
+    public Verb kanjiText(String kanjiText) {
+        this.kanjiText = kanjiText;
+        return this;
+    }
+
+    public void setKanjiText(String kanjiText) {
+        this.kanjiText = kanjiText;
+    }
+
+    public String getRomanjiText() {
+        return romanjiText;
+    }
+
+    public Verb romanjiText(String romanjiText) {
+        this.romanjiText = romanjiText;
+        return this;
+    }
+
+    public void setRomanjiText(String romanjiText) {
+        this.romanjiText = romanjiText;
+    }
+
     public Set<VerbDefinition> getDefinitions() {
         return definitions;
     }
@@ -207,6 +235,8 @@ public class Verb implements Serializable {
             ", gradeLevel=" + getGradeLevel() +
             ", ending='" + getEnding() + "'" +
             ", verbText='" + getVerbText() + "'" +
+            ", kanjiText='" + getKanjiText() + "'" +
+            ", romanjiText='" + getRomanjiText() + "'" +
             "}";
     }
 }
