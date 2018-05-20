@@ -17,6 +17,7 @@ export class StudySheetComponent implements OnInit, OnDestroy {
 
     verbs: Verb[];
     conjugatedVerbs: ConjugatedVerb[];
+    filter: string;
     currentAccount: any;
     eventSubscriber: Subscription;
     itemsPerPage: number;
@@ -36,6 +37,7 @@ export class StudySheetComponent implements OnInit, OnDestroy {
         private principal: Principal
     ) {
         this.verbs = [];
+        this.filter = '';
         this.conjugatedVerbs = [];
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.page = 0;
@@ -98,6 +100,8 @@ export class StudySheetComponent implements OnInit, OnDestroy {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
         for (let i = 0; i < data.length; i++) {
+            // let the user search on multiple values
+            data[i].searchString = data[i].definition + ' ' +  data[i].romanjiText + ' ' +  data[i].kanjiText;
             this.verbs.push(data[i]);
         }
     }

@@ -16,6 +16,7 @@
             },
             "type": "Type",
             "definition": "Definition",
+            "filter": "Filter",
             "jlptLevel": "JLPT Level",
             "gradeLevel": "Grade Level",
             "ending": "Ending",
