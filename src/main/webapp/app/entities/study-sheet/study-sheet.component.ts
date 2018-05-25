@@ -6,7 +6,6 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { Verb } from '../verb/verb.model';
 import { ConjugatedVerb } from '../conjugated-verb/conjugated-verb.model';
 import { VerbService } from '../verb/verb.service';
-import { ConjugatedVerbService } from '../conjugated-verb/conjugated-verb.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
 
 @Component({
@@ -30,7 +29,6 @@ export class StudySheetComponent implements OnInit, OnDestroy {
 
     constructor(
         private verbService: VerbService,
-        private conjugatedVerbService: ConjugatedVerbService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private parseLinks: JhiParseLinks,

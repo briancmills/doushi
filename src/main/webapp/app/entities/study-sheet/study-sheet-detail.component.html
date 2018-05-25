@@ -1,0 +1,68 @@
+
+<div *ngIf="verb">
+    <h2><span jhiTranslate="doushiApp.verb.detail.title">Verb</span> {{verb.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="doushiApp.verb.type">Type</span></dt>
+        <dd>
+            <span jhiTranslate="{{'doushiApp.VerbType.' + verb.type}}">{{verb.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="doushiApp.verb.definition">Definition</span></dt>
+        <dd>
+            <span>{{verb.definition}}</span>
+        </dd>
+        <dt><span jhiTranslate="doushiApp.verb.jlptLevel">Jlpt Level</span></dt>
+        <dd>
+            <span jhiTranslate="{{'doushiApp.JlptLevel.' + verb.jlptLevel}}">{{verb.jlptLevel}}</span>
+        </dd>
+        <dt><span jhiTranslate="doushiApp.verb.gradeLevel">Grade Level</span></dt>
+        <dd>
+            <span>{{verb.gradeLevel}}</span>
+        </dd>
+        <dt><span jhiTranslate="doushiApp.verb.ending">Ending</span></dt>
+        <dd>
+            <span jhiTranslate="{{'doushiApp.VerbEnding.' + verb.ending}}">{{verb.ending}}</span>
+        </dd>
+        <dt><span jhiTranslate="doushiApp.verb.verbText">Verb Text</span></dt>
+        <dd>
+            <span>{{verb.verbText}}</span>
+        </dd>
+        <dt><span jhiTranslate="doushiApp.verb.kanjiText">Kanji Text</span></dt>
+        <dd>
+            <span>{{verb.kanjiText}}</span>
+        </dd>
+        <dt><span jhiTranslate="doushiApp.verb.romanjiText">Romanji Text</span></dt>
+        <dd>
+            <span>{{verb.romanjiText}}</span>
+        </dd>
+    </dl>
+    
+        <br/>
+    <div class="table-responsive" *ngIf="conjugatedVerbs">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="doushiApp.conjugatedVerb.conjugationType">Conjugation Type</span></th>
+            <th><span jhiTranslate="doushiApp.conjugatedVerb.japanese">Japanese</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let conjugatedVerb of conjugatedVerbs ;trackBy: trackId">
+                <td jhiTranslate="{{'doushiApp.ConjugationType.' + conjugatedVerb.conjugationType}}">{{conjugatedVerb.conjugationType}}</td>
+                <td>{{conjugatedVerb.japanese}}</td>
+                <td class="text-right">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+</div>

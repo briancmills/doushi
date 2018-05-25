@@ -5,6 +5,7 @@ import { DoushiSharedModule } from '../../shared';
 import { VerbService } from '../verb/verb.service';
 import {
     StudySheetComponent,
+    StudySheetDetailComponent,
     studySheetRoute,
 } from './';
 
@@ -19,9 +20,11 @@ const ENTITY_STATES = [
     ],
     declarations: [
         StudySheetComponent,
+        StudySheetDetailComponent,
     ],
     entryComponents: [
         StudySheetComponent,
+        StudySheetDetailComponent,
     ],
     providers: [
         VerbService,

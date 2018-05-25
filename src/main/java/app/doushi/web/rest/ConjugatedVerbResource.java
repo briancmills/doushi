@@ -1,27 +1,22 @@
 package app.doushi.web.rest;
 
+import java.net.*;
+import java.util.*;
+
+import javax.validation.Valid;
+
+import org.slf4j.*;
+import org.springframework.data.domain.*;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
+
 import com.codahale.metrics.annotation.Timed;
+
 import app.doushi.domain.ConjugatedVerb;
 import app.doushi.service.ConjugatedVerbService;
 import app.doushi.web.rest.errors.BadRequestAlertException;
-import app.doushi.web.rest.util.HeaderUtil;
-import app.doushi.web.rest.util.PaginationUtil;
+import app.doushi.web.rest.util.*;
 import io.github.jhipster.web.util.ResponseUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * REST controller for managing ConjugatedVerb.
@@ -95,6 +90,20 @@ public class ConjugatedVerbResource {
         Page<ConjugatedVerb> page = conjugatedVerbService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/conjugated-verbs");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    
+    /**
+     * GET  /conjugated-verbs/verb/:id : get all the conjugatedVerbs for the given verb ID.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of conjugatedVerbs in body
+     */
+    @GetMapping("/conjugated-verbs/verb/{id}")
+    @Timed
+    public ResponseEntity<List<ConjugatedVerb>> getAllConjugatedVerbs(@PathVariable Long id) {
+        log.debug("REST request to get a page of ConjugatedVerbs");
+        List<ConjugatedVerb> results = conjugatedVerbService.findAllByVerb(id);
+        return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
     /**
