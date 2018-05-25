@@ -29,7 +29,6 @@ public class ConjugatedVerb implements Serializable {
     @Column(name = "conjugation_type", nullable = false)
     private ConjugationType conjugationType;
 
-    @NotNull
     @Size(min = 0, max = 100)
     @Column(name = "english", length = 100, nullable = true)
     private String english;

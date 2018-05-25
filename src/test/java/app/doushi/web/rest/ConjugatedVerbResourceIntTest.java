@@ -166,25 +166,6 @@ public class ConjugatedVerbResourceIntTest {
 
     @Test
     @Transactional
-    public void checkEnglishIsRequired() throws Exception {
-        int databaseSizeBeforeTest = conjugatedVerbRepository.findAll().size();
-        // set the field null
-        ConjugatedVerb testVerb = conjugatedVerbRepository.findAll().stream().findFirst().get();
-        testVerb.setEnglish(null);
-        
-        // Create the ConjugatedVerb, which fails.
-
-        restConjugatedVerbMockMvc.perform(post("/api/conjugated-verbs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(testVerb)))
-            .andExpect(status().isBadRequest());
-
-        List<ConjugatedVerb> conjugatedVerbList = conjugatedVerbRepository.findAll();
-        assertThat(conjugatedVerbList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkJapaneseIsRequired() throws Exception {
         int databaseSizeBeforeTest = conjugatedVerbRepository.findAll().size();
         // set the field null

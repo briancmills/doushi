@@ -71,7 +71,9 @@ public class ConjugatedVerbResource {
         if (conjugatedVerb.getId() == null) {
             return createConjugatedVerb(conjugatedVerb);
         }
+        
         ConjugatedVerb result = conjugatedVerbService.save(conjugatedVerb);
+
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, conjugatedVerb.getId().toString()))
             .body(result);
