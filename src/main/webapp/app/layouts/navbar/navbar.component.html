@@ -18,6 +18,14 @@
                 </a>
             </li>
             <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="quiz" (click)="collapseNavbar()">
+                    <span>
+                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                        <span jhiTranslate="global.menu.quiz">Quiz</span>
+                    </span>
+                </a>
+            </li>
+            <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="study-sheet" (click)="collapseNavbar()">
                     <span>
                         <i class="fa fa-book" aria-hidden="true"></i>

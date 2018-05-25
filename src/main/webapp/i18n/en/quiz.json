@@ -1,0 +1,34 @@
+
+{
+    "doushiApp": {
+        "quiz" : {
+            "home": {
+                "title": "Quiz"
+            },
+            "instructions": "Please conjugate '{{verbName}}' into the {{form}} form. ",
+            "incorrect": "The correct answer is {{answer}}",
+            "correct": "That is right!",
+            "next": "Next",
+            "check": "Check Answer",
+            "created": "A new Verb is created with identifier {{ param }}",
+            "updated": "A Verb is updated with identifier {{ param }}",
+            "deleted": "A Verb is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Verb {{ id }}?"
+            },
+            "detail": {
+                "title": "Verb"
+            },
+            "type": "Type",
+            "definition": "Definition",
+            "filter": "Filter",
+            "jlptLevel": "JLPT Level",
+            "gradeLevel": "Grade Level",
+            "ending": "Ending",
+            "verbText": "Verb Text",
+            "kanjiText": "Kanji Text",
+            "romanjiText": "Romanji Text",
+            "definitions": "Definitions"
+        }
+    }
+}
