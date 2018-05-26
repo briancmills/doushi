@@ -10,7 +10,7 @@
             <h5 class="card-title">{{conjugatedVerb.verb.kanjiText}}
                 {{conjugatedVerb.verb.definition}}</h5>
             <div class="card-text">
-                <p jhiTranslate="doushiApp.quiz.instructions" translateValues="{verbName: '{{conjugatedVerb.verb.verbText}}', form: '{{conjugatedVerb.conjugationType}}'}"></p>
+                <p jhiTranslate="doushiApp.quiz.instructions" translateValues="{verbName: '{{conjugatedVerb.verb.verbText}}', form: '{{'doushiApp.ConjugationType.' + conjugatedVerb.conjugationType | translate}}'}"></p>
                 
                 <form name="quizForm" role="form" novalidate #quizForm="ngForm">
 	                <div class="form-group">
