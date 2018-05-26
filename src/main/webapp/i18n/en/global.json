@@ -14,6 +14,7 @@
                 "conjugatedVerb": "Conjugated Verb",
                 "conjugatedVerbDefinition": "Conjugated Verb Definition",
                 "answer": "Answer",
+                "userVerbFormLevel": "User Verb Form Level",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

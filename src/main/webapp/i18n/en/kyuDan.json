@@ -1,0 +1,17 @@
+{
+    "doushiApp": {
+        "KyuDan" : {
+            "null": "",
+            "KYUKYU": "Kyūkyū",
+            "HACHIKYU": "Hakkyū",
+            "NANAKYU": "Nanakyū",
+            "ROKYU": "Rokkyū",
+            "GOKYU": "Gokyū",
+            "YONKYU": "Yonkyū",
+            "SANKYU": "Sankyū",
+            "NIKYU": "Nikyū",
+            "IKKYU": "Ikkyū",
+            "SHODAN": "Shodan"
+        }
+    }
+}

@@ -1,0 +1,25 @@
+
+{
+    "doushiApp": {
+        "userVerbFormLevel" : {
+            "home": {
+                "title": "User Verb Form Levels",
+                "createLabel": "Create a new User Verb Form Level",
+                "createOrEditLabel": "Create or edit a User Verb Form Level"
+            },
+            "created": "A new User Verb Form Level is created with identifier {{ param }}",
+            "updated": "A User Verb Form Level is updated with identifier {{ param }}",
+            "deleted": "A User Verb Form Level is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete User Verb Form Level {{ id }}?"
+            },
+            "detail": {
+                "title": "User Verb Form Level"
+            },
+            "level": "Level",
+            "user": "User",
+            "verb": "Verb",
+            "conjugatedVerb": "Conjugated Verb"
+        }
+    }
+}

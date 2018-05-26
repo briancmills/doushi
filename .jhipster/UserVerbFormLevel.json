@@ -1,0 +1,44 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "userVerbFormLevel"
+        },
+        {
+            "relationshipName": "verb",
+            "otherEntityName": "verb",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "kanjiText"
+        },
+        {
+            "relationshipName": "conjugatedVerb",
+            "otherEntityName": "conjugatedVerb",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "japanese"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "level",
+            "fieldType": "KyuDan",
+            "fieldValues": "KYUKYU,HACHIKYU,NANAKYU,ROKYU,GOKYU,YONKYU,SANKYU,NIKYU,IKKYU,SHODAN",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20180526231042",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "user_verb_form_level",
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
+}

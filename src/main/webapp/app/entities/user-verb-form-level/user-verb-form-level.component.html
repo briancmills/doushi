@@ -1,0 +1,74 @@
+<div>
+    <h2>
+        <span jhiTranslate="doushiApp.userVerbFormLevel.home.title">User Verb Form Levels</span>
+        <button class="btn btn-primary float-right jh-create-entity create-user-verb-form-level" [routerLink]="['/', { outlets: { popup: ['user-verb-form-level-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="doushiApp.userVerbFormLevel.home.createLabel">
+            Create new User Verb Form Level
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="userVerbFormLevels">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="level"><span jhiTranslate="doushiApp.userVerbFormLevel.level">Level</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="user.login"><span jhiTranslate="doushiApp.userVerbFormLevel.user">User</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="verb.kanjiText"><span jhiTranslate="doushiApp.userVerbFormLevel.verb">Verb</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="conjugatedVerb.japanese"><span jhiTranslate="doushiApp.userVerbFormLevel.conjugatedVerb">Conjugated Verb</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let userVerbFormLevel of userVerbFormLevels ;trackBy: trackId">
+                <td><a [routerLink]="['../user-verb-form-level', userVerbFormLevel.id ]">{{userVerbFormLevel.id}}</a></td>
+                <td jhiTranslate="{{'doushiApp.KyuDan.' + userVerbFormLevel.level}}">{{userVerbFormLevel.level}}</td>
+                <td>
+                    {{userVerbFormLevel.user?.login}}
+                </td>
+                <td>
+                    <div *ngIf="userVerbFormLevel.verb">
+                        <a [routerLink]="['../verb', userVerbFormLevel.verb?.id ]" >{{userVerbFormLevel.verb?.kanjiText}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="userVerbFormLevel.conjugatedVerb">
+                        <a [routerLink]="['../conjugated-verb', userVerbFormLevel.conjugatedVerb?.id ]" >{{userVerbFormLevel.conjugatedVerb?.japanese}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../user-verb-form-level', userVerbFormLevel.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'user-verb-form-level/'+ userVerbFormLevel.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'user-verb-form-level/'+ userVerbFormLevel.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

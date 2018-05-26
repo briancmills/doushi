@@ -1,0 +1,42 @@
+
+<div *ngIf="userVerbFormLevel">
+    <h2><span jhiTranslate="doushiApp.userVerbFormLevel.detail.title">User Verb Form Level</span> {{userVerbFormLevel.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="doushiApp.userVerbFormLevel.level">Level</span></dt>
+        <dd>
+            <span jhiTranslate="{{'doushiApp.KyuDan.' + userVerbFormLevel.level}}">{{userVerbFormLevel.level}}</span>
+        </dd>
+        <dt><span jhiTranslate="doushiApp.userVerbFormLevel.user">User</span></dt>
+        <dd>
+            {{userVerbFormLevel.user?.login}}
+        </dd>
+        <dt><span jhiTranslate="doushiApp.userVerbFormLevel.verb">Verb</span></dt>
+        <dd>
+            <div *ngIf="userVerbFormLevel.verb">
+                <a [routerLink]="['/verb', userVerbFormLevel.verb?.id]">{{userVerbFormLevel.verb?.kanjiText}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="doushiApp.userVerbFormLevel.conjugatedVerb">Conjugated Verb</span></dt>
+        <dd>
+            <div *ngIf="userVerbFormLevel.conjugatedVerb">
+                <a [routerLink]="['/conjugated-verb', userVerbFormLevel.conjugatedVerb?.id]">{{userVerbFormLevel.conjugatedVerb?.japanese}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'user-verb-form-level/'+ userVerbFormLevel.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
