@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import app.doushi.domain.ConjugatedVerb;
 import app.doushi.repository.ConjugatedVerbRepository;
+import app.doushi.security.SecurityUtils;
 
 
 /**
@@ -74,5 +75,15 @@ public class ConjugatedVerbService {
     public List<ConjugatedVerb> findAllByVerb(Long id) {
         log.debug("Request to findAllByVerb : {}", id);
         return conjugatedVerbRepository.findAllByVerbId(id);
+    }
+
+    public ConjugatedVerb getConjugatedVerbToStudy() {
+        String login = SecurityUtils.getCurrentUserLogin().get();
+        Page<ConjugatedVerb> page = conjugatedVerbRepository.getConjugatedVerbToStudy(login, new PageRequest(0, 1));
+        if (page.hasContent()) {
+            return page.getContent().get(0);
+        } else {
+            return null;
+        }
     }
 }

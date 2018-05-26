@@ -2,7 +2,9 @@ package app.doushi.repository;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.domain.*;
+import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import app.doushi.domain.ConjugatedVerb;
@@ -16,5 +18,18 @@ import app.doushi.domain.ConjugatedVerb;
 public interface ConjugatedVerbRepository extends JpaRepository<ConjugatedVerb, Long> {
 
     List<ConjugatedVerb> findAllByVerbId(Long id);
+
+    @Query("SELECT cv "
+            + "FROM ConjugatedVerb cv "
+            + "WHERE cv NOT IN ( "
+            + " SELECT acv "
+            + " FROM Answer a "
+            + " JOIN a.conjugatedVerb acv "
+            + " WHERE a.correct = TRUE "
+            + " AND a.date >= CURRENT_DATE "
+            + " AND a.user.login = :login "
+            + ") "
+            + "ORDER BY cv.id ")
+    Page<ConjugatedVerb> getConjugatedVerbToStudy(@Param("login") String login, Pageable pageable);
 
 }

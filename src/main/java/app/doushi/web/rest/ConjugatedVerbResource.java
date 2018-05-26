@@ -121,6 +121,20 @@ public class ConjugatedVerbResource {
         ConjugatedVerb conjugatedVerb = conjugatedVerbService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(conjugatedVerb));
     }
+    
+    /**
+     * GET  /conjugated-verbs/study : get the next conjugated verb to study
+     *
+     * @param id the id of the conjugatedVerb to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the conjugatedVerb, or with status 404 (Not Found)
+     */
+    @GetMapping("/conjugated-verbs/study")
+    @Timed
+    public ResponseEntity<ConjugatedVerb> getConjugatedVerbToStudy() {
+        log.debug("REST request to get getConjugatedVerbToStudy : ");
+        ConjugatedVerb conjugatedVerb = conjugatedVerbService.getConjugatedVerbToStudy();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(conjugatedVerb));
+    }
 
     /**
      * DELETE  /conjugated-verbs/:id : delete the "id" conjugatedVerb.
