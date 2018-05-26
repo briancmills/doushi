@@ -39,7 +39,6 @@ export class QuizComponent implements OnInit, OnDestroy {
         private eventManager: JhiEventManager,
         private parseLinks: JhiParseLinks,
         private principal: Principal,
-        private userService: UserService
     ) {
         this.isError = false;
         this.conjugatedVerbs = [];
@@ -78,7 +77,6 @@ export class QuizComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
-            console.log('ngOnInit', account);
             this.currentAccount = account;
         });
         this.registerChangeInVerbs();
@@ -104,9 +102,6 @@ export class QuizComponent implements OnInit, OnDestroy {
     }
 
     check() {
-      console.log('check');
-      console.log('this.correct', this.correct);
-      // TODO validate the answer
       console.log(this.conjugatedVerb.answer);
       if (this.conjugatedVerb.answer === this.conjugatedVerb.japanese) {
         this.correct = true;
@@ -133,7 +128,10 @@ export class QuizComponent implements OnInit, OnDestroy {
     }
 
     private onSaveAnswerSuccess(result: Answer) {
-        this.eventManager.broadcast({ name: 'answerListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'answerListModification', content: 'Test'});
+        if (this.correct) {
+          setTimeout(() => { this.next(); }, 3000);
+        }
     }
 
     private onSaveError() {

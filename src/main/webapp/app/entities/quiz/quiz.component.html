@@ -12,7 +12,7 @@
             <div class="card-text">
                 <p jhiTranslate="doushiApp.quiz.instructions" translateValues="{verbName: '{{conjugatedVerb.verb.verbText}}', form: '{{conjugatedVerb.conjugationType}}'}"></p>
                 
-                <form name="quizForm" role="form" novalidate (ngSubmit)="check()" #quizForm="ngForm">
+                <form name="quizForm" role="form" novalidate #quizForm="ngForm">
 	                <div class="form-group">
 			            <label class="form-control-label" jhiTranslate="doushiApp.conjugatedVerb.japanese" for="field_japanese">Japanese</label>
 			            <input type="text" class="form-control" name="answer" id="field_answer" autocomplete="off"
