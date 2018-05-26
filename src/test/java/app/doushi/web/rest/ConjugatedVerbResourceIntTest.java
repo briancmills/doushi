@@ -1,15 +1,16 @@
 package app.doushi.web.rest;
 
-import app.doushi.DoushiApp;
+import static app.doushi.web.rest.TestUtil.createFormattingConversionService;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import app.doushi.domain.ConjugatedVerb;
-import app.doushi.domain.Verb;
-import app.doushi.repository.ConjugatedVerbRepository;
-import app.doushi.service.ConjugatedVerbService;
-import app.doushi.web.rest.errors.ExceptionTranslator;
+import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
+import javax.persistence.EntityManager;
+
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +23,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import java.util.List;
-
-import static app.doushi.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+import app.doushi.DoushiApp;
+import app.doushi.domain.*;
 import app.doushi.domain.enumeration.ConjugationType;
+import app.doushi.repository.*;
+import app.doushi.service.ConjugatedVerbService;
+import app.doushi.web.rest.errors.ExceptionTranslator;
 /**
  * Test class for the ConjugatedVerbResource REST controller.
  *
@@ -52,6 +49,9 @@ public class ConjugatedVerbResourceIntTest {
 
     @Autowired
     private ConjugatedVerbRepository conjugatedVerbRepository;
+    
+    @Autowired
+    private VerbRepository verbRepository;
 
     @Autowired
     private ConjugatedVerbService conjugatedVerbService;
@@ -166,24 +166,6 @@ public class ConjugatedVerbResourceIntTest {
 
     @Test
     @Transactional
-    public void checkEnglishIsRequired() throws Exception {
-        int databaseSizeBeforeTest = conjugatedVerbRepository.findAll().size();
-        // set the field null
-        conjugatedVerb.setEnglish(null);
-
-        // Create the ConjugatedVerb, which fails.
-
-        restConjugatedVerbMockMvc.perform(post("/api/conjugated-verbs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(conjugatedVerb)))
-            .andExpect(status().isBadRequest());
-
-        List<ConjugatedVerb> conjugatedVerbList = conjugatedVerbRepository.findAll();
-        assertThat(conjugatedVerbList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkJapaneseIsRequired() throws Exception {
         int databaseSizeBeforeTest = conjugatedVerbRepository.findAll().size();
         // set the field null
@@ -214,6 +196,21 @@ public class ConjugatedVerbResourceIntTest {
             .andExpect(jsonPath("$.[*].conjugationType").value(hasItem(DEFAULT_CONJUGATION_TYPE.toString())))
             .andExpect(jsonPath("$.[*].english").value(hasItem(DEFAULT_ENGLISH.toString())))
             .andExpect(jsonPath("$.[*].japanese").value(hasItem(DEFAULT_JAPANESE.toString())));
+    }
+    
+
+    @Test
+    @Transactional
+    public void getAllConjugatedVerbsByVerbId() throws Exception {
+        // Initialize the database
+        conjugatedVerbRepository.saveAndFlush(conjugatedVerb);
+
+        Verb verb = verbRepository.findAll().stream().findFirst().get();
+        // Get all the conjugatedVerbList
+        restConjugatedVerbMockMvc.perform(get("/api/conjugated-verbs/verb/{id}", verb.getId()))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$").isArray());
     }
 
     @Test

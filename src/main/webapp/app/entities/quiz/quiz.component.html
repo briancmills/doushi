@@ -1,0 +1,58 @@
+<div>
+    <h2>
+        <span jhiTranslate="doushiApp.quiz.home.title">Quiz</span>
+    </h2>
+    
+    <jhi-alert></jhi-alert>
+    
+    <div *ngIf="conjugatedVerb" class="card" style="width: 30rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{conjugatedVerb.verb.kanjiText}}
+                {{conjugatedVerb.verb.definition}}</h5>
+            <div class="card-text">
+                <p jhiTranslate="doushiApp.quiz.instructions" translateValues="{verbName: '{{conjugatedVerb.verb.verbText}}', form: '{{conjugatedVerb.conjugationType}}'}"></p>
+                
+                <form name="quizForm" role="form" novalidate (ngSubmit)="check()" #quizForm="ngForm">
+	                <div class="form-group">
+			            <label class="form-control-label" jhiTranslate="doushiApp.conjugatedVerb.japanese" for="field_japanese">Japanese</label>
+			            <input type="text" class="form-control" name="answer" id="field_answer" autocomplete="off"
+			                [(ngModel)]="conjugatedVerb.answer" required minlength="2" maxlength="100"/>
+			            <div [hidden]="!(quizForm.controls.answer?.dirty && quizForm.controls.answer?.invalid)">
+                            <small class="form-text text-danger"
+                               [hidden]="!quizForm.controls.answer?.errors?.required" jhiTranslate="entity.validation.required">
+                               This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                               [hidden]="!quizForm.controls.answer?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 2 }">
+                               This field is required to be at least 2 characters.
+                            </small>
+                            <small class="form-text text-danger"
+                               [hidden]="!quizForm.controls.answer?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 100 }">
+                               This field cannot be longer than 100 characters.
+                            </small>
+                        </div>
+                        <div [hidden]="correct || correct===undefined">
+                            <small class="form-text text-danger" jhiTranslate="doushiApp.quiz.incorrect" translateValues="{ answer: '{{conjugatedVerb.japanese}}' }">
+                               Nope!
+                            </small>
+                        </div>
+                        <div [hidden]="!correct===true">
+                            <small class="form-text text-success" jhiTranslate="doushiApp.quiz.correct">
+                               Yup!
+                            </small>
+                        </div>
+			        </div>
+			        
+                    <button type="submit" [hidden]="correct===true" class="btn btn-primary" (click)="check()">
+                        <span class="fa fa-check"></span>&nbsp;<span jhiTranslate="doushiApp.quiz.check">Check</span>
+                    </button>
+                    <button type="submit" [hidden]="correct===undefined" [disabled]="correct===undefined" class="btn btn-primary" (click)="next()">
+                        <span class="fa fa-long-arrow-alt-right"></span>&nbsp;<span jhiTranslate="doushiApp.quiz.next">Next</span>
+                    </button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+</div>

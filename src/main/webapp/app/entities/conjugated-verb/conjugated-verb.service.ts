@@ -38,6 +38,11 @@ export class ConjugatedVerbService {
             .map((res: HttpResponse<ConjugatedVerb[]>) => this.convertArrayResponse(res));
     }
 
+    queryByVerb(id: number): Observable<HttpResponse<ConjugatedVerb[]>> {
+       return this.http.get<ConjugatedVerb[]>(`${this.resourceUrl}/verb/${id}`, { observe: 'response'})
+            .map((res: HttpResponse<ConjugatedVerb[]>) => this.convertArrayResponse(res));
+    }
+
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
     }

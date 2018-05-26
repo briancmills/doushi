@@ -4,13 +4,12 @@ import { RouterModule } from '@angular/router';
 import { DoushiSharedModule } from '../../shared';
 import { VerbService } from '../verb/verb.service';
 import {
-    StudySheetComponent,
-    StudySheetDetailComponent,
-    studySheetRoute,
+    QuizComponent,
+    quizRoute,
 } from './';
 
 const ENTITY_STATES = [
-    ...studySheetRoute,
+    ...quizRoute,
 ];
 
 @NgModule({
@@ -19,16 +18,14 @@ const ENTITY_STATES = [
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
-        StudySheetComponent,
-        StudySheetDetailComponent,
+        QuizComponent,
     ],
     entryComponents: [
-        StudySheetComponent,
-        StudySheetDetailComponent,
+        QuizComponent,
     ],
     providers: [
         VerbService,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class DoushiStudySheetModule {}
+export class DoushiQuizModule {}

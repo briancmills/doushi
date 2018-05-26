@@ -36,7 +36,14 @@
                 <td>{{verb.kanjiText}}</td>
                 <td>{{verb.romanjiText}}</td>
                 <td class="text-right">
-                    
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../study-sheet', verb.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                    </div>
                 </td>
             </tr>
             </tbody>

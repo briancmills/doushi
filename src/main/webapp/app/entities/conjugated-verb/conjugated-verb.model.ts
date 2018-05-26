@@ -1,4 +1,5 @@
 import { BaseEntity } from './../../shared';
+import { Verb } from '../verb/verb.model';
 
 export const enum ConjugationType {
     'dictionary',
@@ -17,7 +18,8 @@ export class ConjugatedVerb implements BaseEntity {
         public conjugationType?: ConjugationType,
         public english?: string,
         public japanese?: string,
-        public verb?: BaseEntity,
+        public answer?: string,
+        public verb?: Verb,
         public definitions?: BaseEntity[],
     ) {
     }

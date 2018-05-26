@@ -1,9 +1,11 @@
 package app.doushi.repository;
 
-import app.doushi.domain.ConjugatedVerb;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import org.springframework.data.jpa.repository.*;
+import app.doushi.domain.ConjugatedVerb;
 
 
 /**
@@ -12,5 +14,7 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface ConjugatedVerbRepository extends JpaRepository<ConjugatedVerb, Long> {
+
+    List<ConjugatedVerb> findAllByVerbId(Long id);
 
 }

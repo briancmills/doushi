@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
 import { StudySheetComponent } from './study-sheet.component';
+import { StudySheetDetailComponent } from './study-sheet-detail.component';
 
 export const studySheetRoute: Routes = [
     {
@@ -9,7 +10,15 @@ export const studySheetRoute: Routes = [
         component: StudySheetComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'doushiApp.verb.home.title'
+            pageTitle: 'doushiApp.studySheet.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    }, {
+        path: 'study-sheet/:id',
+        component: StudySheetDetailComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'doushiApp.studySheet.home.title'
         },
         canActivate: [UserRouteAccessService]
     }

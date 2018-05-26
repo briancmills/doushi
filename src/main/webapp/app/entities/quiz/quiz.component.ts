@@ -3,18 +3,17 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
-import { Verb } from '../verb/verb.model';
 import { ConjugatedVerb } from '../conjugated-verb/conjugated-verb.model';
-import { VerbService } from '../verb/verb.service';
+import { ConjugatedVerbService } from '../conjugated-verb/conjugated-verb.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
 
 @Component({
     selector: 'jhi-verb',
-    templateUrl: './study-sheet.component.html'
+    templateUrl: './quiz.component.html'
 })
-export class StudySheetComponent implements OnInit, OnDestroy {
+export class QuizComponent implements OnInit, OnDestroy {
 
-    verbs: Verb[];
+    conjugatedVerb: ConjugatedVerb;
     conjugatedVerbs: ConjugatedVerb[];
     filter: string;
     currentAccount: any;
@@ -26,40 +25,40 @@ export class StudySheetComponent implements OnInit, OnDestroy {
     queryCount: any;
     reverse: any;
     totalItems: number;
+    correct: boolean;
 
     constructor(
-        private verbService: VerbService,
+        private conjugatedVerbService: ConjugatedVerbService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private parseLinks: JhiParseLinks,
         private principal: Principal
     ) {
-        this.verbs = [];
-        this.filter = '';
         this.conjugatedVerbs = [];
-        this.itemsPerPage = ITEMS_PER_PAGE;
+        this.itemsPerPage = 10000;
         this.page = 0;
         this.links = {
             last: 0
         };
         this.predicate = 'id';
         this.reverse = true;
+        this.correct = undefined;
     }
 
     loadAll() {
-        this.verbService.query({
+        this.conjugatedVerbService.query({
             page: this.page,
             size: this.itemsPerPage,
             sort: this.sort()
         }).subscribe(
-            (res: HttpResponse<Verb[]>) => this.onSuccess(res.body, res.headers),
+            (res: HttpResponse<ConjugatedVerb[]>) => this.onSuccess(res.body, res.headers),
             (res: HttpErrorResponse) => this.onError(res.message)
         );
     }
 
     reset() {
         this.page = 0;
-        this.verbs = [];
+        this.conjugatedVerbs = [];
         this.loadAll();
     }
 
@@ -79,7 +78,7 @@ export class StudySheetComponent implements OnInit, OnDestroy {
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId(index: number, item: Verb) {
+    trackId(index: number, item: ConjugatedVerb) {
         return item.id;
     }
     registerChangeInVerbs() {
@@ -94,12 +93,33 @@ export class StudySheetComponent implements OnInit, OnDestroy {
         return result;
     }
 
+    check() {
+      console.log('check');
+      console.log('this.correct', this.correct);
+      // TODO validate the answer
+      console.log(this.conjugatedVerb.answer);
+      if (this.conjugatedVerb.answer === this.conjugatedVerb.japanese) {
+        this.correct = true;
+      } else {
+        this.correct = false;
+      }
+    }
+
+  　next() {
+      console.log('next');
+      this.correct = undefined;
+      const randomIndex = Math.floor(Math.random() * this.conjugatedVerbs.length);
+      this.conjugatedVerb = this.conjugatedVerbs[randomIndex];
+    }
+
     private onSuccess(data, headers) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
         for (let i = 0; i < data.length; i++) {
-            this.verbs.push(data[i]);
+            this.conjugatedVerbs.push(data[i]);
         }
+      const randomIndex = Math.floor(Math.random() * this.conjugatedVerbs.length);
+      this.conjugatedVerb = this.conjugatedVerbs[randomIndex];
     }
 
     private onError(error) {

@@ -1,13 +1,14 @@
 package app.doushi.service;
 
-import app.doushi.domain.ConjugatedVerb;
-import app.doushi.repository.ConjugatedVerbRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.List;
+
+import org.slf4j.*;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import app.doushi.domain.ConjugatedVerb;
+import app.doushi.repository.ConjugatedVerbRepository;
 
 
 /**
@@ -68,5 +69,10 @@ public class ConjugatedVerbService {
     public void delete(Long id) {
         log.debug("Request to delete ConjugatedVerb : {}", id);
         conjugatedVerbRepository.delete(id);
+    }
+
+    public List<ConjugatedVerb> findAllByVerb(Long id) {
+        log.debug("Request to findAllByVerb : {}", id);
+        return conjugatedVerbRepository.findAllByVerbId(id);
     }
 }
