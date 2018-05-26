@@ -1,17 +1,26 @@
 {
     "home": {
-        "title": "Welcome to Doushi.app",
+        "title": "Welcome to doushi.app",
         "subtitle": "Verbs make the world go round!",
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."
         },
         "question": "If you have any questions email {{email}}",
-        "link": {
-            "homepage": "JHipster homepage",
-            "stackoverflow": "JHipster on Stack Overflow",
-            "bugtracker": "JHipster bug tracker",
-            "chat": "JHipster public chat room",
-            "follow": "follow @java_hipster on Twitter"
+        "background": {
+            "header": "What is doushi.app?",
+            "explanation": "I have been studying Japanese for years but I always struggled with verb conjugation. I was never satisfied with any of the tools available for studying because they didn't adequately drill conjugation. I wanted a tool for studying verbs and conjugation that used a 'spaced repetition' approach because I enjoyed using other tools like wanikani.com.  Being a software developer I decided it was time to write one. ",
+            "steps": "Steps",            
+            "step1": "Memorize a set of 10 verbs in their dictionary form. This unlocks their conjugated forms.",            
+            "step2": "Practice conjugating the newly learned verbs.  Once you have made progress it will unlock the next 10 dictionary forms. ",            
+            "step3": "Victory!",
+            "limitations": "Limitations",            
+            "limitation1": "You must have a computer or phone capable of typing in Japanese.",            
+            "limitation2": "You will have to memorize the exact definitions used in this app. They aren't perfect but were taken from online dictionaries so should be good enough.'",            
+            "limitation3": "You should know Hiragana and Katakana and basic kanji (or be willing to learn quickly).  This app is about learning conjugation.  There are plenty of other better places to start to Japanese in general.  But this tool can help beginner and intermediate students master a skill that can be surprisingly frustrating.",
+            "covered": "What is covered?",
+            "covered1": "170 verbs from JLPT N5 and N4",
+            "covered2": "Dictionary and 10 conjugation forms for each verb.",
+            "covered3": "170 verbs from JLPT N5 and N4"
         },
         "like": "If you like JHipster, don't forget to give us a star on",
         "github": "GitHub"
