@@ -100,8 +100,6 @@ export class StudySheetComponent implements OnInit, OnDestroy {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
         for (let i = 0; i < data.length; i++) {
-            // let the user search on multiple values
-            data[i].searchString = data[i].definition + ' ' +  data[i].romanjiText + ' ' +  data[i].kanjiText;
             this.verbs.push(data[i]);
         }
     }

@@ -61,6 +61,7 @@ export class VerbService {
      */
     private convertItemFromServer(verb: Verb): Verb {
         const copy: Verb = Object.assign({}, verb);
+        copy.searchText = copy.definition + ' ' + copy.kanjiText + ' ' + copy.type + ' ' + ' ' + copy.romanjiText + ' ';
         return copy;
     }
 
@@ -69,6 +70,7 @@ export class VerbService {
      */
     private convert(verb: Verb): Verb {
         const copy: Verb = Object.assign({}, verb);
+        copy.searchText = copy.definition + ' ' + copy.kanjiText + ' ' + copy.type + ' ' + ' ' + copy.romanjiText + ' ';
         return copy;
     }
 }

@@ -25,7 +25,7 @@
             </tr>
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
-            <tr *ngFor="let verb of (verbs | pureFilter:filter:'searchString' )  ;trackBy: trackId">
+            <tr *ngFor="let verb of (verbs | pureFilter:filter:'searchText' )  ;trackBy: trackId">
                 <td><a [routerLink]="['../verb', verb.id ]">{{verb.id}}</a></td>
                 <td jhiTranslate="{{'doushiApp.VerbType.' + verb.type}}">{{verb.type}}</td>
                 <td>{{verb.definition}}</td>
