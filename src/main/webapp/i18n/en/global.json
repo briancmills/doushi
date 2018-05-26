@@ -13,6 +13,7 @@
                 "verbDefinition": "Verb Definition",
                 "conjugatedVerb": "Conjugated Verb",
                 "conjugatedVerbDefinition": "Conjugated Verb Definition",
+                "answer": "Answer",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

@@ -9,9 +9,11 @@
     <include file="config/liquibase/changelog/20180511185057_added_entity_VerbDefinition.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180511193846_added_entity_ConjugatedVerb.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180511194142_added_entity_ConjugatedVerbDefinition.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180526184331_added_entity_Answer.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20180511185057_added_entity_constraints_VerbDefinition.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180511193846_added_entity_constraints_ConjugatedVerb.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180511194142_added_entity_constraints_ConjugatedVerbDefinition.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180526184331_added_entity_constraints_Answer.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

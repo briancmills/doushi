@@ -4,6 +4,7 @@ import { DoushiVerbModule } from './verb/verb.module';
 import { DoushiVerbDefinitionModule } from './verb-definition/verb-definition.module';
 import { DoushiConjugatedVerbModule } from './conjugated-verb/conjugated-verb.module';
 import { DoushiConjugatedVerbDefinitionModule } from './conjugated-verb-definition/conjugated-verb-definition.module';
+import { DoushiAnswerModule } from './answer/answer.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -12,6 +13,7 @@ import { DoushiConjugatedVerbDefinitionModule } from './conjugated-verb-definiti
         DoushiVerbDefinitionModule,
         DoushiConjugatedVerbModule,
         DoushiConjugatedVerbDefinitionModule,
+        DoushiAnswerModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

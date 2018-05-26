@@ -1,0 +1,78 @@
+<div>
+    <h2>
+        <span jhiTranslate="doushiApp.answer.home.title">Answers</span>
+        <button class="btn btn-primary float-right jh-create-entity create-answer" [routerLink]="['/', { outlets: { popup: ['answer-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="doushiApp.answer.home.createLabel">
+            Create new Answer
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="answers">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="correct"><span jhiTranslate="doushiApp.answer.correct">Correct</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="date"><span jhiTranslate="doushiApp.answer.date">Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="input"><span jhiTranslate="doushiApp.answer.input">Input</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="user.login"><span jhiTranslate="doushiApp.answer.user">User</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="verb.kanjiText"><span jhiTranslate="doushiApp.answer.verb">Verb</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="conjugatedVerb.japanese"><span jhiTranslate="doushiApp.answer.conjugatedVerb">Conjugated Verb</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let answer of answers ;trackBy: trackId">
+                <td><a [routerLink]="['../answer', answer.id ]">{{answer.id}}</a></td>
+                <td>{{answer.correct}}</td>
+                <td>{{answer.date | date:'medium'}}</td>
+                <td>{{answer.input}}</td>
+                <td>
+                    {{answer.user?.login}}
+                </td>
+                <td>
+                    <div *ngIf="answer.verb">
+                        <a [routerLink]="['../verb', answer.verb?.id ]" >{{answer.verb?.kanjiText}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="answer.conjugatedVerb">
+                        <a [routerLink]="['../conjugated-verb', answer.conjugatedVerb?.id ]" >{{answer.conjugatedVerb?.japanese}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../answer', answer.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'answer/'+ answer.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'answer/'+ answer.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

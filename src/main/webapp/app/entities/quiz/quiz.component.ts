@@ -3,9 +3,12 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
+import { Observable } from 'rxjs/Observable';
 import { ConjugatedVerb } from '../conjugated-verb/conjugated-verb.model';
+import { Answer } from '../answer/answer.model';
+import { AnswerService } from '../answer/answer.service';
 import { ConjugatedVerbService } from '../conjugated-verb/conjugated-verb.service';
-import { ITEMS_PER_PAGE, Principal } from '../../shared';
+import { Principal, User, UserService } from '../../shared';
 
 @Component({
     selector: 'jhi-verb',
@@ -26,14 +29,19 @@ export class QuizComponent implements OnInit, OnDestroy {
     reverse: any;
     totalItems: number;
     correct: boolean;
+    user: User;
+    isError: boolean;
 
     constructor(
         private conjugatedVerbService: ConjugatedVerbService,
+        private answerService: AnswerService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private parseLinks: JhiParseLinks,
-        private principal: Principal
+        private principal: Principal,
+        private userService: UserService
     ) {
+        this.isError = false;
         this.conjugatedVerbs = [];
         this.itemsPerPage = 10000;
         this.page = 0;
@@ -43,6 +51,7 @@ export class QuizComponent implements OnInit, OnDestroy {
         this.predicate = 'id';
         this.reverse = true;
         this.correct = undefined;
+        this.principal = principal;
     }
 
     loadAll() {
@@ -69,6 +78,7 @@ export class QuizComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
+            console.log('ngOnInit', account);
             this.currentAccount = account;
         });
         this.registerChangeInVerbs();
@@ -103,6 +113,31 @@ export class QuizComponent implements OnInit, OnDestroy {
       } else {
         this.correct = false;
       }
+      const a = new Answer(
+        undefined,
+        this.correct,
+        new Date().toISOString().replace( 'Z', '' ),
+        this.conjugatedVerb.answer,
+        this.currentAccount,
+        undefined,
+        this.conjugatedVerb
+      );
+      console.log('answer', a);
+      this.subscribeToSaveAnswerResponse(
+          this.answerService.create(a));
+    }
+
+    private subscribeToSaveAnswerResponse(result: Observable<HttpResponse<Answer>>) {
+        result.subscribe((res: HttpResponse<Answer>) =>
+            this.onSaveAnswerSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
+    }
+
+    private onSaveAnswerSuccess(result: Answer) {
+        this.eventManager.broadcast({ name: 'answerListModification', content: 'OK'});
+    }
+
+    private onSaveError() {
+        this.isError = true;
     }
 
   　next() {
