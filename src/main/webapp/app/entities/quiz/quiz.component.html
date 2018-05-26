@@ -16,7 +16,8 @@
 	                <div class="form-group">
 			            <label class="form-control-label" jhiTranslate="doushiApp.conjugatedVerb.japanese" for="field_japanese">Japanese</label>
 			            <input type="text" class="form-control" name="answer" id="field_answer" autocomplete="off"
-			                [(ngModel)]="conjugatedVerb.answer" required minlength="2" maxlength="100"/>
+			                [(ngModel)]="conjugatedVerb.answer" 
+                            [disabled]="correct!==undefined" />
 			            <div [hidden]="!(quizForm.controls.answer?.dirty && quizForm.controls.answer?.invalid)">
                             <small class="form-text text-danger"
                                [hidden]="!quizForm.controls.answer?.errors?.required" jhiTranslate="entity.validation.required">

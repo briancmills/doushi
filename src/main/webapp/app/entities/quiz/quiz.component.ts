@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import { JhiAlertService } from 'ng-jhipster';
 
 import { Observable } from 'rxjs/Observable';
 import { ConjugatedVerb } from '../conjugated-verb/conjugated-verb.model';
 import { Answer } from '../answer/answer.model';
 import { AnswerService } from '../answer/answer.service';
 import { ConjugatedVerbService } from '../conjugated-verb/conjugated-verb.service';
-import { Principal, User, UserService } from '../../shared';
+import { Principal, User } from '../../shared';
 
 @Component({
     selector: 'jhi-verb',
@@ -17,17 +17,9 @@ import { Principal, User, UserService } from '../../shared';
 export class QuizComponent implements OnInit, OnDestroy {
 
     conjugatedVerb: ConjugatedVerb;
-    conjugatedVerbs: ConjugatedVerb[];
-    filter: string;
     currentAccount: any;
     eventSubscriber: Subscription;
-    itemsPerPage: number;
-    links: any;
-    page: any;
     predicate: any;
-    queryCount: any;
-    reverse: any;
-    totalItems: number;
     correct: boolean;
     user: User;
     isError: boolean;
@@ -36,78 +28,51 @@ export class QuizComponent implements OnInit, OnDestroy {
         private conjugatedVerbService: ConjugatedVerbService,
         private answerService: AnswerService,
         private jhiAlertService: JhiAlertService,
-        private eventManager: JhiEventManager,
-        private parseLinks: JhiParseLinks,
         private principal: Principal,
     ) {
         this.isError = false;
-        this.conjugatedVerbs = [];
-        this.itemsPerPage = 10000;
-        this.page = 0;
-        this.links = {
-            last: 0
-        };
-        this.predicate = 'id';
-        this.reverse = true;
         this.correct = undefined;
         this.principal = principal;
     }
 
     loadAll() {
-        this.conjugatedVerbService.query({
-            page: this.page,
-            size: this.itemsPerPage,
-            sort: this.sort()
-        }).subscribe(
-            (res: HttpResponse<ConjugatedVerb[]>) => this.onSuccess(res.body, res.headers),
+        this.conjugatedVerbService.findForStudy().subscribe(
+            (res: HttpResponse<ConjugatedVerb>) => this.onSuccess(res.body, res.headers),
             (res: HttpErrorResponse) => this.onError(res.message)
         );
     }
 
     reset() {
-        this.page = 0;
-        this.conjugatedVerbs = [];
+        this.conjugatedVerb = undefined;
         this.loadAll();
     }
 
-    loadPage(page) {
-        this.page = page;
-        this.loadAll();
-    }
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
             this.currentAccount = account;
         });
-        this.registerChangeInVerbs();
     }
 
     ngOnDestroy() {
-        this.eventManager.destroy(this.eventSubscriber);
     }
 
     trackId(index: number, item: ConjugatedVerb) {
         return item.id;
     }
-    registerChangeInVerbs() {
-        this.eventSubscriber = this.eventManager.subscribe('verbListModification', (response) => this.reset());
-    }
-
-    sort() {
-        const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
-        if (this.predicate !== 'id') {
-            result.push('id');
-        }
-        return result;
-    }
 
     check() {
+      // if they didn't provide an answer at all do nothing
+      if (!this.conjugatedVerb.answer) {
+        return;
+      }
       console.log(this.conjugatedVerb.answer);
       if (this.conjugatedVerb.answer === this.conjugatedVerb.japanese) {
         this.correct = true;
       } else {
         this.correct = false;
       }
+
       const a = new Answer(
         undefined,
         this.correct,
@@ -128,7 +93,6 @@ export class QuizComponent implements OnInit, OnDestroy {
     }
 
     private onSaveAnswerSuccess(result: Answer) {
-        this.eventManager.broadcast({ name: 'answerListModification', content: 'Test'});
         if (this.correct) {
           setTimeout(() => { this.next(); }, 3000);
         }
@@ -141,18 +105,14 @@ export class QuizComponent implements OnInit, OnDestroy {
   　next() {
       console.log('next');
       this.correct = undefined;
-      const randomIndex = Math.floor(Math.random() * this.conjugatedVerbs.length);
-      this.conjugatedVerb = this.conjugatedVerbs[randomIndex];
+      this.conjugatedVerbService.findForStudy().subscribe(
+            (res: HttpResponse<ConjugatedVerb>) => this.onSuccess(res.body, res.headers),
+            (res: HttpErrorResponse) => this.onError(res.message)
+      );
     }
 
     private onSuccess(data, headers) {
-        this.links = this.parseLinks.parse(headers.get('link'));
-        this.totalItems = headers.get('X-Total-Count');
-        for (let i = 0; i < data.length; i++) {
-            this.conjugatedVerbs.push(data[i]);
-        }
-      const randomIndex = Math.floor(Math.random() * this.conjugatedVerbs.length);
-      this.conjugatedVerb = this.conjugatedVerbs[randomIndex];
+        this.conjugatedVerb = data;
     }
 
     private onError(error) {

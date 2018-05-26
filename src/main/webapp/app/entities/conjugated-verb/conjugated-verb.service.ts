@@ -32,6 +32,11 @@ export class ConjugatedVerbService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
+    findForStudy(): Observable<EntityResponseType> {
+        return this.http.get<ConjugatedVerb>(`${this.resourceUrl}/study`, { observe: 'response'})
+            .map((res: EntityResponseType) => this.convertResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<ConjugatedVerb[]>> {
         const options = createRequestOption(req);
         return this.http.get<ConjugatedVerb[]>(this.resourceUrl, { params: options, observe: 'response' })
