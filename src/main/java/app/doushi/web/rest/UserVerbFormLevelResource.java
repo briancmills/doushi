@@ -1,27 +1,22 @@
 package app.doushi.web.rest;
 
+import java.net.*;
+import java.util.*;
+
+import javax.validation.Valid;
+
+import org.slf4j.*;
+import org.springframework.data.domain.*;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
+
 import com.codahale.metrics.annotation.Timed;
+
 import app.doushi.domain.UserVerbFormLevel;
 import app.doushi.service.UserVerbFormLevelService;
 import app.doushi.web.rest.errors.BadRequestAlertException;
-import app.doushi.web.rest.util.HeaderUtil;
-import app.doushi.web.rest.util.PaginationUtil;
+import app.doushi.web.rest.util.*;
 import io.github.jhipster.web.util.ResponseUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * REST controller for managing UserVerbFormLevel.
@@ -96,6 +91,19 @@ public class UserVerbFormLevelResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/user-verb-form-levels");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
+    
+    /**
+     * GET  /user-verb-form-levels/mine : get all the userVerbFormLevels for the current user.
+     *
+     */
+    @GetMapping("/user-verb-form-levels/mine")
+    @Timed
+    public ResponseEntity<List<UserVerbFormLevel>> getAllMyUserVerbFormLevels() {
+        log.debug("REST request to get a page of getAllMyUserVerbFormLevels");
+        List<UserVerbFormLevel> mine = userVerbFormLevelService.findAllMine();
+        return new ResponseEntity<>(mine, HttpStatus.OK);
+    }
+
 
     /**
      * GET  /user-verb-form-levels/:id : get the "id" userVerbFormLevel.

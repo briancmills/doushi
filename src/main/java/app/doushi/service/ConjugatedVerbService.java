@@ -7,8 +7,9 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import app.doushi.domain.ConjugatedVerb;
-import app.doushi.repository.ConjugatedVerbRepository;
+import app.doushi.domain.*;
+import app.doushi.domain.enumeration.KyuDan;
+import app.doushi.repository.*;
 import app.doushi.security.SecurityUtils;
 
 
@@ -23,8 +24,16 @@ public class ConjugatedVerbService {
 
     private final ConjugatedVerbRepository conjugatedVerbRepository;
 
-    public ConjugatedVerbService(ConjugatedVerbRepository conjugatedVerbRepository) {
+    private final UserVerbFormLevelRepository userVerbFormLevelRepository;
+
+    private final UserRepository userRepository;
+
+    public ConjugatedVerbService(ConjugatedVerbRepository conjugatedVerbRepository, 
+            UserVerbFormLevelRepository userVerbFormLevelRepository,
+            UserRepository userRepository) {
         this.conjugatedVerbRepository = conjugatedVerbRepository;
+        this.userVerbFormLevelRepository = userVerbFormLevelRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -79,6 +88,19 @@ public class ConjugatedVerbService {
 
     public ConjugatedVerb getConjugatedVerbToStudy() {
         String login = SecurityUtils.getCurrentUserLogin().get();
+        
+        // before getting the next verb to study lets make sure we have an initialized level for each verb in the database
+        // for this user. This way if we add a new verb the user gets a starting point automatically
+        // this might perform better if done in bulk via SQL but I think since it will limited operation it should be OK
+        User user = userRepository.findOneByLogin(login).get();
+        conjugatedVerbRepository.findVerbsWithNoProgress(login).stream().forEach(cv -> {
+            UserVerbFormLevel level = new UserVerbFormLevel()
+                    .conjugatedVerb(cv)
+                    .level(KyuDan.KYUKYU)
+                    .user(user);
+            userVerbFormLevelRepository.save(level);
+        });
+        
         Page<ConjugatedVerb> page = conjugatedVerbRepository.getConjugatedVerbToStudy(login, new PageRequest(0, 1));
         if (page.hasContent()) {
             return page.getContent().get(0);

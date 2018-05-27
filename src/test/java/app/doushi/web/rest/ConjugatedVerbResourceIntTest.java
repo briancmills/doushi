@@ -232,7 +232,7 @@ public class ConjugatedVerbResourceIntTest {
     
     @Test
     @Transactional
-    @WithMockUser(username="user",authorities={"ROLE_USR"}, password = "user")
+    @WithMockUser(username="user",authorities={"ROLE_USER"}, password = "user")
     public void getConjugatedVerbToStudy() throws Exception {
         // Get the conjugatedVerb to study 
         restConjugatedVerbMockMvc.perform(get("/api/conjugated-verbs/study"))

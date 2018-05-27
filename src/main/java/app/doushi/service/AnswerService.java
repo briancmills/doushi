@@ -1,13 +1,12 @@
 package app.doushi.service;
 
-import app.doushi.domain.Answer;
-import app.doushi.repository.AnswerRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.slf4j.*;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import app.doushi.domain.Answer;
+import app.doushi.repository.AnswerRepository;
 
 
 /**
@@ -33,6 +32,8 @@ public class AnswerService {
      */
     public Answer save(Answer answer) {
         log.debug("Request to save Answer : {}", answer);
+        // when an answer is saved we also calculate the users level
+        
         return answerRepository.save(answer);
     }
 

@@ -32,4 +32,15 @@ public interface ConjugatedVerbRepository extends JpaRepository<ConjugatedVerb, 
             + "ORDER BY cv.id ")
     Page<ConjugatedVerb> getConjugatedVerbToStudy(@Param("login") String login, Pageable pageable);
 
+    @Query("SELECT cv "
+            + "FROM ConjugatedVerb cv "
+            + "WHERE cv NOT IN ( "
+            + " SELECT ucv "
+            + " FROM UserVerbFormLevel uvfl "
+            + " JOIN uvfl.conjugatedVerb ucv "
+            + " WHERE uvfl.user.login = :login "
+            + ") "
+            + "ORDER BY cv.id ")
+    List<ConjugatedVerb> findVerbsWithNoProgress(@Param("login") String login);
+
 }

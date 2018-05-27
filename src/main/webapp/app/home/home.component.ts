@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { UserVerbFormLevel } from '../entities/user-verb-form-level/user-verb-form-level.model';
+import { UserVerbFormLevelService } from '../entities/user-verb-form-level/user-verb-form-level.service';
 
 import { Account, LoginModalService, Principal } from '../shared';
 
@@ -15,11 +18,14 @@ import { Account, LoginModalService, Principal } from '../shared';
 export class HomeComponent implements OnInit {
     account: Account;
     modalRef: NgbModalRef;
+    levelProgress: any;
 
     constructor(
         private principal: Principal,
         private loginModalService: LoginModalService,
-        private eventManager: JhiEventManager
+        private jhiAlertService: JhiAlertService,
+        private eventManager: JhiEventManager,
+        private userVerbFormLevelService: UserVerbFormLevelService,
     ) {
     }
 
@@ -36,6 +42,27 @@ export class HomeComponent implements OnInit {
                 this.account = account;
             });
         });
+
+        this.userVerbFormLevelService.findMine().subscribe(
+            (res: HttpResponse<UserVerbFormLevel[]>) => this.onSuccess(res.body, res.headers),
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+    }
+
+    private onSuccess(data, headers) {
+        this.levelProgress = {};
+        for (let i = 0; i < data.length; i++) {
+            const l = data[i];
+            if (!this.levelProgress[l.level]) {
+              this.levelProgress[l.level] = 1;
+            } else {
+              this.levelProgress[l.level]++;
+            }
+        }
+    }
+
+    private onError(error) {
+        this.jhiAlertService.error(error.message, null, null);
     }
 
     isAuthenticated() {

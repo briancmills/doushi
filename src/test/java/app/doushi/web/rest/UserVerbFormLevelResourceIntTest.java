@@ -1,15 +1,16 @@
 package app.doushi.web.rest;
 
-import app.doushi.DoushiApp;
+import static app.doushi.web.rest.TestUtil.createFormattingConversionService;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import app.doushi.domain.UserVerbFormLevel;
-import app.doushi.domain.User;
-import app.doushi.repository.UserVerbFormLevelRepository;
-import app.doushi.service.UserVerbFormLevelService;
-import app.doushi.web.rest.errors.ExceptionTranslator;
+import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
+import javax.persistence.EntityManager;
+
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,21 +18,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import java.util.List;
-
-import static app.doushi.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+import app.doushi.DoushiApp;
+import app.doushi.domain.*;
 import app.doushi.domain.enumeration.KyuDan;
+import app.doushi.repository.*;
+import app.doushi.service.UserVerbFormLevelService;
+import app.doushi.web.rest.errors.ExceptionTranslator;
 /**
  * Test class for the UserVerbFormLevelResource REST controller.
  *
@@ -49,6 +47,9 @@ public class UserVerbFormLevelResourceIntTest {
 
     @Autowired
     private UserVerbFormLevelService userVerbFormLevelService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -88,8 +89,6 @@ public class UserVerbFormLevelResourceIntTest {
             .level(DEFAULT_LEVEL);
         // Add required entity
         User user = UserResourceIntTest.createEntity(em);
-        em.persist(user);
-        em.flush();
         userVerbFormLevel.setUser(user);
         return userVerbFormLevel;
     }
@@ -166,6 +165,21 @@ public class UserVerbFormLevelResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(userVerbFormLevel.getId().intValue())))
             .andExpect(jsonPath("$.[*].level").value(hasItem(DEFAULT_LEVEL.toString())));
+    }
+
+    @Test
+    @Transactional
+    @WithMockUser(username="user",authorities={"ROLE_USER"}, password = "user")
+    public void getAllMyUserVerbFormLevels() throws Exception {
+        // Initialize the database
+        userVerbFormLevel.setUser(userRepository.findOneByLogin("user").get());
+        userVerbFormLevelRepository.saveAndFlush(userVerbFormLevel);
+
+        // Get all the userVerbFormLevelList
+        restUserVerbFormLevelMockMvc.perform(get("/api/user-verb-form-levels/mine"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$[0].id").exists());
     }
 
     @Test

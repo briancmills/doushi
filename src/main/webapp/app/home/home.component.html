@@ -18,6 +18,37 @@
                 <a class="alert-link" routerLink="register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
             </div>
         </div>
+        
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th jhiTranslate="doushiApp.KyuDan.KYUKYU"></th>
+                        <th jhiTranslate="doushiApp.KyuDan.HACHIKYU"></th>
+                        <th jhiTranslate="doushiApp.KyuDan.NANAKYU"></th>
+                        <th jhiTranslate="doushiApp.KyuDan.ROKYU"></th>
+                        <th jhiTranslate="doushiApp.KyuDan.GOKYU"></th>
+                        <th jhiTranslate="doushiApp.KyuDan.YONKYU"></th>
+                        <th jhiTranslate="doushiApp.KyuDan.SANKYU"></th>
+                        <th jhiTranslate="doushiApp.KyuDan.NIKYU"></th>
+                        <th jhiTranslate="doushiApp.KyuDan.IKKYU"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{(levelProgress && levelProgress.KYUKYU ? levelProgress.KYUKYU : 0) | number}}</td>
+                        <td>{{(levelProgress && levelProgress.HACHIKYU ? levelProgress.HACHIKYU : 0) | number}}</td>
+                        <td>{{(levelProgress && levelProgress.NANAKYU ? levelProgress.NANAKYU : 0) | number}}</td>
+                        <td>{{(levelProgress && levelProgress.ROKYU ? levelProgress.ROKYU : 0) | number}}</td>
+                        <td>{{(levelProgress && levelProgress.GOKYU ? levelProgress.GOKYU : 0) | number}}</td>
+                        <td>{{(levelProgress && levelProgress.YONKYU ? levelProgress.YONKYU : 0) | number}}</td>
+                        <td>{{(levelProgress && levelProgress.SANKYU ? levelProgress.SANKYU : 0) | number}}</td>
+                        <td>{{(levelProgress && levelProgress.NIKYU ? levelProgress.NIKYU : 0) | number}}</td>
+                        <td>{{(levelProgress && levelProgress.IKKYU ? levelProgress.IKKYU : 0) | number}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <div>
             <h2><span jhiTranslate="home.background.header"></span></h2>

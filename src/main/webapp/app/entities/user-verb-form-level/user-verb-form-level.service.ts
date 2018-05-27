@@ -32,6 +32,11 @@ export class UserVerbFormLevelService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
+    findMine(): Observable<HttpResponse<UserVerbFormLevel[]>> {
+        return this.http.get<UserVerbFormLevel[]>(`${this.resourceUrl}/mine`, { observe: 'response'})
+            .map((res: HttpResponse<UserVerbFormLevel[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<UserVerbFormLevel[]>> {
         const options = createRequestOption(req);
         return this.http.get<UserVerbFormLevel[]>(this.resourceUrl, { params: options, observe: 'response' })

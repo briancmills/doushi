@@ -1,13 +1,15 @@
 package app.doushi.service;
 
-import app.doushi.domain.UserVerbFormLevel;
-import app.doushi.repository.UserVerbFormLevelRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.List;
+
+import org.slf4j.*;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import app.doushi.domain.UserVerbFormLevel;
+import app.doushi.repository.UserVerbFormLevelRepository;
+import app.doushi.security.SecurityUtils;
 
 
 /**
@@ -20,7 +22,7 @@ public class UserVerbFormLevelService {
     private final Logger log = LoggerFactory.getLogger(UserVerbFormLevelService.class);
 
     private final UserVerbFormLevelRepository userVerbFormLevelRepository;
-
+    
     public UserVerbFormLevelService(UserVerbFormLevelRepository userVerbFormLevelRepository) {
         this.userVerbFormLevelRepository = userVerbFormLevelRepository;
     }
@@ -68,5 +70,10 @@ public class UserVerbFormLevelService {
     public void delete(Long id) {
         log.debug("Request to delete UserVerbFormLevel : {}", id);
         userVerbFormLevelRepository.delete(id);
+    }
+
+    public List<UserVerbFormLevel> findAllMine() {
+        String login = SecurityUtils.getCurrentUserLogin().get();        
+        return userVerbFormLevelRepository.findAllByUserLogin(login);
     }
 }
