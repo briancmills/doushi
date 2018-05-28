@@ -36,6 +36,11 @@ public interface VerbRepository extends JpaRepository<Verb, Long> {
             + " WHERE a.correct = TRUE "
             + " AND a.date >= CURRENT_DATE "
             + " AND a.user.login = :login "
+            + ") AND v IN ( "
+            + " SELECT v "
+            + " FROM UserVerbSet uvs "
+            + " JOIN uvs.verbs v"
+            + " WHERE uvs.user.login = :login "
             + ") "
             + "ORDER BY v.id ")
     Page<Verb> getVerbToStudy(@Param("login") String login, Pageable pageable);

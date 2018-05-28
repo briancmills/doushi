@@ -28,12 +28,17 @@ public class VerbService {
 
     private final UserRepository userRepository;
 
+    private final UserVerbSetRepository userVerbSetRepository;
+    
     public VerbService(VerbRepository verbRepository, 
             UserVerbFormLevelRepository userVerbFormLevelRepository,
-            UserRepository userRepository) {
+            UserRepository userRepository, 
+            UserVerbSetRepository userVerbSetRepository) {
+        
         this.verbRepository = verbRepository;
         this.userVerbFormLevelRepository = userVerbFormLevelRepository;
         this.userRepository = userRepository;
+        this.userVerbSetRepository = userVerbSetRepository;
     }
 
     /**
@@ -83,7 +88,8 @@ public class VerbService {
 
     public Verb getVerbToStudy() {
         String login = SecurityUtils.getCurrentUserLogin().get();
-        
+
+        initFirstStudySet();
         User user = userRepository.findOneByLogin(login).get();
         verbRepository.findVerbsWithNoProgress(login).stream().forEach(v -> {
             UserVerbFormLevel level = new UserVerbFormLevel()
@@ -100,8 +106,39 @@ public class VerbService {
             return null;
         }
     }
+    
+    /**
+     * TODO: make sure this still works well when you have more than one web server
+     */
+    private synchronized void initFirstStudySet() {
+        log.debug(" \n\n\n initFirstStudySet \n\n\n");
+        // if the user has no study sets we build the first one automatically
+        String login = SecurityUtils.getCurrentUserLogin().get();
+        Optional<User> match = userRepository.findOneByLogin(login);
+        if (match.isPresent()) {
+            log.debug(" \n\n\n found user \n\n\n");
+            List<UserVerbSet> sets = userVerbSetRepository.findAllByUserLogin(login);
+            if (sets.isEmpty()) {
+                log.debug(" \n\n\n empty set \n\n\n");
+                User user = match.get();
+                final UserVerbSet set = new UserVerbSet()
+                        .user(user)
+                        .level(KyuDan.MUKYU);
+                
+                // find the first 10 verbs to study
+                verbRepository.findAll(new PageRequest(0, 10)).getContent().stream().forEach(verb -> {
+                    log.debug(" \n\n\n adding verb {} \n\n\n", verb);
+                    set.getVerbs().add(verb);
+                });
+                userVerbSetRepository.saveAndFlush(set);
+            } else {
+                log.debug("user has sets: {}", sets);
+            }
+        }
+    }
 
     public List<Verb> getVerbsAvailableToStudy() {
+        initFirstStudySet();
         String login = SecurityUtils.getCurrentUserLogin().get();
         Page<Verb> page = verbRepository.getVerbToStudy(login, new PageRequest(0, 10));
         if (page.hasContent()) {
