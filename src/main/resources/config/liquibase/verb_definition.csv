@@ -12,210 +12,210 @@ id;definition;verb_id
 72;to write;71
 83;to drink;82
 94;"to see; to look; to watch";93
-105;to hand over;104
-116;can do;115
-127;to turn;126
-138;to take;137
-149;to forget;148
-160;to take;159
-161;to ride;159
-172;to call;171
-183;to get tired;182
-194;to sing;193
-205;to have;204
-206;to own;204
-217;to climb up;216
-228;to stop;227
-239;to be in trouble;238
-250;to talk;249
-251;to speak;249
-252;to tell;249
-263;to memorize;262
-264;to remember;262
-275;to breath;274
-276;to smoke;274
-287;to arrive;286
-298;to show;297
-309;to polish;308
-310;to brush;308
-321;to make;320
-322;to produce;320
-333;to take off clothes;332
-344;to go out;343
-355;to cross;354
-366;to be born;365
-377;to know;376
-388;to wear;387
-389;to put on;387
-400;to lend;399
-411;to die;410
-412;to pass away;410
-423;to pull;422
-434;to insert;433
-435;to put in;433
-446;to return an object;445
-457;to fall (rain;456
-458;snow);456
-469;to work for someone;468
-480;to close;479
-491;to cut;490
-502;to open;501
-513;to buy;512
-524;to live;523
-525;to reside somewhere;523
-536;to take out;535
-537;hand in;535
-548;to put something on;547
-549;to stick;547
-560;to wash;559
-571;to work;570
-582;to use;581
-593;to blossom;592
-604;to turn on;603
-615;to end;614
-626;to stand;625
-637;to say;636
-638;to tell;636
-649;to blow (wind);648
-660;to leave;659
-671;to get off;670
-682;to play;681
-693;to sleep;692
-704;to play an instrument;703
-715;to be different;714
-726;to sit;725
-737;to meet;736
-748;to get up;747
-749;to stand up;747
-760;to push;759
-771;to ask;770
-772;to request;770
-783;to sell;782
-794;to enter;793
-805;to close;804
-816;to run;815
-827;to go out;826
-828;to vanish;826
-839;to take a shower;838
-850;to know;849
-851;to understand;849
-862;to listen;861
-873;to line up;872
-884;to form a line;883
-895;to put on shoes;894
-906;to begin;905
-907;to start;905
-918;to send;917
-929;to wait;928
-940;to answer;939
-951;to turn off;950
-952;to switch off;950
-963;to fly;962
-974;to borrow;973
-985;to clear up;984
-996;to walk;995
-1007;to rest;1006
+105;to live;104
+106;to reside somewhere;104
+117;to end;116
+128;to get tired;127
+139;to answer;138
+150;to cross;149
+161;to call;160
+172;to turn;171
+183;to borrow;182
+194;to use;193
+205;to show;204
+216;to run;215
+227;to forget;226
+238;to take a shower;237
+249;to be different;248
+260;to close;259
+271;to listen;270
+282;to meet;281
+293;to take out;292
+294;hand in;292
+305;to take off clothes;304
+316;to buy;315
+327;to line up;326
+338;to make;337
+339;to produce;337
+350;to climb up;349
+361;to get off;360
+372;to play;371
+383;to polish;382
+384;to brush;382
+395;to work for someone;394
+406;to put something on;405
+407;to stick;405
+418;to play an instrument;417
+429;to stop;428
+440;to arrive;439
+451;to work;450
+462;to sell;461
+473;to be born;472
+484;to be in trouble;483
+495;to ask;494
+496;to request;494
+507;to blow (wind);506
+518;to know;517
+519;to understand;517
+530;to have;529
+531;to own;529
+542;to push;541
+553;to rest;552
+564;to go out;563
+575;to close;574
+586;to insert;585
+587;to put in;585
+598;to put on shoes;597
+609;to enter;608
+620;to wait;619
+631;to walk;630
+642;to turn on;641
+653;to turn off;652
+654;to switch off;652
+665;to sit;664
+676;to sing;675
+687;to stand;686
+698;to leave;697
+709;to pull;708
+720;to return an object;719
+731;to send;730
+742;to hand over;741
+753;to take;752
+764;to fall (rain;763
+765;snow);763
+776;to take;775
+777;to ride;775
+788;to fly;787
+799;to form a line;798
+810;to breath;809
+811;to smoke;809
+822;to begin;821
+823;to start;821
+834;to say;833
+835;to tell;833
+846;to talk;845
+847;to speak;845
+848;to tell;845
+859;to memorize;858
+860;to remember;858
+871;to blossom;870
+882;to wash;881
+893;to wear;892
+894;to put on;892
+905;to go out;904
+906;to vanish;904
+917;to die;916
+918;to pass away;916
+929;to sleep;928
+940;can do;939
+951;to open;950
+962;to get up;961
+963;to stand up;961
+974;to clear up;973
+985;to know;984
+996;to lend;995
+1007;to cut;1006
 1018;to step on;1017
-1029;to face;1028
-1040;to break down;1039
-1051;to be similar;1050
-1062;to go to meet;1061
-1073;to throw away;1072
-1084;to transport;1083
-1095;to get dirty;1094
-1106;hear;1105
-1107;can hear;1105
-1108;be audible;1105
-1119;to slide;1118
-1120;to slip;1118
+1029;to praise;1028
+1040;to begin;1039
+1051;to go through;1050
+1062;to fit;1061
+1063;to suit;1061
+1074;to decide;1073
+1085;to steal;1084
+1096;to continue;1095
+1097;go on;1095
+1108;to be discovered;1107
+1119;to be fixed;1118
+1120;repaired;1118
 1131;to add a number;1130
-1142;to go;1141
-1143;to come (humble form);1141
-1154;to fix;1153
-1155;to repair;1153
-1166;to be crowded;1165
-1177;to take off clothes;1176
-1188;to go up;1187
-1199;to be decided;1198
-1210;to go through;1209
-1221;to stand up;1220
-1222;to put up;1220
-1233;to make noise;1232
-1234;to be excited;1232
-1245;to pay;1244
-1256;to boil;1255
-1257;to heat;1255
-1268;to take time or money;1267
-1279;to continue;1278
-1280;to last;1278
-1291;to investigate;1290
-1302;to fish;1301
-1313;to boil;1312
-1314;to grow hot;1312
-1325;to sleep;1324
-1336;to　increase;1335
-1347;to look for;1346
-1348;to search;1346
-1359;to laugh;1358
-1360;to smile;1358
-1371;to praise;1370
-1382;to get dark;1381
-1393;to disappear;1392
-1394;to get lost;1392
-1405;to separate;1404
-1416;to lodge at;1415
-1427;to notify;1426
-1438;to make a mistake;1437
-1449;to cry;1448
-1460;topic up;1459
-1461;to gather;1459
-1472;to fit;1471
-1473;to suit;1471
-1484;to rear;1483
-1485;to bring up;1483
-1496;to lower;1495
-1507;to be broken;1506
-1518;to be sufficient;1517
-1529;to lose;1528
-1540;to scold;1539
-1551;to lead;1550
-1562;to wrap;1561
-1573;to receive;1572
-1584;to be fixed;1583
-1585;repaired;1583
-1596;to shine;1595
-1607;to put;1606
+1142;to cry;1141
+1153;to be decided;1152
+1164;to exceed;1163
+1175;get cold;1174
+1176;feel chilly;1174
+1187;to　increase;1186
+1198;to be visible;1197
+1199;to be seen;1197
+1210;to disappear;1209
+1211;to get lost;1209
+1222;to get dark;1221
+1233;to break down;1232
+1244;to be broken;1243
+1255;to lead;1254
+1266;to sleep;1265
+1277;to make noise;1276
+1278;to be excited;1276
+1289;to lower;1288
+1300;to discover;1299
+1311;to assist;1310
+1322;to return;1321
+1323;to go back;1321
+1334;to transport;1333
+1345;to throw away;1344
+1356;to go around;1355
+1367;to shine;1366
+1378;to investigate;1377
+1389;hear;1388
+1390;can hear;1388
+1391;be audible;1388
+1402;to grow accustomed to;1401
+1413;to compare;1412
+1424;to make progress;1423
+1435;empty;1434
+1436;with space;1434
+1447;to continue;1446
+1448;to last;1446
+1459;to get wet;1458
+1470;to rear;1469
+1471;to bring up;1469
+1482;to be crowded;1481
+1493;to scold;1492
+1504;to take time or money;1503
+1515;to boil;1514
+1516;to heat;1514
+1527;to slide;1526
+1528;to slip;1526
+1539;to laugh;1538
+1540;to smile;1538
+1551;to be similar;1550
+1562;to go up;1561
+1573;to pay;1572
+1584;to bake;1583
+1585;to grill;1583
+1596;to wrap;1595
+1607;to break;1606
 1618;to throw away;1617
-1629;to steal;1628
-1640;to be delighted;1639
-1651;to break;1650
-1662;to get down;1661
-1673;to decide;1672
-1684;get cold;1683
-1685;feel chilly;1683
-1696;to escape;1695
-1707;to compare;1706
-1718;to begin;1717
-1729;to be visible;1728
-1730;to be seen;1728
-1741;to be discovered;1740
-1752;to reach;1751
-1763;to grow fat;1762
-1774;to grow accustomed to;1773
-1785;to get wet;1784
-1796;to enjoy;1795
-1807;to discover;1806
-1818;empty;1817
-1819;with space;1817
-1830;to bake;1829
-1831;to grill;1829
-1842;to touch;1841
-1853;to return;1852
-1854;to go back;1852
-1865;to go around;1864
-1876;to continue;1875
-1877;go on;1875
-1888;to make progress;1887
-1899;to exceed;1898
-1910;to assist;1909
-1921;to remain;1920
+1629;to take off clothes;1628
+1640;to stand up;1639
+1641;to put up;1639
+1652;to touch;1651
+1663;topic up;1662
+1664;to gather;1662
+1675;to notify;1674
+1686;to be sufficient;1685
+1697;to receive;1696
+1708;to go to meet;1707
+1719;to boil;1718
+1720;to grow hot;1718
+1731;to remain;1730
+1742;to lodge at;1741
+1753;to fix;1752
+1754;to repair;1752
+1765;to enjoy;1764
+1776;to lose;1775
+1787;to grow fat;1786
+1798;to look for;1797
+1799;to search;1797
+1810;to make a mistake;1809
+1821;to be delighted;1820
+1832;to get down;1831
+1843;to put;1842
+1854;to fish;1853
+1865;to escape;1864
+1876;to get dirty;1875
+1887;to face;1886
+1898;to reach;1897
+1909;to go;1908
+1910;to come (humble form);1908
+1921;to separate;1920

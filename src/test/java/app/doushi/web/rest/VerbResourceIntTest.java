@@ -1,14 +1,16 @@
 package app.doushi.web.rest;
 
-import app.doushi.DoushiApp;
+import static app.doushi.web.rest.TestUtil.createFormattingConversionService;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import app.doushi.domain.Verb;
-import app.doushi.repository.VerbRepository;
-import app.doushi.service.VerbService;
-import app.doushi.web.rest.errors.ExceptionTranslator;
+import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
+import javax.persistence.EntityManager;
+
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,18 +23,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import java.util.List;
-
-import static app.doushi.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import app.doushi.domain.enumeration.VerbType;
-import app.doushi.domain.enumeration.JlptLevel;
-import app.doushi.domain.enumeration.VerbEnding;
+import app.doushi.DoushiApp;
+import app.doushi.domain.Verb;
+import app.doushi.domain.enumeration.*;
+import app.doushi.repository.VerbRepository;
+import app.doushi.service.VerbService;
+import app.doushi.web.rest.errors.ExceptionTranslator;
 /**
  * Test class for the VerbResource REST controller.
  *
@@ -54,9 +50,9 @@ public class VerbResourceIntTest {
     private static final Integer DEFAULT_GRADE_LEVEL = 1;
     private static final Integer UPDATED_GRADE_LEVEL = 2;
 
-    private static final VerbEnding DEFAULT_ENDING = VerbEnding.u;
-    private static final VerbEnding UPDATED_ENDING = VerbEnding.tsu;
-
+    private static final VerbEnding DEFAULT_ENDING = VerbEnding.う;
+    private static final VerbEnding UPDATED_ENDING = VerbEnding.える;
+    
     private static final String DEFAULT_VERB_TEXT = "AAAAAAAAAA";
     private static final String UPDATED_VERB_TEXT = "BBBBBBBBBB";
 

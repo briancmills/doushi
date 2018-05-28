@@ -46,7 +46,7 @@
         {
             "fieldName": "ending",
             "fieldType": "VerbEnding",
-            "fieldValues": "u, tsu, ru, ku, gu, nu, bu, mu, su, iru, eru, suru, kuru",
+            "fieldValues": "う,  つ,  る,  く,  ぐ,  ぬ,  ぶ,  む,  す,  いる,  える,  する,  くる",
             "fieldValidateRules": [
                 "required"
             ]

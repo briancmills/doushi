@@ -15,19 +15,19 @@ export const enum JlptLevel {
 }
 
 export const enum VerbEnding {
-    'u',
-    ' tsu',
-    ' ru',
-    ' ku',
-    ' gu',
-    ' nu',
-    ' bu',
-    ' mu',
-    ' su',
-    ' iru',
-    ' eru',
-    ' suru',
-    ' kuru'
+    'う',
+    'つ',
+    'る',
+    'く',
+    'ぐ',
+    'ぬ',
+    'ぶ',
+    'む',
+    'す',
+    'いる',
+    'える',
+    'する',
+    'くる'
 }
 
 export class Verb implements BaseEntity {

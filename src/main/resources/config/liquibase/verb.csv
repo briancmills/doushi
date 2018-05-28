@@ -1,172 +1,172 @@
 id;type;definition;jlpt_level;grade_level;ending;verb_text;kanji_text;romanji_text
-1;IRREGULAR;to do​;N5;1;suru;suru;する;suru
-14;IRREGULAR;to come;N5;1;kuru;kuru;来る;kuru
-27;GODAN;"to go; to move";N5;1;kuru;iku;行く;iku
-38;GODAN;to read;N5;1;kuru;yomu;読む;yomu
-49;ICHIDAN;to eat​;N5;1;kuru;taberu;食べる;taberu
-60;GODAN;to swim;N5;1;kuru;oyogu;泳ぐ;oyogu
-71;GODAN;to write;N5;1;kuru;kaku;書く;kaku
-82;GODAN;to drink;N5;1;kuru;nomu;飲む;nomu
-93;ICHIDAN;"to see; to look; to watch";N5;1;kuru;miru;見る;miru
-104;GODAN;to hand over;N5;1;kuru;watasu;渡す;watasu
-115;ICHIDAN;can do;N5;1;kuru;dekiru;出来る;dekiru
-126;GODAN;to turn;N5;1;kuru;magaru;曲がる;magaru
-137;GODAN;to take;N5;1;kuru;toru;取る;toru
-148;ICHIDAN;to forget;N5;1;kuru;wasureru;忘れる;wasureru
-159;GODAN;to take, to ride;N5;1;kuru;noru;乗る;noru
-171;GODAN;to call;N5;1;kuru;yobu;呼ぶ;yobu
-182;ICHIDAN;to get tired;N5;1;kuru;tsukareru;疲れる;tsukareru
-193;GODAN;to sing;N5;1;kuru;utau;歌う;utau
-204;GODAN;to have, to own;N5;1;kuru;motsu;持つ;motsu
-216;GODAN;to climb up;N5;1;kuru;noboru;登る;noboru
-227;GODAN;to stop;N5;1;kuru;tomaru;止まる;tomaru
-238;GODAN;to be in trouble;N5;1;kuru;komaru;困る;komaru
-249;GODAN;to talk, to speak, to tell;N5;1;kuru;hanasu;話す;hanasu
-262;ICHIDAN;to memorize, to remember;N5;1;kuru;oboeru;覚える;oboeru
-274;GODAN;to breath, to smoke;N5;1;kuru;suu;吸う;suu
-286;GODAN;to arrive;N5;1;kuru;tsuku;着く;tsuku
-297;ICHIDAN;to show;N5;1;kuru;miseru;見せる;miseru
-308;GODAN;to polish, to brush;N5;1;kuru;migaku;磨く;migaku
-320;GODAN;to make, to produce;N5;1;kuru;tsukuru;作る;tsukuru
-332;GODAN;to take off clothes;N5;1;kuru;nugu;脱ぐ;nugu
-343;ICHIDAN;to go out;N5;1;kuru;dekakeru;出かける;dekakeru
-354;GODAN;to cross;N5;1;kuru;wataru;渡る;wataru
-365;ICHIDAN;to be born;N5;1;kuru;umareru;生まれる;umareru
-376;GODAN;to know;N5;1;kuru;shiru;知る;shiru
-387;ICHIDAN;to wear, to put on;N5;1;kuru;kiru;着る;kiru
-399;GODAN;to lend;N5;1;kuru;kasu;貸す;kasu
-410;GODAN;to die, to pass away;N5;1;kuru;shinu;死ぬ;shinu
-422;GODAN;to pull;N5;1;kuru;hiku;引く;hiku
-433;ICHIDAN;to insert, to put in;N5;1;kuru;ireru;入れる;ireru
-445;GODAN;to return an object;N5;1;kuru;kaesu;返す;kaesu
-456;GODAN;to fall (rain, snow);N5;1;kuru;furu;降る;furu
-468;ICHIDAN;to work for someone;N5;1;kuru;tsutomeru;勤める;tsutomeru
-479;GODAN;to close;N5;1;kuru;shimaru;閉まる;shimaru
-490;GODAN;to cut;N5;1;kuru;kiru;切る;kiru
-501;ICHIDAN;to open;N5;1;kuru;akeru;開ける;akeru
-512;GODAN;to buy;N5;1;kuru;kau;買う;kau
-523;GODAN;to live, to reside somewhere;N5;1;kuru;sumu;住む;sumu
-535;GODAN;to take out, hand in;N5;1;kuru;dasu;出す;dasu
-547;GODAN;to put something on, to stick;N5;1;kuru;haru;張る;haru
-559;GODAN;to wash;N5;1;kuru;arau;洗う;arau
-570;GODAN;to work;N5;1;kuru;hataraku;働く;hataraku
-581;GODAN;to use;N5;1;kuru;tsukau;使う;tsukau
-592;GODAN;to blossom;N5;1;kuru;saku;咲く;saku
-603;ICHIDAN;to turn on;N5;1;kuru;tsukeru;点ける;tsukeru
-614;GODAN;to end;N5;1;kuru;owaru;終わる;owaru
-625;GODAN;to stand;N5;1;kuru;tatsu;立つ;tatsu
-636;GODAN;to say, to tell;N5;1;kuru;iu;言う;iu
-648;GODAN;to blow (wind);N5;1;kuru;fuku;吹く;fuku
-659;ICHIDAN;to leave;N5;1;kuru;deru;出る;deru
-670;ICHIDAN;to get off;N5;1;kuru;oriru;降りる;oriru
-681;GODAN;to play;N5;1;kuru;asobu;遊ぶ;asobu
-692;ICHIDAN;to sleep;N5;1;kuru;neru;寝る;neru
-703;GODAN;to play an instrument;N5;1;kuru;hiku;弾く;hiku
-714;GODAN;to be different;N5;1;kuru;chigau;違う;chigau
-725;GODAN;to sit;N5;1;kuru;suwaru;座る;suwaru
-736;GODAN;to meet;N5;1;kuru;au;会う;au
-747;ICHIDAN;to get up, to stand up;N5;1;kuru;okiru;起きる;okiru
-759;GODAN;to push;N5;1;kuru;osu;押す;osu
-770;GODAN;to ask, to request;N5;1;kuru;tanomu;頼む;tanomu
-782;GODAN;to sell;N5;1;kuru;uru;売る;uru
-793;GODAN;to enter;N5;1;kuru;hairu;入る;hairu
-804;ICHIDAN;to close;N5;1;kuru;shimeru;閉める;shimeru
-815;GODAN;to run;N5;1;kuru;hashiru;走る;hashiru
-826;ICHIDAN;to go out, to vanish;N5;1;kuru;kieru;消える;kieru
-838;ICHIDAN;to take a shower;N5;1;kuru;abiru;浴びる;abiru
-849;GODAN;to know, to understand;N5;1;kuru;wakaru;分かる;wakaru
-861;GODAN;to listen;N5;1;kuru;kiku;聞く;kiku
-872;ICHIDAN;to line up;N5;1;kuru;naraberu;並べる;naraberu
-883;GODAN;to form a line;N5;1;kuru;narabu;並ぶ;narabu
-894;GODAN;to put on shoes;N5;1;kuru;haku;履く;haku
-905;GODAN;to begin, to start;N5;1;kuru;hajimaru;始まる;hajimaru
-917;GODAN;to send;N5;1;kuru;okuru;送る;okuru
-928;GODAN;to wait;N5;1;kuru;matsu;待つ;matsu
-939;ICHIDAN;to answer;N5;1;kuru;kotaeru;答える;kotaeru
-950;GODAN;to turn off, to switch off;N5;1;kuru;kesu;消す;kesu
-962;GODAN;to fly;N5;1;kuru;tobu;飛ぶ;tobu
-973;ICHIDAN;to borrow;N5;1;kuru;kariru;借りる;kariru
-984;ICHIDAN;to clear up;N5;1;kuru;hareru;晴れる;hareru
-995;GODAN;to walk;N5;1;kuru;aruku;歩く;aruku
-1006;GODAN;to rest;N5;1;kuru;yasumu;休む;yasumu
-1017;GODAN;to step on;N4;1;kuru;fumu;踏む;fumu
-1028;GODAN;to face;N4;1;kuru;mukau;向かう;mukau
-1039;ICHIDAN;to break down;N4;1;kuru;taoreru;倒れる;taoreru
-1050;ICHIDAN;to be similar;N4;1;kuru;niru;似る;niru
-1061;ICHIDAN;to go to meet;N4;1;kuru;mukaeru;迎える;mukaeru
-1072;ICHIDAN;to throw away;N4;1;kuru;nageru;投げる;nageru
-1083;GODAN;to transport;N4;1;kuru;hakobu;運ぶ;hakobu
-1094;ICHIDAN;to get dirty;N4;1;kuru;yogoreru;汚れる;yogoreru
-1105;ICHIDAN;hear, can hear, be audible;N4;1;kuru;kikoeru;聞こえる;kikoeru
-1118;GODAN;to slide, to slip;N4;1;kuru;suberu;滑る;suberu
-1130;GODAN;to add a number;N4;1;kuru;tasu;足す;tasu
-1141;GODAN;to go, to come (humble form);N4;1;kuru;mairu;参る;mairu
-1153;GODAN;to fix, to repair;N4;1;kuru;naosu;直す;naosu
-1165;GODAN;to be crowded;N4;1;kuru;komu;込む;komu
-1176;ICHIDAN;to take off clothes;N4;1;kuru;norikaeru;乗り換える;norikaeru
-1187;GODAN;to go up;N4;1;kuru;agaru;上がる;agaru
-1198;GODAN;to be decided;N4;1;kuru;kimaru;決まる;kimaru
-1209;GODAN;to go through;N4;1;kuru;tooru;通る;tooru
-1220;ICHIDAN;to stand up, to put up;N4;1;kuru;tateru;立てる;tateru
-1232;GODAN;to make noise, to be excited;N4;1;kuru;sawagu;騒ぐ;sawagu
-1244;GODAN;to pay;N4;1;kuru;harau;払う;harau
-1255;GODAN;to boil, to heat;N4;1;kuru;wakasu;沸かす;wakasu
-1267;GODAN;to take time or money;N4;1;kuru;kakaru;掛かる;kakaru
-1278;GODAN;to continue, to last;N4;1;kuru;tsuzuku;続く;tsuzuku
-1290;ICHIDAN;to investigate;N4;1;kuru;shiraberu;調べる;shiraberu
-1301;GODAN;to fish;N4;1;kuru;tsuru;釣る;tsuru
-1312;GODAN;to boil, to grow hot;N4;1;kuru;waku;沸く;waku
-1324;GODAN;to sleep;N4;1;kuru;nemuru;眠る;nemuru
-1335;ICHIDAN;to　increase;N4;1;kuru;ふえる;増える;ふえる
-1346;GODAN;to look for, to search;N4;1;kuru;sagasu;探す;sagasu
-1358;GODAN;to laugh, to smile;N4;1;kuru;warau;笑う;warau
-1370;ICHIDAN;to praise;N4;1;kuru;homeru;褒める;homeru
-1381;ICHIDAN;to get dark;N4;1;kuru;kureru;暮れる;kureru
-1392;GODAN;to disappear, to get lost;N4;1;kuru;nakunaru;無くなる;nakunaru
-1404;ICHIDAN;to separate;N4;1;kuru;wakareru;別れる;wakareru
-1415;GODAN;to lodge at;N4;1;kuru;tomaru;泊まる;tomaru
-1426;ICHIDAN;to notify;N4;1;kuru;shiraseru;知らせる;shiraseru
-1437;ICHIDAN;to make a mistake;N4;1;kuru;machigaeru;間違える;machigaeru
-1448;GODAN;to cry;N4;1;kuru;naku;泣く;naku
-1459;GODAN;topic up, to gather;N4;1;kuru;hirou;拾う;hirou
-1471;GODAN;to fit, to suit;N4;1;kuru;au;合う;au
-1483;ICHIDAN;to rear, to bring up;N4;1;kuru;sodateru;育てる;sodateru
-1495;ICHIDAN;to lower;N4;1;kuru;sageru;下げる;sageru
-1506;ICHIDAN;to be broken;N4;1;kuru;kowareru;壊れる;kowareru
-1517;ICHIDAN;to be sufficient;N4;1;kuru;tariru;足りる;tariru
-1528;ICHIDAN;to lose;N4;1;kuru;makeru;負ける;makeru
-1539;GODAN;to scold;N4;1;kuru;shikaru;叱る;shikaru
-1550;ICHIDAN;to lead;N4;1;kuru;tsureru;連れる;tsureru
-1561;GODAN;to wrap;N4;1;kuru;tsutsumu;包む;tsutsumu
-1572;GODAN;to receive;N4;1;kuru;morau;貰う;morau
-1583;GODAN;to be fixed, repaired;N4;1;kuru;naoru;直る;naoru
-1595;GODAN;to shine;N4;1;kuru;hikaru;光る;hikaru
-1606;GODAN;to put;N4;1;kuru;oku;置く;oku
-1617;ICHIDAN;to throw away;N4;1;kuru;suteru;捨てる;suteru
-1628;GODAN;to steal;N4;1;kuru;nusumu;盗む;nusumu
-1639;GODAN;to be delighted;N4;1;kuru;yorokobu;喜ぶ;yorokobu
-1650;GODAN;to break;N4;1;kuru;kowasu;壊す;kowasu
-1661;GODAN;to get down;N4;1;kuru;sagaru;下がる;sagaru
-1672;ICHIDAN;to decide;N4;1;kuru;kimeru;決める;kimeru
-1683;ICHIDAN;get cold, feel chilly;N4;1;kuru;hieru;冷える;hieru
-1695;ICHIDAN;to escape;N4;1;kuru;nigeru;逃げる;nigeru
-1706;ICHIDAN;to compare;N4;1;kuru;kuraberu;比べる;kuraberu
-1717;ICHIDAN;to begin;N4;1;kuru;hajimeru;始める;hajimeru
-1728;ICHIDAN;to be visible, to be seen;N4;1;kuru;mieru;見える;mieru
-1740;GODAN;to be discovered;N4;1;kuru;mitsukaru;見つかる;mitsukaru
-1751;ICHIDAN;to reach;N4;1;kuru;todokeru;届ける;todokeru
-1762;GODAN;to grow fat;N4;1;kuru;futoru;太る;futoru
-1773;ICHIDAN;to grow accustomed to;N4;1;kuru;nareru;慣れる;nareru
-1784;ICHIDAN;to get wet;N4;1;kuru;nureru;濡れる;nureru
-1795;GODAN;to enjoy;N4;1;kuru;tanoshimu;楽しむ;tanoshimu
-1806;ICHIDAN;to discover;N4;1;kuru;mitsukeru;見つける;mitsukeru
-1817;GODAN;empty, with space;N4;1;kuru;aku;空く;aku
-1829;GODAN;to bake, to grill;N4;1;kuru;yaku;焼く;yaku
-1841;GODAN;to touch;N4;1;kuru;sawaru;触る;sawaru
-1852;GODAN;to return, to go back;N4;1;kuru;modoru;戻る;modoru
-1864;GODAN;to go around;N4;1;kuru;mawaru;回る;mawaru
-1875;ICHIDAN;to continue, go on;N4;1;kuru;tsuzukeru;続ける;tsuzukeru
-1887;GODAN;to make progress;N4;1;kuru;susumu;進む;susumu
-1898;ICHIDAN;to exceed;N4;1;kuru;sugiru;過ぎる;sugiru
-1909;GODAN;to assist;N4;1;kuru;てつだう;手伝う;てつだう
-1920;GODAN;to remain;N4;1;kuru;nokoru;残る;nokoru
+1;IRREGULAR;to do​;N5;1;する;suru;する;suru
+14;IRREGULAR;to come;N5;1;くる;kuru;来る;kuru
+27;GODAN;"to go; to move";N5;1;く;iku;行く;iku
+38;GODAN;to read;N5;1;む;yomu;読む;yomu
+49;ICHIDAN;to eat​;N5;1;える;taberu;食べる;taberu
+60;GODAN;to swim;N5;1;ぐ;oyogu;泳ぐ;oyogu
+71;GODAN;to write;N5;1;く;kaku;書く;kaku
+82;GODAN;to drink;N5;1;む;nomu;飲む;nomu
+93;ICHIDAN;"to see; to look; to watch";N5;1;いる;miru;見る;miru
+104;GODAN;to live, to reside somewhere;N5;1;む;sumu;住む;sumu
+116;GODAN;to end;N5;1;る;owaru;終わる;owaru
+127;ICHIDAN;to get tired;N5;1;える;tsukareru;疲れる;tsukareru
+138;ICHIDAN;to answer;N5;1;える;kotaeru;答える;kotaeru
+149;GODAN;to cross;N5;1;る;wataru;渡る;wataru
+160;GODAN;to call;N5;1;ぶ;yobu;呼ぶ;yobu
+171;GODAN;to turn;N5;1;る;magaru;曲がる;magaru
+182;ICHIDAN;to borrow;N5;1;いる;kariru;借りる;kariru
+193;GODAN;to use;N5;1;う;tsukau;使う;tsukau
+204;ICHIDAN;to show;N5;1;える;miseru;見せる;miseru
+215;GODAN;to run;N5;1;る;hashiru;走る;hashiru
+226;ICHIDAN;to forget;N5;1;える;wasureru;忘れる;wasureru
+237;ICHIDAN;to take a shower;N5;1;いる;abiru;浴びる;abiru
+248;GODAN;to be different;N5;1;う;chigau;違う;chigau
+259;ICHIDAN;to close;N5;1;える;shimeru;閉める;shimeru
+270;GODAN;to listen;N5;1;く;kiku;聞く;kiku
+281;GODAN;to meet;N5;1;う;au;会う;au
+292;GODAN;to take out, hand in;N5;1;す;dasu;出す;dasu
+304;GODAN;to take off clothes;N5;1;ぐ;nugu;脱ぐ;nugu
+315;GODAN;to buy;N5;1;う;kau;買う;kau
+326;ICHIDAN;to line up;N5;1;える;naraberu;並べる;naraberu
+337;GODAN;to make, to produce;N5;1;る;tsukuru;作る;tsukuru
+349;GODAN;to climb up;N5;1;る;noboru;登る;noboru
+360;ICHIDAN;to get off;N5;1;いる;oriru;降りる;oriru
+371;GODAN;to play;N5;1;ぶ;asobu;遊ぶ;asobu
+382;GODAN;to polish, to brush;N5;1;く;migaku;磨く;migaku
+394;ICHIDAN;to work for someone;N5;1;える;tsutomeru;勤める;tsutomeru
+405;GODAN;to put something on, to stick;N5;1;る;haru;張る;haru
+417;GODAN;to play an instrument;N5;1;く;hiku;弾く;hiku
+428;GODAN;to stop;N5;1;る;tomaru;止まる;tomaru
+439;GODAN;to arrive;N5;1;く;tsuku;着く;tsuku
+450;GODAN;to work;N5;1;く;hataraku;働く;hataraku
+461;GODAN;to sell;N5;1;る;uru;売る;uru
+472;ICHIDAN;to be born;N5;1;える;umareru;生まれる;umareru
+483;GODAN;to be in trouble;N5;1;る;komaru;困る;komaru
+494;GODAN;to ask, to request;N5;1;む;tanomu;頼む;tanomu
+506;GODAN;to blow (wind);N5;1;く;fuku;吹く;fuku
+517;GODAN;to know, to understand;N5;1;る;wakaru;分かる;wakaru
+529;GODAN;to have, to own;N5;1;つ;motsu;持つ;motsu
+541;GODAN;to push;N5;1;す;osu;押す;osu
+552;GODAN;to rest;N5;1;む;yasumu;休む;yasumu
+563;ICHIDAN;to go out;N5;1;える;dekakeru;出かける;dekakeru
+574;GODAN;to close;N5;1;る;shimaru;閉まる;shimaru
+585;ICHIDAN;to insert, to put in;N5;1;える;ireru;入れる;ireru
+597;GODAN;to put on shoes;N5;1;く;haku;履く;haku
+608;GODAN;to enter;N5;1;る;hairu;入る;hairu
+619;GODAN;to wait;N5;1;つ;matsu;待つ;matsu
+630;GODAN;to walk;N5;1;く;aruku;歩く;aruku
+641;ICHIDAN;to turn on;N5;1;える;tsukeru;点ける;tsukeru
+652;GODAN;to turn off, to switch off;N5;1;す;kesu;消す;kesu
+664;GODAN;to sit;N5;1;る;suwaru;座る;suwaru
+675;GODAN;to sing;N5;1;う;utau;歌う;utau
+686;GODAN;to stand;N5;1;つ;tatsu;立つ;tatsu
+697;ICHIDAN;to leave;N5;1;える;deru;出る;deru
+708;GODAN;to pull;N5;1;く;hiku;引く;hiku
+719;GODAN;to return an object;N5;1;す;kaesu;返す;kaesu
+730;GODAN;to send;N5;1;る;okuru;送る;okuru
+741;GODAN;to hand over;N5;1;す;watasu;渡す;watasu
+752;GODAN;to take;N5;1;る;toru;取る;toru
+763;GODAN;to fall (rain, snow);N5;1;る;furu;降る;furu
+775;GODAN;to take, to ride;N5;1;る;noru;乗る;noru
+787;GODAN;to fly;N5;1;ぶ;tobu;飛ぶ;tobu
+798;GODAN;to form a line;N5;1;ぶ;narabu;並ぶ;narabu
+809;GODAN;to breath, to smoke;N5;1;う;suu;吸う;suu
+821;GODAN;to begin, to start;N5;1;る;hajimaru;始まる;hajimaru
+833;GODAN;to say, to tell;N5;1;う;iu;言う;iu
+845;GODAN;to talk, to speak, to tell;N5;1;す;hanasu;話す;hanasu
+858;ICHIDAN;to memorize, to remember;N5;1;える;oboeru;覚える;oboeru
+870;GODAN;to blossom;N5;1;く;saku;咲く;saku
+881;GODAN;to wash;N5;1;う;arau;洗う;arau
+892;ICHIDAN;to wear, to put on;N5;1;いる;kiru;着る;kiru
+904;ICHIDAN;to go out, to vanish;N5;1;える;kieru;消える;kieru
+916;GODAN;to die, to pass away;N5;1;ぬ;shinu;死ぬ;shinu
+928;ICHIDAN;to sleep;N5;1;える;neru;寝る;neru
+939;ICHIDAN;can do;N5;1;いる;dekiru;出来る;dekiru
+950;ICHIDAN;to open;N5;1;える;akeru;開ける;akeru
+961;ICHIDAN;to get up, to stand up;N5;1;いる;okiru;起きる;okiru
+973;ICHIDAN;to clear up;N5;1;える;hareru;晴れる;hareru
+984;GODAN;to know;N5;1;る;shiru;知る;shiru
+995;GODAN;to lend;N5;1;す;kasu;貸す;kasu
+1006;GODAN;to cut;N5;1;る;kiru;切る;kiru
+1017;GODAN;to step on;N4;1;む;fumu;踏む;fumu
+1028;ICHIDAN;to praise;N4;1;える;homeru;褒める;homeru
+1039;ICHIDAN;to begin;N4;1;える;hajimeru;始める;hajimeru
+1050;GODAN;to go through;N4;1;る;tooru;通る;tooru
+1061;GODAN;to fit, to suit;N4;1;う;au;合う;au
+1073;ICHIDAN;to decide;N4;1;える;kimeru;決める;kimeru
+1084;GODAN;to steal;N4;1;む;nusumu;盗む;nusumu
+1095;ICHIDAN;to continue, go on;N4;1;える;tsuzukeru;続ける;tsuzukeru
+1107;GODAN;to be discovered;N4;1;る;mitsukaru;見つかる;mitsukaru
+1118;GODAN;to be fixed, repaired;N4;1;る;naoru;直る;naoru
+1130;GODAN;to add a number;N4;1;す;tasu;足す;tasu
+1141;GODAN;to cry;N4;1;く;naku;泣く;naku
+1152;GODAN;to be decided;N4;1;る;kimaru;決まる;kimaru
+1163;ICHIDAN;to exceed;N4;1;いる;sugiru;過ぎる;sugiru
+1174;ICHIDAN;get cold, feel chilly;N4;1;える;hieru;冷える;hieru
+1186;ICHIDAN;to　increase;N4;1;る;ふえる;増える;ふえる
+1197;ICHIDAN;to be visible, to be seen;N4;1;える;mieru;見える;mieru
+1209;GODAN;to disappear, to get lost;N4;1;る;nakunaru;無くなる;nakunaru
+1221;ICHIDAN;to get dark;N4;1;える;kureru;暮れる;kureru
+1232;ICHIDAN;to break down;N4;1;える;taoreru;倒れる;taoreru
+1243;ICHIDAN;to be broken;N4;1;える;kowareru;壊れる;kowareru
+1254;ICHIDAN;to lead;N4;1;える;tsureru;連れる;tsureru
+1265;GODAN;to sleep;N4;1;る;nemuru;眠る;nemuru
+1276;GODAN;to make noise, to be excited;N4;1;ぐ;sawagu;騒ぐ;sawagu
+1288;ICHIDAN;to lower;N4;1;える;sageru;下げる;sageru
+1299;ICHIDAN;to discover;N4;1;える;mitsukeru;見つける;mitsukeru
+1310;GODAN;to assist;N4;1;う;てつだう;手伝う;てつだう
+1321;GODAN;to return, to go back;N4;1;る;modoru;戻る;modoru
+1333;GODAN;to transport;N4;1;ぶ;hakobu;運ぶ;hakobu
+1344;ICHIDAN;to throw away;N4;1;える;nageru;投げる;nageru
+1355;GODAN;to go around;N4;1;る;mawaru;回る;mawaru
+1366;GODAN;to shine;N4;1;る;hikaru;光る;hikaru
+1377;ICHIDAN;to investigate;N4;1;える;shiraberu;調べる;shiraberu
+1388;ICHIDAN;hear, can hear, be audible;N4;1;える;kikoeru;聞こえる;kikoeru
+1401;ICHIDAN;to grow accustomed to;N4;1;える;nareru;慣れる;nareru
+1412;ICHIDAN;to compare;N4;1;える;kuraberu;比べる;kuraberu
+1423;GODAN;to make progress;N4;1;む;susumu;進む;susumu
+1434;GODAN;empty, with space;N4;1;く;aku;空く;aku
+1446;GODAN;to continue, to last;N4;1;く;tsuzuku;続く;tsuzuku
+1458;ICHIDAN;to get wet;N4;1;える;nureru;濡れる;nureru
+1469;ICHIDAN;to rear, to bring up;N4;1;える;sodateru;育てる;sodateru
+1481;GODAN;to be crowded;N4;1;む;komu;込む;komu
+1492;GODAN;to scold;N4;1;る;shikaru;叱る;shikaru
+1503;GODAN;to take time or money;N4;1;る;kakaru;掛かる;kakaru
+1514;GODAN;to boil, to heat;N4;1;す;wakasu;沸かす;wakasu
+1526;GODAN;to slide, to slip;N4;1;る;suberu;滑る;suberu
+1538;GODAN;to laugh, to smile;N4;1;う;warau;笑う;warau
+1550;ICHIDAN;to be similar;N4;1;いる;niru;似る;niru
+1561;GODAN;to go up;N4;1;る;agaru;上がる;agaru
+1572;GODAN;to pay;N4;1;う;harau;払う;harau
+1583;GODAN;to bake, to grill;N4;1;く;yaku;焼く;yaku
+1595;GODAN;to wrap;N4;1;む;tsutsumu;包む;tsutsumu
+1606;GODAN;to break;N4;1;す;kowasu;壊す;kowasu
+1617;ICHIDAN;to throw away;N4;1;える;suteru;捨てる;suteru
+1628;ICHIDAN;to take off clothes;N4;1;える;norikaeru;乗り換える;norikaeru
+1639;ICHIDAN;to stand up, to put up;N4;1;える;tateru;立てる;tateru
+1651;GODAN;to touch;N4;1;る;sawaru;触る;sawaru
+1662;GODAN;topic up, to gather;N4;1;う;hirou;拾う;hirou
+1674;ICHIDAN;to notify;N4;1;える;shiraseru;知らせる;shiraseru
+1685;ICHIDAN;to be sufficient;N4;1;いる;tariru;足りる;tariru
+1696;GODAN;to receive;N4;1;う;morau;貰う;morau
+1707;ICHIDAN;to go to meet;N4;1;える;mukaeru;迎える;mukaeru
+1718;GODAN;to boil, to grow hot;N4;1;く;waku;沸く;waku
+1730;GODAN;to remain;N4;1;る;nokoru;残る;nokoru
+1741;GODAN;to lodge at;N4;1;る;tomaru;泊まる;tomaru
+1752;GODAN;to fix, to repair;N4;1;す;naosu;直す;naosu
+1764;GODAN;to enjoy;N4;1;む;tanoshimu;楽しむ;tanoshimu
+1775;ICHIDAN;to lose;N4;1;える;makeru;負ける;makeru
+1786;GODAN;to grow fat;N4;1;る;futoru;太る;futoru
+1797;GODAN;to look for, to search;N4;1;す;sagasu;探す;sagasu
+1809;ICHIDAN;to make a mistake;N4;1;える;machigaeru;間違える;machigaeru
+1820;GODAN;to be delighted;N4;1;ぶ;yorokobu;喜ぶ;yorokobu
+1831;GODAN;to get down;N4;1;る;sagaru;下がる;sagaru
+1842;GODAN;to put;N4;1;く;oku;置く;oku
+1853;GODAN;to fish;N4;1;る;tsuru;釣る;tsuru
+1864;ICHIDAN;to escape;N4;1;える;nigeru;逃げる;nigeru
+1875;ICHIDAN;to get dirty;N4;1;える;yogoreru;汚れる;yogoreru
+1886;GODAN;to face;N4;1;う;mukau;向かう;mukau
+1897;ICHIDAN;to reach;N4;1;える;todokeru;届ける;todokeru
+1908;GODAN;to go, to come (humble form);N4;1;る;mairu;参る;mairu
+1920;ICHIDAN;to separate;N4;1;える;wakareru;別れる;wakareru
