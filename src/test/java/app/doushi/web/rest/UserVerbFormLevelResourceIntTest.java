@@ -103,6 +103,7 @@ public class UserVerbFormLevelResourceIntTest {
     public void createUserVerbFormLevel() throws Exception {
         int databaseSizeBeforeCreate = userVerbFormLevelRepository.findAll().size();
 
+        userRepository.saveAndFlush(userVerbFormLevel.getUser());
         // Create the UserVerbFormLevel
         restUserVerbFormLevelMockMvc.perform(post("/api/user-verb-form-levels")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -157,6 +158,7 @@ public class UserVerbFormLevelResourceIntTest {
     @Transactional
     public void getAllUserVerbFormLevels() throws Exception {
         // Initialize the database
+        userRepository.saveAndFlush(userVerbFormLevel.getUser());
         userVerbFormLevelRepository.saveAndFlush(userVerbFormLevel);
 
         // Get all the userVerbFormLevelList
@@ -186,6 +188,7 @@ public class UserVerbFormLevelResourceIntTest {
     @Transactional
     public void getUserVerbFormLevel() throws Exception {
         // Initialize the database
+        userRepository.saveAndFlush(userVerbFormLevel.getUser());
         userVerbFormLevelRepository.saveAndFlush(userVerbFormLevel);
 
         // Get the userVerbFormLevel
@@ -208,6 +211,7 @@ public class UserVerbFormLevelResourceIntTest {
     @Transactional
     public void updateUserVerbFormLevel() throws Exception {
         // Initialize the database
+        userRepository.saveAndFlush(userVerbFormLevel.getUser());
         userVerbFormLevelService.save(userVerbFormLevel);
 
         int databaseSizeBeforeUpdate = userVerbFormLevelRepository.findAll().size();
@@ -236,6 +240,7 @@ public class UserVerbFormLevelResourceIntTest {
     public void updateNonExistingUserVerbFormLevel() throws Exception {
         int databaseSizeBeforeUpdate = userVerbFormLevelRepository.findAll().size();
 
+        userRepository.saveAndFlush(userVerbFormLevel.getUser());
         // Create the UserVerbFormLevel
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
@@ -253,6 +258,7 @@ public class UserVerbFormLevelResourceIntTest {
     @Transactional
     public void deleteUserVerbFormLevel() throws Exception {
         // Initialize the database
+        userRepository.saveAndFlush(userVerbFormLevel.getUser());
         userVerbFormLevelService.save(userVerbFormLevel);
 
         int databaseSizeBeforeDelete = userVerbFormLevelRepository.findAll().size();
