@@ -1,6 +1,6 @@
 package app.doushi.service;
 
-import java.util.List;
+import java.util.*;
 
 import org.slf4j.*;
 import org.springframework.data.domain.*;
@@ -106,6 +106,16 @@ public class ConjugatedVerbService {
             return page.getContent().get(0);
         } else {
             return null;
+        }
+    }
+
+    public List<ConjugatedVerb> getConjugatedVerbAvailableToStudy() {
+        String login = SecurityUtils.getCurrentUserLogin().get();
+        Page<ConjugatedVerb> page = conjugatedVerbRepository.getConjugatedVerbToStudy(login, new PageRequest(0, 10));
+        if (page.hasContent()) {
+            return page.getContent();
+        } else {
+            return Collections.emptyList();
         }
     }
 }

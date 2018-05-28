@@ -21,7 +21,7 @@
                 <a class="nav-link" routerLink="lesson" (click)="collapseNavbar()">
                     <span>
                         <i class="fa fa-inbox" aria-hidden="true"></i>
-                        <span jhiTranslate="global.menu.lesson">Lesson</span>
+                        <span jhiTranslate="global.menu.lesson">Lesson</span> <span *ngIf="lessonCount > 0" class="badge badge-pill badge-primary">{{lessonCount}}</span>
                     </span>
                 </a>
             </li>
@@ -29,7 +29,7 @@
                 <a class="nav-link" routerLink="quiz" (click)="collapseNavbar()">
                     <span>
                         <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                        <span jhiTranslate="global.menu.quiz">Quiz</span>
+                        <span jhiTranslate="global.menu.quiz">Quiz</span> <span *ngIf="quizCount > 0" class="badge badge-pill badge-primary">{{quizCount}}</span>
                     </span>
                 </a>
             </li>

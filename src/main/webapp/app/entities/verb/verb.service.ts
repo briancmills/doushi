@@ -43,6 +43,12 @@ export class VerbService {
             .map((res: HttpResponse<Verb[]>) => this.convertArrayResponse(res));
     }
 
+    queryAvailableForStudy(req?: any): Observable<HttpResponse<Verb[]>> {
+        const options = createRequestOption(req);
+        return this.http.get<Verb[]>(`${this.resourceUrl}/study/available`, { params: options, observe: 'response' })
+            .map((res: HttpResponse<Verb[]>) => this.convertArrayResponse(res));
+    }
+
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
     }

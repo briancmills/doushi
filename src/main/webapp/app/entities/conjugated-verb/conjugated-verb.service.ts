@@ -43,6 +43,12 @@ export class ConjugatedVerbService {
             .map((res: HttpResponse<ConjugatedVerb[]>) => this.convertArrayResponse(res));
     }
 
+    queryAvailableForStudy(req?: any): Observable<HttpResponse<ConjugatedVerb[]>> {
+        const options = createRequestOption(req);
+        return this.http.get<ConjugatedVerb[]>(`${this.resourceUrl}/study/available`, { params: options, observe: 'response' })
+            .map((res: HttpResponse<ConjugatedVerb[]>) => this.convertArrayResponse(res));
+    }
+
     queryByVerb(id: number): Observable<HttpResponse<ConjugatedVerb[]>> {
        return this.http.get<ConjugatedVerb[]>(`${this.resourceUrl}/verb/${id}`, { observe: 'response'})
             .map((res: HttpResponse<ConjugatedVerb[]>) => this.convertArrayResponse(res));

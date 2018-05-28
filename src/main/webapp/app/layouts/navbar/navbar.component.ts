@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiLanguageService } from 'ng-jhipster';
@@ -7,6 +8,10 @@ import { ProfileService } from '../profiles/profile.service';
 import { JhiLanguageHelper, Principal, LoginModalService, LoginService } from '../../shared';
 
 import { VERSION } from '../../app.constants';
+import { Verb } from '../../entities/verb/verb.model';
+import { VerbService } from '../../entities/verb/verb.service';
+import { ConjugatedVerb } from '../../entities/conjugated-verb/conjugated-verb.model';
+import { ConjugatedVerbService } from '../../entities/conjugated-verb/conjugated-verb.service';
 
 @Component({
     selector: 'jhi-navbar',
@@ -22,6 +27,8 @@ export class NavbarComponent implements OnInit {
     swaggerEnabled: boolean;
     modalRef: NgbModalRef;
     version: string;
+    lessonCount: number;
+    quizCount: number;
 
     constructor(
         private loginService: LoginService,
@@ -30,7 +37,9 @@ export class NavbarComponent implements OnInit {
         private principal: Principal,
         private loginModalService: LoginModalService,
         private profileService: ProfileService,
-        private router: Router
+        private router: Router,
+        private verbService: VerbService,
+        private conjugatedVerbService: ConjugatedVerbService,
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
@@ -45,6 +54,18 @@ export class NavbarComponent implements OnInit {
             this.inProduction = profileInfo.inProduction;
             this.swaggerEnabled = profileInfo.swaggerEnabled;
         });
+        this.refreshCounts();
+    }
+
+    refreshCounts() {
+        this.verbService.queryAvailableForStudy()
+            .subscribe((verbResponse: HttpResponse<Verb[]>) => {
+                this.lessonCount = verbResponse.body.length;
+            });
+        this.conjugatedVerbService.queryAvailableForStudy()
+            .subscribe((verbResponse: HttpResponse<ConjugatedVerb[]>) => {
+                this.quizCount = verbResponse.body.length;
+            });
     }
 
     changeLanguage(languageKey: string) {

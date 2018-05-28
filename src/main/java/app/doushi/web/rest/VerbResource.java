@@ -109,16 +109,31 @@ public class VerbResource {
     /**
      * GET  /verbs/study : get the next verb to study
      *
-     * @param id the id of the verb to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the verb, or with status 404 (Not Found)
      */
     @GetMapping("/verbs/study")
     @Timed
     public ResponseEntity<Verb> getVerbToStudy() {
         log.debug("REST request to get getVerbToStudy : ");
-        Verb verb = verbService.getConjugatedVerbToStudy();
+        Verb verb = verbService.getVerbToStudy();
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(verb));
     }
+    
+    /**
+     * GET  /verbs/study/available : get a count of the verbs available to study now
+     *
+     * @param id the id of the verb to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the verb, or with status 404 (Not Found)
+     */
+    @GetMapping("/verbs/study/available")
+    @Timed
+    public ResponseEntity<List<Verb>> getVerbsAvailableToStudy() {
+        log.debug("REST request to get getVerbsAvailableToStudy : ");
+        List<Verb> verbs = verbService.getVerbsAvailableToStudy();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(verbs));
+    }
+    
+    
 
 
     /**

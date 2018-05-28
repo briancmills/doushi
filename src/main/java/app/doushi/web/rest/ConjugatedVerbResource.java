@@ -125,7 +125,6 @@ public class ConjugatedVerbResource {
     /**
      * GET  /conjugated-verbs/study : get the next conjugated verb to study
      *
-     * @param id the id of the conjugatedVerb to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the conjugatedVerb, or with status 404 (Not Found)
      */
     @GetMapping("/conjugated-verbs/study")
@@ -134,6 +133,19 @@ public class ConjugatedVerbResource {
         log.debug("REST request to get getConjugatedVerbToStudy : ");
         ConjugatedVerb conjugatedVerb = conjugatedVerbService.getConjugatedVerbToStudy();
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(conjugatedVerb));
+    }
+    
+    /**
+     * GET  /conjugated-verbs/study/available : get the list of conjugated verbs available to study
+     *
+     * @return the ResponseEntity with status 200 (OK) and with body the conjugatedVerb, or with status 404 (Not Found)
+     */
+    @GetMapping("/conjugated-verbs/study/available")
+    @Timed
+    public ResponseEntity<List<ConjugatedVerb>> getConjugatedVerbAvailableToStudy() {
+        log.debug("REST request to get getConjugatedVerbAvailableToStudy : ");
+        List<ConjugatedVerb> conjugatedVerbs = conjugatedVerbService.getConjugatedVerbAvailableToStudy();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(conjugatedVerbs));
     }
 
     /**

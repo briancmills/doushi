@@ -1,5 +1,7 @@
 package app.doushi.service;
 
+import java.util.*;
+
 import org.slf4j.*;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -79,7 +81,7 @@ public class VerbService {
         verbRepository.delete(id);
     }
 
-    public Verb getConjugatedVerbToStudy() {
+    public Verb getVerbToStudy() {
         String login = SecurityUtils.getCurrentUserLogin().get();
         
         User user = userRepository.findOneByLogin(login).get();
@@ -96,6 +98,16 @@ public class VerbService {
             return page.getContent().get(0);
         } else {
             return null;
+        }
+    }
+
+    public List<Verb> getVerbsAvailableToStudy() {
+        String login = SecurityUtils.getCurrentUserLogin().get();
+        Page<Verb> page = verbRepository.getVerbToStudy(login, new PageRequest(0, 10));
+        if (page.hasContent()) {
+            return page.getContent();
+        } else {
+            return Collections.emptyList();
         }
     }
 }
