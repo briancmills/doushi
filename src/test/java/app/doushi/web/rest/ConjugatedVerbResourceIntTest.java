@@ -229,12 +229,23 @@ public class ConjugatedVerbResourceIntTest {
             .andExpect(jsonPath("$.english").value(DEFAULT_ENGLISH.toString()))
             .andExpect(jsonPath("$.japanese").value(DEFAULT_JAPANESE.toString()));
     }
-    
+
+    @Test
+    @Transactional
+    @WithMockUser(username="user",authorities={"ROLE_USER"}, password = "user")
+    public void getConjugatedVerbToStudy_nothingToStudy() throws Exception {
+        // Get the conjugatedVerb to study 
+        restConjugatedVerbMockMvc.perform(get("/api/conjugated-verbs/study"))
+            .andExpect(status().isNotFound());
+    }
+
     @Test
     @Transactional
     @WithMockUser(username="user",authorities={"ROLE_USER"}, password = "user")
     public void getConjugatedVerbToStudy() throws Exception {
         // Get the conjugatedVerb to study 
+        
+        // TODO set up the data needed to get this API to return results
         restConjugatedVerbMockMvc.perform(get("/api/conjugated-verbs/study"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))

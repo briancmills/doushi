@@ -7,9 +7,8 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import app.doushi.domain.*;
-import app.doushi.domain.enumeration.KyuDan;
-import app.doushi.repository.*;
+import app.doushi.domain.ConjugatedVerb;
+import app.doushi.repository.ConjugatedVerbRepository;
 import app.doushi.security.SecurityUtils;
 
 
@@ -23,17 +22,14 @@ public class ConjugatedVerbService {
     private final Logger log = LoggerFactory.getLogger(ConjugatedVerbService.class);
 
     private final ConjugatedVerbRepository conjugatedVerbRepository;
-
-    private final UserVerbFormLevelRepository userVerbFormLevelRepository;
-
-    private final UserRepository userRepository;
-
+    
+    private final UserLevelInitializationHelper userLevelInitializationHelper;
+    
+    
     public ConjugatedVerbService(ConjugatedVerbRepository conjugatedVerbRepository, 
-            UserVerbFormLevelRepository userVerbFormLevelRepository,
-            UserRepository userRepository) {
+            UserLevelInitializationHelper userLevelInitializationHelper) {
         this.conjugatedVerbRepository = conjugatedVerbRepository;
-        this.userVerbFormLevelRepository = userVerbFormLevelRepository;
-        this.userRepository = userRepository;
+        this.userLevelInitializationHelper = userLevelInitializationHelper;
     }
 
     /**
@@ -88,18 +84,7 @@ public class ConjugatedVerbService {
 
     public ConjugatedVerb getConjugatedVerbToStudy() {
         String login = SecurityUtils.getCurrentUserLogin().get();
-        
-        // before getting the next verb to study lets make sure we have an initialized level for each verb in the database
-        // for this user. This way if we add a new verb the user gets a starting point automatically
-        // this might perform better if done in bulk via SQL but I think since it will limited operation it should be OK
-        User user = userRepository.findOneByLogin(login).get();
-        conjugatedVerbRepository.findVerbsWithNoProgress(login).stream().forEach(cv -> {
-            UserVerbFormLevel level = new UserVerbFormLevel()
-                    .conjugatedVerb(cv)
-                    .level(KyuDan.MUKYU)
-                    .user(user);
-            userVerbFormLevelRepository.save(level);
-        });
+        userLevelInitializationHelper.initializeUserVerbProgress(login);
         
         Page<ConjugatedVerb> page = conjugatedVerbRepository.getConjugatedVerbToStudy(login, new PageRequest(0, 1));
         if (page.hasContent()) {
@@ -111,6 +96,7 @@ public class ConjugatedVerbService {
 
     public List<ConjugatedVerb> getConjugatedVerbAvailableToStudy() {
         String login = SecurityUtils.getCurrentUserLogin().get();
+        userLevelInitializationHelper.initializeUserVerbProgress(login);
         Page<ConjugatedVerb> page = conjugatedVerbRepository.getConjugatedVerbToStudy(login, new PageRequest(0, 10));
         if (page.hasContent()) {
             return page.getContent();

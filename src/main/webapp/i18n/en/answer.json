@@ -7,7 +7,8 @@
                 "createLabel": "Create a new Answer",
                 "createOrEditLabel": "Create or edit a Answer"
             },
-            "created": "Nice job. Your answer has been saved.",
+            "error": "Unable to save answer",
+            "created": "Your answer has been saved.",
             "updated": "A Answer is updated with identifier {{ param }}",
             "deleted": "A Answer is deleted with identifier {{ param }}",
             "delete": {

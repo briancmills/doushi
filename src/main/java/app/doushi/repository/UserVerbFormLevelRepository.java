@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
-import app.doushi.domain.UserVerbFormLevel;
+import app.doushi.domain.*;
 
 /**
  * Spring Data JPA repository for the UserVerbFormLevel entity.
@@ -17,4 +17,8 @@ public interface UserVerbFormLevelRepository extends JpaRepository<UserVerbFormL
     List<UserVerbFormLevel> findByUserIsCurrentUser();
 
     List<UserVerbFormLevel> findAllByUserLogin(String login);
+
+    UserVerbFormLevel findOneByUserAndVerb(User user, Verb verb);
+    
+    UserVerbFormLevel findOneByUserAndConjugatedVerb(User user, ConjugatedVerb conjugatedVerb);
 }

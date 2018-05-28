@@ -26,9 +26,6 @@
     <changeSet author="brian (generated)" id="1527526547195-18">
         <addPrimaryKey columnNames="user_verb_set_id, verb_id" tableName="user_verb_set_verbs"/>
     </changeSet>
-    <changeSet author="brian (generated)" id="1527526547195-22">
-        <addUniqueConstraint columnNames="verb_id" constraintName="UK_user_verb_set_unique_verb" tableName="user_verb_set_verbs"/>
-    </changeSet>
     <changeSet author="brian (generated)" id="1527526547195-25">
         <addForeignKeyConstraint baseColumnNames="verb_id" baseTableName="user_verb_set_verbs" constraintName="FK44s2hqgbsu8xlaqb5akbq7yj0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="verb"/>
     </changeSet>

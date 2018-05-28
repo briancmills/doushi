@@ -26,6 +26,7 @@ export class LessonComponent implements OnInit, OnDestroy {
     correct: boolean;
     user: User;
     isError: boolean;
+    nothingMoreToStudy: boolean;
 
     constructor(
         private verbService: VerbService,
@@ -35,6 +36,7 @@ export class LessonComponent implements OnInit, OnDestroy {
         private principal: Principal,
     ) {
         this.isError = false;
+        this.nothingMoreToStudy = false;
         this.correct = undefined;
         this.principal = principal;
     }
@@ -70,7 +72,6 @@ export class LessonComponent implements OnInit, OnDestroy {
       if (!this.verb.answer) {
         return;
       }
-      console.log(this.verb.answer);
       if (this.verb.answer === this.verb.kanjiText) {
         this.correct = true;
       } else {
@@ -86,7 +87,6 @@ export class LessonComponent implements OnInit, OnDestroy {
         this.verb,
         undefined
       );
-      console.log('answer', a);
       this.subscribeToSaveAnswerResponse(
           this.answerService.create(a));
     }
@@ -104,6 +104,7 @@ export class LessonComponent implements OnInit, OnDestroy {
 
     private onSaveError() {
         this.isError = true;
+        this.jhiAlertService.error('doushiApp.answer.error', null, null);
     }
 
   　next() {
@@ -125,5 +126,9 @@ export class LessonComponent implements OnInit, OnDestroy {
 
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
+        if (error.indexOf('404 Not Found') > -1) {
+          this.nothingMoreToStudy = true;
+          this.verb = undefined;
+        }
     }
 }

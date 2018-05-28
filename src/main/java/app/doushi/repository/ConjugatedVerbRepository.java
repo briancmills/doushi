@@ -1,13 +1,13 @@
 package app.doushi.repository;
 
-import java.util.List;
+import java.util.*;
 
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import app.doushi.domain.ConjugatedVerb;
+import app.doushi.domain.*;
 
 
 /**
@@ -18,6 +18,12 @@ public interface ConjugatedVerbRepository extends JpaRepository<ConjugatedVerb, 
 
     List<ConjugatedVerb> findAllByVerbId(Long id);
 
+    /**
+     * For a ConjugatedVerb to be studied it must be part of a set that has made it to HACHIKYU (8th level)
+     * @param login
+     * @param pageable
+     * @return
+     */
     @Query("SELECT cv "
             + "FROM ConjugatedVerb cv "
             + "WHERE cv NOT IN ( "
@@ -27,6 +33,12 @@ public interface ConjugatedVerbRepository extends JpaRepository<ConjugatedVerb, 
             + " WHERE a.correct = TRUE "
             + " AND a.date >= CURRENT_DATE "
             + " AND a.user.login = :login "
+            + ") AND cv.verb IN ( "
+            + " SELECT v "
+            + " FROM UserVerbSet uvs "
+            + " JOIN uvs.verbs v"
+            + " WHERE uvs.user.login = :login "
+            + " AND uvs.level IN ('HACHIKYU','NANAKYU','ROKYU','GOKYU','YONKYU','SANKYU','NIKYU','IKKYU','SHODAN') "
             + ") "
             + "ORDER BY cv.id ")
     Page<ConjugatedVerb> getConjugatedVerbToStudy(@Param("login") String login, Pageable pageable);
@@ -41,5 +53,7 @@ public interface ConjugatedVerbRepository extends JpaRepository<ConjugatedVerb, 
             + ") "
             + "ORDER BY cv.id ")
     List<ConjugatedVerb> findVerbsWithNoProgress(@Param("login") String login);
+
+    List<ConjugatedVerb> findAllByVerbIn(Collection<Verb> verbs);
 
 }

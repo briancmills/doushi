@@ -1,5 +1,6 @@
 package app.doushi.repository;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.data.domain.*;
@@ -31,10 +32,32 @@ public interface VerbRepository extends JpaRepository<Verb, Long> {
             + "FROM Verb v "
             + "WHERE v NOT IN ( "
             + " SELECT av "
-            + " FROM Answer a "
+            + " FROM UserVerbFormLevel level, Answer a "
             + " JOIN a.verb av "
-            + " WHERE a.correct = TRUE "
-            + " AND a.date >= CURRENT_DATE "
+            + " WHERE level.user = a.user "
+            + " AND level.verb = av  "
+            + " AND a.correct = TRUE "
+            + " AND ( "
+            + "     (level.level = 'KYUKYU' AND a.date >= :fourHoursAgo ) "
+            + "     OR "
+            + "     (level.level = 'HACHIKYU' AND a.date >= :eightHoursAgo ) "
+            + "     OR "
+            + "     (level.level = 'NANAKYU' AND a.date >= :oneDayAgo ) "
+            + "     OR "
+            + "     (level.level = 'ROKYU' AND a.date >= :twoDaysAgo ) "
+            + "     OR "
+            + "     (level.level = 'GOKYU' AND a.date >= :threeDaysAgo ) "
+            + "     OR "
+            + "     (level.level = 'YONKYU' AND a.date >= :oneWeekAgo ) "
+            + "     OR "
+            + "     (level.level = 'SANKYU' AND a.date >= :twoWeeksAgo ) "
+            + "     OR "
+            + "     (level.level = 'NIKYU' AND a.date >= :oneMonthAgo ) "
+            + "     OR "
+            + "     (level.level = 'IKKYU' AND a.date >= :fourMonthsAgo ) "
+            + "     OR "
+            + "     (level.level = 'SHODAN' AND a.date >= :fourMonthsAgo ) "
+            + " ) "
             + " AND a.user.login = :login "
             + ") AND v IN ( "
             + " SELECT v "
@@ -43,6 +66,17 @@ public interface VerbRepository extends JpaRepository<Verb, Long> {
             + " WHERE uvs.user.login = :login "
             + ") "
             + "ORDER BY v.id ")
-    Page<Verb> getVerbToStudy(@Param("login") String login, Pageable pageable);
+    Page<Verb> getVerbToStudy(
+            @Param("login") String login, 
+            @Param("fourHoursAgo") ZonedDateTime fourHoursAgo, 
+            @Param("eightHoursAgo") ZonedDateTime eightHoursAgo, 
+            @Param("oneDayAgo") ZonedDateTime oneDayAgo,
+            @Param("twoDaysAgo") ZonedDateTime twoDaysAgo, 
+            @Param("threeDaysAgo") ZonedDateTime threeDaysAgo, 
+            @Param("oneWeekAgo") ZonedDateTime oneWeekAgo,  
+            @Param("twoWeeksAgo") ZonedDateTime twoWeeksAgo, 
+            @Param("oneMonthAgo") ZonedDateTime oneMonthAgo, 
+            @Param("fourMonthsAgo") ZonedDateTime fourMonthsAgo, 
+            Pageable pageable);
 
 }

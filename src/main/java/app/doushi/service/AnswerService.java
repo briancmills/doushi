@@ -1,12 +1,16 @@
 package app.doushi.service;
 
+import java.util.*;
+
+import org.apache.commons.lang3.BooleanUtils;
 import org.slf4j.*;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import app.doushi.domain.Answer;
-import app.doushi.repository.AnswerRepository;
+import app.doushi.domain.*;
+import app.doushi.domain.enumeration.KyuDan;
+import app.doushi.repository.*;
 
 
 /**
@@ -20,8 +24,21 @@ public class AnswerService {
 
     private final AnswerRepository answerRepository;
 
-    public AnswerService(AnswerRepository answerRepository) {
+    private final UserVerbFormLevelRepository userVerbFormLevelRepository;
+    
+    private final UserVerbSetRepository userVerbSetRepository;
+    
+    private final ConjugatedVerbRepository conjugatedVerbRepository;
+    
+    public AnswerService(AnswerRepository answerRepository, 
+            UserVerbFormLevelRepository userVerbFormLevelRepository, 
+            UserVerbSetRepository userVerbSetRepository,
+            ConjugatedVerbRepository conjugatedVerbRepository) {
+        
         this.answerRepository = answerRepository;
+        this.userVerbFormLevelRepository = userVerbFormLevelRepository;
+        this.userVerbSetRepository = userVerbSetRepository;
+        this.conjugatedVerbRepository = conjugatedVerbRepository;
     }
 
     /**
@@ -33,6 +50,58 @@ public class AnswerService {
     public Answer save(Answer answer) {
         log.debug("Request to save Answer : {}", answer);
         // when an answer is saved we also calculate the users level
+        UserVerbFormLevel level = null;
+        User user = answer.getUser();
+        Verb verb = answer.getVerb() != null ? answer.getVerb() : answer.getConjugatedVerb().getVerb();
+        
+        if (answer.getVerb() != null) {
+            level = userVerbFormLevelRepository.findOneByUserAndVerb(user, answer.getVerb());
+        } else {
+            level = userVerbFormLevelRepository.findOneByUserAndConjugatedVerb(user, answer.getConjugatedVerb());
+        }
+        
+        if (level != null) {
+
+            int currentLevel = level.getLevel().ordinal();
+                    
+            // are we leveling up or down?
+            if (BooleanUtils.isTrue(answer.isCorrect())) {
+                currentLevel++;
+            } else {
+                currentLevel--;
+            }
+            
+            level.setLevel(KyuDan.valueOf(currentLevel));
+            userVerbFormLevelRepository.saveAndFlush(level);
+            
+            // now determine if the set needs to be leveled up
+            Optional<UserVerbSet> verbSet = userVerbSetRepository.findAllByUser(answer.getUser())
+                    .stream().filter(set -> { return set.getVerbs().contains(verb); }).findFirst();
+            
+            if (verbSet.isPresent()) {
+                UserVerbSet userVerbSet = verbSet.get();
+                // the level of a Verb increases when all of the ConjugationForms are above its current level
+                boolean increaseLevel = true;
+                List<ConjugatedVerb> conjugatedVerbs = conjugatedVerbRepository.findAllByVerbIn(userVerbSet.getVerbs());
+                
+                for (ConjugatedVerb conjugatedVerb : conjugatedVerbs) {
+                    UserVerbFormLevel cvLevel = userVerbFormLevelRepository.findOneByUserAndConjugatedVerb(user, conjugatedVerb);
+                    log.debug("conjugatedVerb: {}", conjugatedVerb);
+                    log.debug("cvLevel: {}", cvLevel);
+                    if (cvLevel.getLevel().ordinal() <= userVerbSet.getLevel().ordinal()) {
+                        log.debug("not going to increase level of set {} because of {} ", userVerbSet, conjugatedVerb);
+                        increaseLevel = false;
+                        break;
+                    }
+                }
+                
+                if (increaseLevel) {
+                    userVerbSet.setLevel(KyuDan.valueOf(userVerbSet.getLevel().ordinal()+1));
+                    userVerbSetRepository.saveAndFlush(userVerbSet);
+                }
+            }
+            
+        }
         
         return answerRepository.save(answer);
     }

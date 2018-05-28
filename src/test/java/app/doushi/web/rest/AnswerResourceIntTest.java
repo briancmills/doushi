@@ -1,15 +1,17 @@
 package app.doushi.web.rest;
 
-import app.doushi.DoushiApp;
+import static app.doushi.web.rest.TestUtil.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import app.doushi.domain.Answer;
-import app.doushi.domain.User;
-import app.doushi.repository.AnswerRepository;
-import app.doushi.service.AnswerService;
-import app.doushi.web.rest.errors.ExceptionTranslator;
+import java.time.*;
+import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
+import javax.persistence.EntityManager;
+
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,19 +24,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import java.time.Instant;
-import java.time.ZonedDateTime;
-import java.time.ZoneOffset;
-import java.time.ZoneId;
-import java.util.List;
-
-import static app.doushi.web.rest.TestUtil.sameInstant;
-import static app.doushi.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import app.doushi.DoushiApp;
+import app.doushi.domain.*;
+import app.doushi.repository.*;
+import app.doushi.service.AnswerService;
+import app.doushi.web.rest.errors.ExceptionTranslator;
 
 /**
  * Test class for the AnswerResource REST controller.
@@ -56,6 +50,9 @@ public class AnswerResourceIntTest {
 
     @Autowired
     private AnswerRepository answerRepository;
+
+    @Autowired
+    private VerbRepository verbRepository;
 
     @Autowired
     private AnswerService answerService;
@@ -109,6 +106,8 @@ public class AnswerResourceIntTest {
     @Before
     public void initTest() {
         answer = createEntity(em);
+        // put a verb on the answer
+        answer.setVerb(verbRepository.findAll().get(0));
     }
 
     @Test

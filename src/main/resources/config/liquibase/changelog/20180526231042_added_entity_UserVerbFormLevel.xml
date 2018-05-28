@@ -41,5 +41,23 @@
         </createTable>
         
     </changeSet>
+    <changeSet author="brian (generated)" id="20180526231042-2">
+        <createIndex 
+            indexName="uq_uvfl_user_verb"
+            tableName="user_verb_form_level"
+            unique="true">
+        <column name="user_id" type="bigint"/>
+        <column name="verb_id" type="bigint"/>
+    </createIndex>
+    </changeSet>
+    <changeSet author="brian (generated)" id="20180526231042-3">
+        <createIndex 
+            indexName="uq_uvfl_user_conjugated_verb"
+            tableName="user_verb_form_level"
+            unique="true">
+        <column name="user_id" type="bigint"/>
+        <column name="conjugated_verb_id" type="bigint"/>
+    </createIndex>
+    </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>
