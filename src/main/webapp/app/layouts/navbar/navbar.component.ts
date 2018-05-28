@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiLanguageService } from 'ng-jhipster';
+import { JhiLanguageService, JhiEventManager } from 'ng-jhipster';
 
 import { ProfileService } from '../profiles/profile.service';
 import { JhiLanguageHelper, Principal, LoginModalService, LoginService } from '../../shared';
@@ -40,6 +40,7 @@ export class NavbarComponent implements OnInit {
         private router: Router,
         private verbService: VerbService,
         private conjugatedVerbService: ConjugatedVerbService,
+        private eventManager: JhiEventManager
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
@@ -55,16 +56,17 @@ export class NavbarComponent implements OnInit {
             this.swaggerEnabled = profileInfo.swaggerEnabled;
         });
         this.refreshCounts();
+        this.eventManager.subscribe('quizTaken', (response) => this.refreshCounts());
     }
 
     refreshCounts() {
-        this.verbService.queryAvailableForStudy()
+      　this.verbService.queryAvailableForStudy()
             .subscribe((verbResponse: HttpResponse<Verb[]>) => {
                 this.lessonCount = verbResponse.body.length;
             });
         this.conjugatedVerbService.queryAvailableForStudy()
             .subscribe((verbResponse: HttpResponse<ConjugatedVerb[]>) => {
-                this.quizCount = verbResponse.body.length;
+               this.quizCount = verbResponse.body.length;
             });
     }
 

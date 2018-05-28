@@ -5,7 +5,7 @@
             "home": {
                 "title": "Quiz"
             },
-            "instructions": "Please conjugate '{{verbName}}' into the {{form}} form. ",
+            "instructions": "Please conjugate '{{verbName}}' into the {{form}}. ",
             "incorrect": "The correct answer is {{answer}}",
             "correct": "That is right!",
             "next": "Next",

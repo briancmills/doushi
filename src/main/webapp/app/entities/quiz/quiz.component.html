@@ -5,7 +5,7 @@
     
     <jhi-alert></jhi-alert>
     
-    <div *ngIf="conjugatedVerb" class="card" style="width: 30rem;">
+    <div *ngIf="conjugatedVerb" class="card">
         <div class="card-body">
             <h5 class="card-title">{{conjugatedVerb.verb.kanjiText}}
                 {{conjugatedVerb.verb.definition}}</h5>
@@ -44,7 +44,7 @@
                         </div>
 			        </div>
 			        
-                    <button type="submit" [hidden]="correct===true" class="btn btn-primary" (click)="check()">
+                    <button type="submit" [hidden]="correct!==undefined" class="btn btn-primary" (click)="check()">
                         <span class="fa fa-check"></span>&nbsp;<span jhiTranslate="doushiApp.quiz.check">Check</span>
                     </button>
                     <button type="submit" [hidden]="correct===undefined" [disabled]="correct===undefined" class="btn btn-primary" (click)="next()">

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
-import { JhiAlertService } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 import { Observable } from 'rxjs/Observable';
 import { Principal, User } from '../../shared';
 
@@ -33,6 +33,7 @@ export class LessonComponent implements OnInit, OnDestroy {
         private conjugatedVerbService: ConjugatedVerbService,
         private answerService: AnswerService,
         private jhiAlertService: JhiAlertService,
+        private eventManager: JhiEventManager,
         private principal: Principal,
     ) {
         this.isError = false;
@@ -61,10 +62,6 @@ export class LessonComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-    }
-
-    trackId(index: number, item: Verb) {
-        return item.id;
     }
 
     check() {
@@ -99,6 +96,10 @@ export class LessonComponent implements OnInit, OnDestroy {
     private onSaveAnswerSuccess(result: Answer) {
         if (this.correct) {
           setTimeout(() => { this.next(); }, 3000);
+          this.eventManager.broadcast({
+              name: 'quizTaken',
+              content: 'Quiz Was Taken'
+          });
         }
     }
 

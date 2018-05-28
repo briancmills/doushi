@@ -36,11 +36,18 @@ public interface ConjugatedVerbRepository extends JpaRepository<ConjugatedVerb, 
             + ") AND cv.verb IN ( "
             + " SELECT v "
             + " FROM UserVerbSet uvs "
-            + " JOIN uvs.verbs v"
+            + " JOIN uvs.verbs v "
             + " WHERE uvs.user.login = :login "
-            + " AND uvs.level IN ('HACHIKYU','NANAKYU','ROKYU','GOKYU','YONKYU','SANKYU','NIKYU','IKKYU','SHODAN') "
             + ") "
-            + "ORDER BY cv.id ")
+            + "AND EXISTS ( "
+            + " SELECT 1 "
+            + " FROM UserVerbFormLevel uvfl "
+            + " JOIN uvfl.verb v "
+            + " WHERE uvfl.user.login = :login "
+            + " AND cv.verb = v "
+            + " AND uvfl.level <> 'MUKYU' "
+            + ") "
+            + "ORDER BY RANDOM() ")
     Page<ConjugatedVerb> getConjugatedVerbToStudy(@Param("login") String login, Pageable pageable);
 
     @Query("SELECT cv "

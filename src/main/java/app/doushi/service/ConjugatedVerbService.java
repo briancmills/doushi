@@ -97,7 +97,7 @@ public class ConjugatedVerbService {
     public List<ConjugatedVerb> getConjugatedVerbAvailableToStudy() {
         String login = SecurityUtils.getCurrentUserLogin().get();
         userLevelInitializationHelper.initializeUserVerbProgress(login);
-        Page<ConjugatedVerb> page = conjugatedVerbRepository.getConjugatedVerbToStudy(login, new PageRequest(0, 10));
+        Page<ConjugatedVerb> page = conjugatedVerbRepository.getConjugatedVerbToStudy(login, new PageRequest(0, 10000));
         if (page.hasContent()) {
             return page.getContent();
         } else {
