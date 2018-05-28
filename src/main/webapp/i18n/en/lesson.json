@@ -1,12 +1,15 @@
 
 {
     "doushiApp": {
-        "verb" : {
+        "lesson" : {
             "home": {
-                "title": "Verbs",
-                "createLabel": "Create a new Verb",
-                "createOrEditLabel": "Create or edit a Verb"
+                "title": "Verb Lessons"
             },
+            "instructions": "Please review all of the information below for the verb: '{{verbName}}'.  Then type the verb (including Kanji if any) into the Answer area.  This is just practice to make sure you can type Japanese on your computer.  When you answer correctly the lesson will complete and unlock the conjugation quiz. ",
+            "incorrect": "The correct answer is {{answer}}",
+            "correct": "That is right!",
+            "next": "Next",
+            "check": "Check Answer",
             "created": "A new Verb is created with identifier {{ param }}",
             "updated": "A Verb is updated with identifier {{ param }}",
             "deleted": "A Verb is deleted with identifier {{ param }}",
@@ -18,12 +21,12 @@
             },
             "type": "Type",
             "definition": "Definition",
+            "filter": "Filter",
             "jlptLevel": "JLPT Level",
             "gradeLevel": "Grade Level",
             "ending": "Ending",
             "verbText": "Verb Text",
             "kanjiText": "Kanji Text",
-            "answer": "Answer",
             "romanjiText": "Romanji Text",
             "definitions": "Definitions"
         }

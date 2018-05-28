@@ -19,6 +19,7 @@ import { DoushiEntityModule } from './entities/entity.module';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
 import { DoushiStudySheetModule } from './entities/study-sheet/study-sheet.module';
 import { DoushiQuizModule } from './entities/quiz/quiz.module';
+import { DoushiLessonModule } from './entities/lesson/lesson.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import {
     JhiMainComponent,
@@ -42,6 +43,7 @@ import {
         DoushiEntityModule,
         DoushiStudySheetModule,
         DoushiQuizModule,
+        DoushiLessonModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [

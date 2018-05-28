@@ -1,13 +1,14 @@
 package app.doushi.service;
 
-import app.doushi.domain.Verb;
-import app.doushi.repository.VerbRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.slf4j.*;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import app.doushi.domain.*;
+import app.doushi.domain.enumeration.KyuDan;
+import app.doushi.repository.*;
+import app.doushi.security.SecurityUtils;
 
 
 /**
@@ -21,8 +22,16 @@ public class VerbService {
 
     private final VerbRepository verbRepository;
 
-    public VerbService(VerbRepository verbRepository) {
+    private final UserVerbFormLevelRepository userVerbFormLevelRepository;
+
+    private final UserRepository userRepository;
+
+    public VerbService(VerbRepository verbRepository, 
+            UserVerbFormLevelRepository userVerbFormLevelRepository,
+            UserRepository userRepository) {
         this.verbRepository = verbRepository;
+        this.userVerbFormLevelRepository = userVerbFormLevelRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -68,5 +77,25 @@ public class VerbService {
     public void delete(Long id) {
         log.debug("Request to delete Verb : {}", id);
         verbRepository.delete(id);
+    }
+
+    public Verb getConjugatedVerbToStudy() {
+        String login = SecurityUtils.getCurrentUserLogin().get();
+        
+        User user = userRepository.findOneByLogin(login).get();
+        verbRepository.findVerbsWithNoProgress(login).stream().forEach(v -> {
+            UserVerbFormLevel level = new UserVerbFormLevel()
+                    .verb(v)
+                    .level(KyuDan.MUKYU)
+                    .user(user);
+            userVerbFormLevelRepository.save(level);
+        });
+        
+        Page<Verb> page = verbRepository.getVerbToStudy(login, new PageRequest(0, 1));
+        if (page.hasContent()) {
+            return page.getContent().get(0);
+        } else {
+            return null;
+        }
     }
 }

@@ -3,13 +3,13 @@ import { Verb } from '../verb/verb.model';
 
 export const enum ConjugationType {
     'dictionary',
-    ' masu',
-    ' nai',
-    ' te',
-    ' ta',
-    ' potential',
-    ' conditional',
-    ' volitional'
+    'masu',
+    'nai',
+    'te',
+    'ta',
+    'potential',
+    'conditional',
+    'volitional'
 }
 
 export class ConjugatedVerb implements BaseEntity {

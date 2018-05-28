@@ -1,27 +1,22 @@
 package app.doushi.web.rest;
 
+import java.net.*;
+import java.util.*;
+
+import javax.validation.Valid;
+
+import org.slf4j.*;
+import org.springframework.data.domain.*;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
+
 import com.codahale.metrics.annotation.Timed;
+
 import app.doushi.domain.Verb;
 import app.doushi.service.VerbService;
 import app.doushi.web.rest.errors.BadRequestAlertException;
-import app.doushi.web.rest.util.HeaderUtil;
-import app.doushi.web.rest.util.PaginationUtil;
+import app.doushi.web.rest.util.*;
 import io.github.jhipster.web.util.ResponseUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * REST controller for managing Verb.
@@ -110,6 +105,21 @@ public class VerbResource {
         Verb verb = verbService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(verb));
     }
+    
+    /**
+     * GET  /verbs/study : get the next verb to study
+     *
+     * @param id the id of the verb to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the verb, or with status 404 (Not Found)
+     */
+    @GetMapping("/verbs/study")
+    @Timed
+    public ResponseEntity<Verb> getVerbToStudy() {
+        log.debug("REST request to get getVerbToStudy : ");
+        Verb verb = verbService.getConjugatedVerbToStudy();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(verb));
+    }
+
 
     /**
      * DELETE  /verbs/:id : delete the "id" verb.

@@ -1,22 +1,45 @@
 <div>
     <h2>
-        <span jhiTranslate="doushiApp.quiz.home.title">Quiz</span>
+        <span jhiTranslate="doushiApp.lesson.home.title">Verb Lessons</span>
     </h2>
     
     <jhi-alert></jhi-alert>
     
-    <div *ngIf="conjugatedVerb" class="card" style="width: 30rem;">
+    <div *ngIf="verb" class="card" style="width: 30rem;">
         <div class="card-body">
-            <h5 class="card-title">{{conjugatedVerb.verb.kanjiText}}
-                {{conjugatedVerb.verb.definition}}</h5>
+            <h5 class="card-title">{{verb.kanjiText}}
+                {{verb.definition}}</h5>
             <div class="card-text">
-                <p jhiTranslate="doushiApp.quiz.instructions" translateValues="{verbName: '{{conjugatedVerb.verb.verbText}}', form: '{{'doushiApp.ConjugationType.' + conjugatedVerb.conjugationType | translate}}'}"></p>
+                <p jhiTranslate="doushiApp.lesson.instructions" translateValues="{verbName: '{{verb.kanjiText}}'}"></p>
+                
+                <br />
+                <div class="table-responsive" *ngIf="conjugatedVerbs">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th><span
+                                    jhiTranslate="doushiApp.conjugatedVerb.conjugationType">Conjugation
+                                        Type</span></th>
+                                <th><span jhiTranslate="doushiApp.conjugatedVerb.japanese">Japanese</span></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let conjugatedVerb of conjugatedVerbs ;trackBy: trackId">
+                                <td
+                                    jhiTranslate="{{'doushiApp.ConjugationType.' + conjugatedVerb.conjugationType}}">{{conjugatedVerb.conjugationType}}</td>
+                                <td>{{conjugatedVerb.japanese}}</td>
+                                <td class="text-right"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 
                 <form name="quizForm" role="form" novalidate #quizForm="ngForm">
 	                <div class="form-group">
-			            <label class="form-control-label" jhiTranslate="doushiApp.conjugatedVerb.answer" for="field_answer">Answer</label>
+			            <label class="form-control-label" jhiTranslate="doushiApp.verb.answer" for="field_answer">Answer</label>
 			            <input type="text" class="form-control" name="answer" id="field_answer" autocomplete="off"
-			                [(ngModel)]="conjugatedVerb.answer" 
+			                [(ngModel)]="verb.answer" 
                             [disabled]="correct!==undefined" />
 			            <div [hidden]="!(quizForm.controls.answer?.dirty && quizForm.controls.answer?.invalid)">
                             <small class="form-text text-danger"
@@ -33,22 +56,22 @@
                             </small>
                         </div>
                         <div [hidden]="correct || correct===undefined">
-                            <small class="form-text text-danger" jhiTranslate="doushiApp.quiz.incorrect" translateValues="{ answer: '{{conjugatedVerb.japanese}}' }">
+                            <small class="form-text text-danger" jhiTranslate="doushiApp.lesson.incorrect" translateValues="{ answer: '{{verb.kanjiText}}' }">
                                Nope!
                             </small>
                         </div>
                         <div [hidden]="!correct===true">
-                            <small class="form-text text-success" jhiTranslate="doushiApp.quiz.correct">
+                            <small class="form-text text-success" jhiTranslate="doushiApp.lesson.correct">
                                Yup!
                             </small>
                         </div>
 			        </div>
 			        
                     <button type="submit" [hidden]="correct===true" class="btn btn-primary" (click)="check()">
-                        <span class="fa fa-check"></span>&nbsp;<span jhiTranslate="doushiApp.quiz.check">Check</span>
+                        <span class="fa fa-check"></span>&nbsp;<span jhiTranslate="doushiApp.lesson.check">Check</span>
                     </button>
                     <button type="submit" [hidden]="correct===undefined" [disabled]="correct===undefined" class="btn btn-primary" (click)="next()">
-                        <span class="fa fa-long-arrow-alt-right"></span>&nbsp;<span jhiTranslate="doushiApp.quiz.next">Next</span>
+                        <span class="fa fa-long-arrow-alt-right"></span>&nbsp;<span jhiTranslate="doushiApp.lesson.next">Next</span>
                     </button>
                 </form>
                 

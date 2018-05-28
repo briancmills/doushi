@@ -18,6 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -311,6 +312,17 @@ public class VerbResourceIntTest {
             .andExpect(jsonPath("$.verbText").value(DEFAULT_VERB_TEXT.toString()))
             .andExpect(jsonPath("$.kanjiText").value(DEFAULT_KANJI_TEXT.toString()))
             .andExpect(jsonPath("$.romanjiText").value(DEFAULT_ROMANJI_TEXT.toString()));
+    }
+    
+    @Test
+    @Transactional
+    @WithMockUser(username="user",authorities={"ROLE_USER"}, password = "user")
+    public void getVerbToStudy() throws Exception {
+        // Get the conjugatedVerb to study 
+        restVerbMockMvc.perform(get("/api/verbs/study"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").isNotEmpty());
     }
 
     @Test

@@ -43,6 +43,7 @@ export class Verb implements BaseEntity {
         public romanjiText?: string,
         public definitions?: BaseEntity[],
         public searchText?: string,
+        public answer?: string,
     ) {
     }
 }

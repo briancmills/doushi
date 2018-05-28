@@ -32,6 +32,11 @@ export class VerbService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
+    findForStudy(): Observable<EntityResponseType> {
+        return this.http.get<Verb>(`${this.resourceUrl}/study`, { observe: 'response'})
+            .map((res: EntityResponseType) => this.convertResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<Verb[]>> {
         const options = createRequestOption(req);
         return this.http.get<Verb[]>(this.resourceUrl, { params: options, observe: 'response' })

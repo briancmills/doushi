@@ -13,7 +13,6 @@ import app.doushi.domain.ConjugatedVerb;
 /**
  * Spring Data JPA repository for the ConjugatedVerb entity.
  */
-@SuppressWarnings("unused")
 @Repository
 public interface ConjugatedVerbRepository extends JpaRepository<ConjugatedVerb, Long> {
 
