@@ -12,13 +12,10 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="type"><span jhiTranslate="doushiApp.studySheet.type">Type</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="definition"><span jhiTranslate="doushiApp.studySheet.definition">Definition</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="jlptLevel"><span jhiTranslate="doushiApp.studySheet.jlptLevel">Jlpt Level</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="gradeLevel"><span jhiTranslate="doushiApp.studySheet.gradeLevel">Grade Level</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="ending"><span jhiTranslate="doushiApp.studySheet.ending">Ending</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="verbText"><span jhiTranslate="doushiApp.studySheet.verbText">Verb Text</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="kanjiText"><span jhiTranslate="doushiApp.studySheet.kanjiText">Kanji Text</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="romanjiText"><span jhiTranslate="doushiApp.studySheet.romanjiText">Romanji Text</span> <span class="fa fa-sort"></span></th>
             <th></th>
@@ -26,13 +23,10 @@
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let verb of (verbs | pureFilter:filter:'searchText' )  ;trackBy: trackId">
-                <td><a [routerLink]="['../verb', verb.id ]">{{verb.id}}</a></td>
                 <td jhiTranslate="{{'doushiApp.VerbType.' + verb.type}}">{{verb.type}}</td>
                 <td>{{verb.definition}}</td>
                 <td jhiTranslate="{{'doushiApp.JlptLevel.' + verb.jlptLevel}}">{{verb.jlptLevel}}</td>
-                <td>{{verb.gradeLevel}}</td>
                 <td jhiTranslate="{{'doushiApp.VerbEnding.' + verb.ending}}">{{verb.ending}}</td>
-                <td>{{verb.verbText}}</td>
                 <td>{{verb.kanjiText}}</td>
                 <td>{{verb.romanjiText}}</td>
                 <td class="text-right">
