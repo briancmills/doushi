@@ -96,7 +96,7 @@ public class ConjugatedVerbService {
         conjugatedVerbRepository.findVerbsWithNoProgress(login).stream().forEach(cv -> {
             UserVerbFormLevel level = new UserVerbFormLevel()
                     .conjugatedVerb(cv)
-                    .level(KyuDan.KYUKYU)
+                    .level(KyuDan.MUKYU)
                     .user(user);
             userVerbFormLevelRepository.save(level);
         });

@@ -1,6 +1,7 @@
 import { BaseEntity, User } from './../../shared';
 
 export const enum KyuDan {
+    'MUKYU',
     'KYUKYU',
     'HACHIKYU',
     'NANAKYU',

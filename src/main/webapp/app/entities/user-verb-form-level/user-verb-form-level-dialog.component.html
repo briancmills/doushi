@@ -15,6 +15,7 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="doushiApp.userVerbFormLevel.level" for="field_level">Level</label>
             <select class="form-control" name="level" [(ngModel)]="userVerbFormLevel.level" id="field_level"  required>
+                <option value="MUKYU">{{'doushiApp.KyuDan.MUKYU' | translate}}</option>
                 <option value="KYUKYU">{{'doushiApp.KyuDan.KYUKYU' | translate}}</option>
                 <option value="HACHIKYU">{{'doushiApp.KyuDan.HACHIKYU' | translate}}</option>
                 <option value="NANAKYU">{{'doushiApp.KyuDan.NANAKYU' | translate}}</option>

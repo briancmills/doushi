@@ -29,7 +29,7 @@
         {
             "fieldName": "level",
             "fieldType": "KyuDan",
-            "fieldValues": "KYUKYU,HACHIKYU,NANAKYU,ROKYU,GOKYU,YONKYU,SANKYU,NIKYU,IKKYU,SHODAN",
+            "fieldValues": "MUKYU, KYUKYU,HACHIKYU,NANAKYU,ROKYU,GOKYU,YONKYU,SANKYU,NIKYU,IKKYU,SHODAN",
             "fieldValidateRules": [
                 "required"
             ]
