@@ -18,7 +18,7 @@
         The initial schema has the '00000000000001' id, so that it is over-written if we re-generate it.
     -->
     <changeSet id="00000000000001" author="jhipster">
-        <createTable tableName="user">
+        <createTable tableName="doushi_user">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -51,13 +51,13 @@
             <column name="last_modified_date" type="timestamp"/>
         </createTable>
         <createIndex indexName="idx_user_login"
-            tableName="user"
+            tableName="doushi_user"
             unique="true">
             <column name="login" type="varchar(100)"/>
         </createIndex>
 
         <createIndex indexName="idx_user_email"
-            tableName="user"
+            tableName="doushi_user"
             unique="true">
             <column name="email" type="varchar(100)"/>
         </createIndex>
@@ -87,15 +87,15 @@
                                  baseTableName="user_authority"
                                  constraintName="fk_user_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="user"/>
+                                 referencedTableName="doushi_user"/>
         <loadData encoding="UTF-8"
                   file="config/liquibase/users.csv"
                   separator=";"
-                  tableName="user">
+                  tableName="doushi_user">
             <column name="activated" type="boolean"/>
             <column name="created_date" type="timestamp"/>
         </loadData>
-        <dropDefaultValue tableName="user" columnName="created_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="doushi_user" columnName="created_date" columnDataType="datetime"/>
         <loadData encoding="UTF-8"
                   file="config/liquibase/authorities.csv"
                   separator=";"

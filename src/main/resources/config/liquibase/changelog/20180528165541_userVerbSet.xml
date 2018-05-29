@@ -30,7 +30,7 @@
         <addForeignKeyConstraint baseColumnNames="verb_id" baseTableName="user_verb_set_verbs" constraintName="FK44s2hqgbsu8xlaqb5akbq7yj0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="verb"/>
     </changeSet>
     <changeSet author="brian (generated)" id="1527526547195-30">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_verb_set" constraintName="FKbnp54ps821cbdwdl2j2fkahuc" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user"/>
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_verb_set" constraintName="FKbnp54ps821cbdwdl2j2fkahuc" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="doushi_user"/>
     </changeSet>
     <changeSet author="brian (generated)" id="1527526547195-33">
         <addForeignKeyConstraint baseColumnNames="user_verb_set_id" baseTableName="user_verb_set_verbs" constraintName="FKkj3yb87x83xq9iahs5rtb6eg" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user_verb_set"/>

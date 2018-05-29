@@ -12,7 +12,7 @@
                                  baseTableName="user_verb_form_level"
                                  constraintName="fk_user_verb_form_level_user_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="user"/>
+                                 referencedTableName="doushi_user"/>
 
         <addForeignKeyConstraint baseColumnNames="verb_id"
                                  baseTableName="user_verb_form_level"

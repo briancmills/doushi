@@ -12,7 +12,7 @@
                                  baseTableName="answer"
                                  constraintName="fk_answer_user_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="user"/>
+                                 referencedTableName="doushi_user"/>
 
         <addForeignKeyConstraint baseColumnNames="verb_id"
                                  baseTableName="answer"
