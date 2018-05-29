@@ -15,7 +15,7 @@
                 <form name="quizForm" role="form" novalidate #quizForm="ngForm">
 	                <div class="form-group">
 			            <label class="form-control-label" jhiTranslate="doushiApp.conjugatedVerb.answer" for="field_answer">Answer</label>
-			            <input type="text" class="form-control" name="answer" id="field_answer" autocomplete="off"
+			            <input autofocus #inputFocus type="text" class="form-control" name="answer" id="field_answer" autocomplete="off"
 			                [(ngModel)]="conjugatedVerb.answer" 
                             [disabled]="correct!==undefined" />
 			            <div [hidden]="!(quizForm.controls.answer?.dirty && quizForm.controls.answer?.invalid)">

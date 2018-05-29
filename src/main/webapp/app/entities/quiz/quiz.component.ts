@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChildren } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
@@ -23,6 +23,7 @@ export class QuizComponent implements OnInit, OnDestroy {
     correct: boolean;
     user: User;
     isError: boolean;
+    @ViewChildren('inputFocus') inputFocus;
 
     constructor(
         private conjugatedVerbService: ConjugatedVerbService,
@@ -67,7 +68,7 @@ export class QuizComponent implements OnInit, OnDestroy {
       if (!this.conjugatedVerb.answer) {
         return;
       }
-      console.log(this.conjugatedVerb.answer);
+
       if (this.conjugatedVerb.answer === this.conjugatedVerb.japanese) {
         this.correct = true;
       } else {
@@ -83,7 +84,7 @@ export class QuizComponent implements OnInit, OnDestroy {
         undefined,
         this.conjugatedVerb
       );
-      console.log('answer', a);
+
       this.subscribeToSaveAnswerResponse(
           this.answerService.create(a));
     }
@@ -95,7 +96,7 @@ export class QuizComponent implements OnInit, OnDestroy {
 
     private onSaveAnswerSuccess(result: Answer) {
         if (this.correct) {
-          setTimeout(() => { this.next(); }, 3000);
+          setTimeout(() => { this.next(); }, 2000);
           this.eventManager.broadcast({
               name: 'quizTaken',
               content: 'Quiz Was Taken'
@@ -108,12 +109,14 @@ export class QuizComponent implements OnInit, OnDestroy {
     }
 
   　next() {
-      console.log('next');
       this.correct = undefined;
       this.conjugatedVerbService.findForStudy().subscribe(
             (res: HttpResponse<ConjugatedVerb>) => this.onSuccess(res.body, res.headers),
             (res: HttpErrorResponse) => this.onError(res.message)
       );
+      if (this.inputFocus && this.inputFocus.first) {
+        setTimeout(() => { this.inputFocus.first.nativeElement.focus(); }, 1000);
+      }
     }
 
     private onSuccess(data, headers) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChildren } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
@@ -27,6 +27,7 @@ export class LessonComponent implements OnInit, OnDestroy {
     user: User;
     isError: boolean;
     nothingMoreToStudy: boolean;
+    @ViewChildren('inputFocus') inputFocus;
 
     constructor(
         private verbService: VerbService,
@@ -95,7 +96,7 @@ export class LessonComponent implements OnInit, OnDestroy {
 
     private onSaveAnswerSuccess(result: Answer) {
         if (this.correct) {
-          setTimeout(() => { this.next(); }, 3000);
+          setTimeout(() => { this.next(); }, 2000);
           this.eventManager.broadcast({
               name: 'quizTaken',
               content: 'Quiz Was Taken'
@@ -115,6 +116,9 @@ export class LessonComponent implements OnInit, OnDestroy {
             (res: HttpResponse<Verb>) => this.onSuccess(res.body, res.headers),
             (res: HttpErrorResponse) => this.onError(res.message)
       );
+      if (this.inputFocus && this.inputFocus.first) {
+        setTimeout(() => { this.inputFocus.first.nativeElement.focus(); }, 1000);
+      }
     }
 
     private onSuccess(data, headers) {
