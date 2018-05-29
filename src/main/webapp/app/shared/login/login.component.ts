@@ -61,6 +61,12 @@ export class JhiLoginModalComponent implements AfterViewInit {
                 content: 'Sending Authentication Success'
             });
 
+            // trigger the refresh of the nav area so the user gets an accurate count of tasks
+            this.eventManager.broadcast({
+                name: 'quizTaken',
+                content: 'Quiz Was Taken'
+            });
+
             // // previousState was set in the authExpiredInterceptor before being redirected to login modal.
             // // since login is succesful, go to stored previousState and clear previousState
             const redirect = this.stateStorageService.getUrl();
