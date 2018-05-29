@@ -1,5 +1,6 @@
 package app.doushi.repository;
 
+import java.time.ZonedDateTime;
 import java.util.*;
 
 import org.springframework.data.domain.*;
@@ -18,6 +19,18 @@ public interface ConjugatedVerbRepository extends JpaRepository<ConjugatedVerb, 
 
     List<ConjugatedVerb> findAllByVerbId(Long id);
 
+
+    @Query("SELECT cv "
+            + "FROM ConjugatedVerb cv "
+            + "WHERE cv NOT IN ( "
+            + " SELECT ucv "
+            + " FROM UserVerbFormLevel uvfl "
+            + " JOIN uvfl.conjugatedVerb ucv "
+            + " WHERE uvfl.user.login = :login "
+            + ") "
+            + "ORDER BY cv.id ")
+    List<ConjugatedVerb> findVerbsWithNoProgress(@Param("login") String login);
+    
     /**
      * For a ConjugatedVerb to be studied it must be part of a set that has made it to HACHIKYU (8th level)
      * @param login
@@ -28,10 +41,32 @@ public interface ConjugatedVerbRepository extends JpaRepository<ConjugatedVerb, 
             + "FROM ConjugatedVerb cv "
             + "WHERE cv NOT IN ( "
             + " SELECT acv "
-            + " FROM Answer a "
+            + " FROM UserVerbFormLevel level, Answer a "
             + " JOIN a.conjugatedVerb acv "
-            + " WHERE a.correct = TRUE "
-            + " AND a.date >= CURRENT_DATE "
+            + " WHERE level.user = a.user "
+            + " AND level.conjugatedVerb = acv  "
+            + " AND a.correct = TRUE "
+            + " AND ( "
+            + "     (level.level = 'KYUKYU' AND a.date >= :fourHoursAgo ) "
+            + "     OR "
+            + "     (level.level = 'HACHIKYU' AND a.date >= :eightHoursAgo ) "
+            + "     OR "
+            + "     (level.level = 'NANAKYU' AND a.date >= :oneDayAgo ) "
+            + "     OR "
+            + "     (level.level = 'ROKYU' AND a.date >= :twoDaysAgo ) "
+            + "     OR "
+            + "     (level.level = 'GOKYU' AND a.date >= :threeDaysAgo ) "
+            + "     OR "
+            + "     (level.level = 'YONKYU' AND a.date >= :oneWeekAgo ) "
+            + "     OR "
+            + "     (level.level = 'SANKYU' AND a.date >= :twoWeeksAgo ) "
+            + "     OR "
+            + "     (level.level = 'NIKYU' AND a.date >= :oneMonthAgo ) "
+            + "     OR "
+            + "     (level.level = 'IKKYU' AND a.date >= :fourMonthsAgo ) "
+            + "     OR "
+            + "     (level.level = 'SHODAN' AND a.date >= :fourMonthsAgo ) "
+            + " ) "
             + " AND a.user.login = :login "
             + ") AND cv.verb IN ( "
             + " SELECT v "
@@ -48,18 +83,18 @@ public interface ConjugatedVerbRepository extends JpaRepository<ConjugatedVerb, 
             + " AND uvfl.level <> 'MUKYU' "
             + ") "
             + "ORDER BY RANDOM() ")
-    Page<ConjugatedVerb> getConjugatedVerbToStudy(@Param("login") String login, Pageable pageable);
-
-    @Query("SELECT cv "
-            + "FROM ConjugatedVerb cv "
-            + "WHERE cv NOT IN ( "
-            + " SELECT ucv "
-            + " FROM UserVerbFormLevel uvfl "
-            + " JOIN uvfl.conjugatedVerb ucv "
-            + " WHERE uvfl.user.login = :login "
-            + ") "
-            + "ORDER BY cv.id ")
-    List<ConjugatedVerb> findVerbsWithNoProgress(@Param("login") String login);
+    Page<ConjugatedVerb> getConjugatedVerbToStudy(
+            @Param("login") String login,
+            @Param("fourHoursAgo") ZonedDateTime fourHoursAgo, 
+            @Param("eightHoursAgo") ZonedDateTime eightHoursAgo, 
+            @Param("oneDayAgo") ZonedDateTime oneDayAgo,
+            @Param("twoDaysAgo") ZonedDateTime twoDaysAgo, 
+            @Param("threeDaysAgo") ZonedDateTime threeDaysAgo, 
+            @Param("oneWeekAgo") ZonedDateTime oneWeekAgo,  
+            @Param("twoWeeksAgo") ZonedDateTime twoWeeksAgo, 
+            @Param("oneMonthAgo") ZonedDateTime oneMonthAgo, 
+            @Param("fourMonthsAgo") ZonedDateTime fourMonthsAgo, 
+            Pageable pageable);
 
     List<ConjugatedVerb> findAllByVerbIn(Collection<Verb> verbs);
 

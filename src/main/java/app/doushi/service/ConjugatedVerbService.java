@@ -1,5 +1,6 @@
 package app.doushi.service;
 
+import java.time.ZonedDateTime;
 import java.util.*;
 
 import org.slf4j.*;
@@ -86,7 +87,18 @@ public class ConjugatedVerbService {
         String login = SecurityUtils.getCurrentUserLogin().get();
         userLevelInitializationHelper.initializeUserVerbProgress(login);
         
-        Page<ConjugatedVerb> page = conjugatedVerbRepository.getConjugatedVerbToStudy(login, new PageRequest(0, 1));
+        Page<ConjugatedVerb> page = conjugatedVerbRepository.getConjugatedVerbToStudy(
+                login, 
+                ZonedDateTime.now().minusHours(4), 
+                ZonedDateTime.now().minusHours(8),
+                ZonedDateTime.now().minusDays(1),
+                ZonedDateTime.now().minusDays(2),
+                ZonedDateTime.now().minusDays(3),
+                ZonedDateTime.now().minusWeeks(1),
+                ZonedDateTime.now().minusWeeks(2),
+                ZonedDateTime.now().minusMonths(1),
+                ZonedDateTime.now().minusMonths(4),
+                new PageRequest(0, 1));
         if (page.hasContent()) {
             return page.getContent().get(0);
         } else {
@@ -97,7 +109,18 @@ public class ConjugatedVerbService {
     public List<ConjugatedVerb> getConjugatedVerbAvailableToStudy() {
         String login = SecurityUtils.getCurrentUserLogin().get();
         userLevelInitializationHelper.initializeUserVerbProgress(login);
-        Page<ConjugatedVerb> page = conjugatedVerbRepository.getConjugatedVerbToStudy(login, new PageRequest(0, 10000));
+        Page<ConjugatedVerb> page = conjugatedVerbRepository.getConjugatedVerbToStudy(
+                login, 
+                ZonedDateTime.now().minusHours(4), 
+                ZonedDateTime.now().minusHours(8),
+                ZonedDateTime.now().minusDays(1),
+                ZonedDateTime.now().minusDays(2),
+                ZonedDateTime.now().minusDays(3),
+                ZonedDateTime.now().minusWeeks(1),
+                ZonedDateTime.now().minusWeeks(2),
+                ZonedDateTime.now().minusMonths(1),
+                ZonedDateTime.now().minusMonths(4),
+                new PageRequest(0, 10000));
         if (page.hasContent()) {
             return page.getContent();
         } else {
