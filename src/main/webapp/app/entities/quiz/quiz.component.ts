@@ -117,7 +117,7 @@ export class QuizComponent implements OnInit, OnDestroy {
             (res: HttpErrorResponse) => this.onError(res.message)
       );
       if (this.inputFocus && this.inputFocus.first) {
-        setTimeout(() => { this.inputFocus.first.nativeElement.focus(); }, 1000);
+        setTimeout(() => { if (this.inputFocus && this.inputFocus.first) { this.inputFocus.first.nativeElement.focus(); } }, 1000);
       }
     }
 
