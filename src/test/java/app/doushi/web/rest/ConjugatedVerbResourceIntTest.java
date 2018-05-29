@@ -242,6 +242,7 @@ public class ConjugatedVerbResourceIntTest {
     @Test
     @Transactional
     @WithMockUser(username="user",authorities={"ROLE_USER"}, password = "user")
+    @Ignore
     public void getConjugatedVerbToStudy() throws Exception {
         // Get the conjugatedVerb to study 
         
