@@ -1,6 +1,5 @@
 package app.doushi.service;
 
-import java.time.ZonedDateTime;
 import java.util.*;
 
 import org.slf4j.*;
@@ -92,6 +91,7 @@ public class VerbService {
         
         Page<Verb> page = verbRepository.getVerbToStudy(
                 login, 
+                /*
                 ZonedDateTime.now().minusHours(4), 
                 ZonedDateTime.now().minusHours(8),
                 ZonedDateTime.now().minusDays(1),
@@ -101,6 +101,7 @@ public class VerbService {
                 ZonedDateTime.now().minusWeeks(2),
                 ZonedDateTime.now().minusMonths(1),
                 ZonedDateTime.now().minusMonths(4),
+                */
                 new PageRequest(0, 10));
         
         if (page.hasContent()) {
@@ -117,6 +118,7 @@ public class VerbService {
         log.info("\n\n\n {} \n\n\n", login);
         Page<Verb> page = verbRepository.getVerbToStudy(
                 login, 
+                /*
                 ZonedDateTime.now().minusHours(4), 
                 ZonedDateTime.now().minusHours(8),
                 ZonedDateTime.now().minusDays(1),
@@ -126,6 +128,7 @@ public class VerbService {
                 ZonedDateTime.now().minusWeeks(2),
                 ZonedDateTime.now().minusMonths(1),
                 ZonedDateTime.now().minusMonths(4),
+                */
                 new PageRequest(0, 10));
         
         if (page.hasContent()) {
