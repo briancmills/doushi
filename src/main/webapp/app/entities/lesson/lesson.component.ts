@@ -110,7 +110,6 @@ export class LessonComponent implements OnInit, OnDestroy {
     }
 
   　next() {
-      console.log('next');
       this.correct = undefined;
       this.verbService.findForStudy().subscribe(
             (res: HttpResponse<Verb>) => this.onSuccess(res.body, res.headers),

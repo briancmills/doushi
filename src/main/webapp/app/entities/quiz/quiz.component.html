@@ -3,8 +3,12 @@
         <span jhiTranslate="doushiApp.quiz.home.title">Quiz</span>
     </h2>
     
-    <jhi-alert></jhi-alert>
-    
+    <div *ngIf="nothingMoreToStudy" class="card">
+        <div class="card-body">
+            <h5 class="card-title" jhiTranslate="doushiApp.quiz.nothingMore">No more lessons right now</h5>
+            <div class="card-text" jhiTranslate="doushiApp.quiz.nothingMoreDetails"></div>
+        </div>
+    </div>
     <div *ngIf="conjugatedVerb" class="card">
         <div class="card-body">
             <h5 class="card-title">{{conjugatedVerb.verb.kanjiText}}

@@ -23,6 +23,7 @@ export class QuizComponent implements OnInit, OnDestroy {
     correct: boolean;
     user: User;
     isError: boolean;
+    nothingMoreToStudy: boolean;
     @ViewChildren('inputFocus') inputFocus;
 
     constructor(
@@ -33,6 +34,7 @@ export class QuizComponent implements OnInit, OnDestroy {
         private principal: Principal,
     ) {
         this.isError = false;
+        this.nothingMoreToStudy = false;
         this.correct = undefined;
         this.principal = principal;
     }
@@ -125,5 +127,9 @@ export class QuizComponent implements OnInit, OnDestroy {
 
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
+        if (error.indexOf('404 Not Found') > -1) {
+          this.nothingMoreToStudy = true;
+          this.conjugatedVerb = undefined;
+        }
     }
 }
