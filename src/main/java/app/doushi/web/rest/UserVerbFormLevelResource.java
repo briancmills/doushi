@@ -99,8 +99,8 @@ public class UserVerbFormLevelResource {
      */
     @GetMapping("/user-verb-form-levels/progress")
     @Timed
-    public ResponseEntity<UserProgressDTO> getAllMyUserVerbFormLevels() {
-        log.debug("REST request to get a page of getAllMyUserVerbFormLevels");
+    public ResponseEntity<UserProgressDTO> getProgress() {
+        log.debug("REST request to get a page of getProgress");
         UserProgressDTO progress = userVerbFormLevelService.getProgress();
         return new ResponseEntity<>(progress, HttpStatus.OK);
     }

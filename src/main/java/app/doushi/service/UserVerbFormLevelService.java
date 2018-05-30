@@ -1,6 +1,6 @@
 package app.doushi.service;
 
-import java.util.*;
+import java.util.List;
 
 import org.slf4j.*;
 import org.springframework.data.domain.*;
@@ -80,16 +80,13 @@ public class UserVerbFormLevelService {
     }
 
     public UserProgressDTO getProgress() { 
-        List<UserVerbFormLevel> mine = this.findAllMine();
+        // in order to load less data lets just get a count for each level
+        // ultimately this would be faster via SQL but this should be good enough
+        String login = SecurityUtils.getCurrentUserLogin().get();      
         UserProgressDTO progress = new UserProgressDTO();
-        mine.forEach(level -> {
-            Map<KyuDan,Long> p = progress.getProgress();
-            if (p.containsKey(level.getLevel())) {
-                p.put(level.getLevel(), p.get(level.getLevel()) + 1);
-            } else {
-                p.put(level.getLevel(), 1L);
-            }
-        });
+        for(KyuDan level: KyuDan.values()) {
+            progress.getProgress().put(level, userVerbFormLevelRepository.countAllByUserLoginAndLevel(login, level));
+        }
         return progress;
     }
 }

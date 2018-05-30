@@ -50,7 +50,6 @@ export class HomeComponent implements OnInit {
     }
 
     private onSuccess(data, headers) {
-        console.log(data);
         this.levelProgress = data.progress;
     }
 
