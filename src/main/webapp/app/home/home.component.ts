@@ -27,11 +27,13 @@ export class HomeComponent implements OnInit {
         private eventManager: JhiEventManager,
         private userVerbFormLevelService: UserVerbFormLevelService,
     ) {
+      this.levelProgress = undefined;
     }
 
     ngOnInit() {
         this.principal.identity().then((account) => {
             this.account = account;
+            this.refreshProgress();
         });
         this.registerAuthenticationSuccess();
     }
@@ -40,10 +42,13 @@ export class HomeComponent implements OnInit {
         this.eventManager.subscribe('authenticationSuccess', (message) => {
             this.principal.identity().then((account) => {
                 this.account = account;
+                this.refreshProgress();
             });
         });
+    }
 
-        this.userVerbFormLevelService.findMine().subscribe(
+    refreshProgress() {
+        this.userVerbFormLevelService.getProgress().subscribe(
             (res: HttpResponse<UserProgress>) => this.onSuccess(res.body, res.headers),
             (res: HttpErrorResponse) => this.onError(res.message)
         );

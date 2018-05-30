@@ -130,7 +130,7 @@ export class LessonComponent implements OnInit, OnDestroy {
 
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
-        if (error.indexOf('404 Not Found') > -1) {
+        if (error.indexOf('404') > -1) {
           this.nothingMoreToStudy = true;
           this.verb = undefined;
         }

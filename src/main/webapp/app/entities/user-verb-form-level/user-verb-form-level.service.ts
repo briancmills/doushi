@@ -33,7 +33,7 @@ export class UserVerbFormLevelService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
-    findMine(): Observable<HttpResponse<UserProgress>> {
+    getProgress(): Observable<HttpResponse<UserProgress>> {
         return this.http.get<UserProgress>(`${this.resourceUrl}/progress`, { observe: 'response'})
             .map((res: HttpResponse<UserProgress>) => this.convertProgressResponse(res));
     }
