@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { SERVER_API_URL } from '../../app.constants';
 
 import { UserVerbFormLevel } from './user-verb-form-level.model';
+import { UserProgress } from './user-progress.model';
 import { createRequestOption } from '../../shared';
 
 export type EntityResponseType = HttpResponse<UserVerbFormLevel>;
@@ -32,9 +33,9 @@ export class UserVerbFormLevelService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
-    findMine(): Observable<HttpResponse<UserVerbFormLevel[]>> {
-        return this.http.get<UserVerbFormLevel[]>(`${this.resourceUrl}/mine`, { observe: 'response'})
-            .map((res: HttpResponse<UserVerbFormLevel[]>) => this.convertArrayResponse(res));
+    findMine(): Observable<HttpResponse<UserProgress>> {
+        return this.http.get<UserProgress>(`${this.resourceUrl}/progress`, { observe: 'response'})
+            .map((res: HttpResponse<UserProgress>) => this.convertProgressResponse(res));
     }
 
     query(req?: any): Observable<HttpResponse<UserVerbFormLevel[]>> {
@@ -49,6 +50,12 @@ export class UserVerbFormLevelService {
 
     private convertResponse(res: EntityResponseType): EntityResponseType {
         const body: UserVerbFormLevel = this.convertItemFromServer(res.body);
+        return res.clone({body});
+    }
+
+    private convertProgressResponse(res: HttpResponse<UserProgress>): HttpResponse<UserProgress> {
+        const body: UserProgress = new UserProgress();
+        Object.assign(body, res.body);
         return res.clone({body});
     }
 

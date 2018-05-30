@@ -1,6 +1,6 @@
 package app.doushi.service;
 
-import java.util.List;
+import java.util.*;
 
 import org.slf4j.*;
 import org.springframework.data.domain.*;
@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import app.doushi.domain.UserVerbFormLevel;
+import app.doushi.domain.enumeration.KyuDan;
 import app.doushi.repository.UserVerbFormLevelRepository;
 import app.doushi.security.SecurityUtils;
+import app.doushi.service.dto.UserProgressDTO;
 
 
 /**
@@ -75,5 +77,19 @@ public class UserVerbFormLevelService {
     public List<UserVerbFormLevel> findAllMine() {
         String login = SecurityUtils.getCurrentUserLogin().get();        
         return userVerbFormLevelRepository.findAllByUserLogin(login);
+    }
+
+    public UserProgressDTO getProgress() { 
+        List<UserVerbFormLevel> mine = this.findAllMine();
+        UserProgressDTO progress = new UserProgressDTO();
+        mine.forEach(level -> {
+            Map<KyuDan,Long> p = progress.getProgress();
+            if (p.containsKey(level.getLevel())) {
+                p.put(level.getLevel(), p.get(level.getLevel()) + 1);
+            } else {
+                p.put(level.getLevel(), 1L);
+            }
+        });
+        return progress;
     }
 }

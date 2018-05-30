@@ -1,3 +1,4 @@
+export * from './user-progress.model';
 export * from './user-verb-form-level.model';
 export * from './user-verb-form-level-popup.service';
 export * from './user-verb-form-level.service';
