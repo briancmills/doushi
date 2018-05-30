@@ -115,7 +115,6 @@ public class VerbService {
     public List<Verb> getVerbsAvailableToStudy() {
         String login = SecurityUtils.getCurrentUserLogin().get();
         userLevelInitializationHelper.initializeUserVerbProgress(login);
-        log.info("\n\n\n {} \n\n\n", login);
         Page<Verb> page = verbRepository.getVerbToStudy(
                 login, 
                 /*
