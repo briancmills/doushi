@@ -1,6 +1,6 @@
 {
     "home": {
-        "title": "Welcome to doushi.app",
+        "title": "動詞 doushi.app",
         "subtitle": "Verbs make the world go round!",
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."
