@@ -54,6 +54,9 @@ export class NavbarComponent implements OnInit {
         this.profileService.getProfileInfo().then((profileInfo) => {
             this.inProduction = profileInfo.inProduction;
             this.swaggerEnabled = profileInfo.swaggerEnabled;
+            if (this.inProduction && window.location.href.lastIndexOf('http://', 0) === 0) {
+              window.location.href = window.location.href.replace('http://', 'https://');
+            }
         });
         this.refreshCounts();
         this.eventManager.subscribe('quizTaken', (response) => this.refreshCounts());

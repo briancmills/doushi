@@ -8917,10 +8917,6 @@ void-elements@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
 
-wanakana@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/wanakana/-/wanakana-4.0.1.tgz#a3ba2a0265e5a42b2ebc2321d0d71e3ed3718edf"
-
 watchpack@^1.4.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.6.0.tgz#4bc12c2ebe8aa277a71f1d3f14d685c7b446cd00"
