@@ -9,6 +9,7 @@ import { Answer } from '../answer/answer.model';
 import { AnswerService } from '../answer/answer.service';
 import { ConjugatedVerbService } from '../conjugated-verb/conjugated-verb.service';
 import { Principal, User } from '../../shared';
+declare var wanakana: any;
 
 @Component({
     selector: 'jhi-verb',
@@ -56,6 +57,12 @@ export class QuizComponent implements OnInit, OnDestroy {
         this.principal.identity().then((account) => {
             this.currentAccount = account;
         });
+        setTimeout(() => {
+          if (this.inputFocus && this.inputFocus.first) {
+            // turning this off until the data is present in the DB to use wanakana.bind(this.inputFocus.first.nativeElement);
+            this.inputFocus.first.nativeElement.focus();
+          }
+        }, 1000);
     }
 
     ngOnDestroy() {
@@ -70,7 +77,8 @@ export class QuizComponent implements OnInit, OnDestroy {
       if (!this.conjugatedVerb.answer) {
         return;
       }
-
+      console.log(this.conjugatedVerb.japanese);
+      console.log(wanakana.toKana(this.conjugatedVerb.japanese));
       if (this.conjugatedVerb.answer === this.conjugatedVerb.japanese) {
         this.correct = true;
       } else {
@@ -117,7 +125,11 @@ export class QuizComponent implements OnInit, OnDestroy {
             (res: HttpErrorResponse) => this.onError(res.message)
       );
       if (this.inputFocus && this.inputFocus.first) {
-        setTimeout(() => { if (this.inputFocus && this.inputFocus.first) { this.inputFocus.first.nativeElement.focus(); } }, 1000);
+        setTimeout(() => {
+          if (this.inputFocus && this.inputFocus.first) {
+            this.inputFocus.first.nativeElement.focus();
+          }
+        }, 1000);
       }
     }
 

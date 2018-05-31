@@ -44,7 +44,7 @@ export class LessonComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
-        this.verbService.findForStudy().subscribe(
+        this.verbService.findForStudy({lesson: true}).subscribe(
             (res: HttpResponse<Verb>) => this.onSuccess(res.body, res.headers),
             (res: HttpErrorResponse) => this.onError(res.message)
         );

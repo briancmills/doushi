@@ -1,5 +1,6 @@
 package app.doushi.repository;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.data.domain.*;
@@ -37,11 +38,28 @@ public interface VerbRepository extends JpaRepository<Verb, Long> {
             + " AND level.verb = av  "
             + " AND a.correct = TRUE "
             + " AND level.level = 'KYUKYU' "
-            
-            // for now I am turning off the spaced repetition model for verbs
-            // this is because I am using them more as a "lesson" feature
-            // eventually I want to re-implement an actual lesson feature which will quiz on the meaning of verbs
-            /*
+            + " AND a.user.login = :login "
+            + ") AND v IN ( "
+            + " SELECT v "
+            + " FROM UserVerbSet uvs "
+            + " JOIN uvs.verbs v"
+            + " WHERE uvs.user.login = :login "
+            + ") "
+            + "ORDER BY RANDOM() ")
+    Page<Verb> getVerbToStudyForLesson(
+            @Param("login") String login, 
+            Pageable pageable);
+    
+    @Query("SELECT v "
+            + "FROM Verb v "
+            + "WHERE v NOT IN ( "
+            + " SELECT av "
+            + " FROM UserVerbFormLevel level, Answer a "
+            + " JOIN a.verb av "
+            + " WHERE level.user = a.user "
+            + " AND level.verb = av  "
+            + " AND a.correct = TRUE "
+            + " AND level.level = 'KYUKYU' "
             + " AND ( "
             + "     (level.level = 'KYUKYU' AND a.date >= :fourHoursAgo ) "
             + "     OR "
@@ -63,7 +81,6 @@ public interface VerbRepository extends JpaRepository<Verb, Long> {
             + "     OR "
             + "     (level.level = 'SHODAN' AND a.date >= :fourMonthsAgo ) "
             + " ) "
-            */
             + " AND a.user.login = :login "
             + ") AND v IN ( "
             + " SELECT v "
@@ -74,7 +91,6 @@ public interface VerbRepository extends JpaRepository<Verb, Long> {
             + "ORDER BY RANDOM() ")
     Page<Verb> getVerbToStudy(
             @Param("login") String login, 
-            /*
             @Param("fourHoursAgo") ZonedDateTime fourHoursAgo, 
             @Param("eightHoursAgo") ZonedDateTime eightHoursAgo, 
             @Param("oneDayAgo") ZonedDateTime oneDayAgo,
@@ -84,7 +100,6 @@ public interface VerbRepository extends JpaRepository<Verb, Long> {
             @Param("twoWeeksAgo") ZonedDateTime twoWeeksAgo, 
             @Param("oneMonthAgo") ZonedDateTime oneMonthAgo, 
             @Param("fourMonthsAgo") ZonedDateTime fourMonthsAgo, 
-            */
             Pageable pageable);
 
 }

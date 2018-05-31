@@ -60,7 +60,7 @@ export class NavbarComponent implements OnInit {
     }
 
     refreshCounts() {
-      　this.verbService.queryAvailableForStudy()
+      　this.verbService.queryAvailableForStudy({lesson: true})
             .subscribe((verbResponse: HttpResponse<Verb[]>) => {
                 this.lessonCount = verbResponse.body.length;
             });
