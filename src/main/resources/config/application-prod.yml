@@ -16,7 +16,7 @@
 logging:
     level:
         ROOT: INFO
-        app.doushi: DEBUG
+        app.doushi: INFO
         io.github.jhipster: INFO
 
 eureka:
@@ -34,9 +34,9 @@ spring:
             enabled: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:postgresql://prod-doushi-db.ck5y55qxr9uy.us-east-1.rds.amazonaws.com:5432/doushi
+        url: jdbc:postgresql://localhost:5432/doushi
         username: doushi
-        password: doushipwd
+        password:
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL
@@ -47,18 +47,10 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: false
     mail:
-        host: email-smtp.us-east-1.amazonaws.com
-        port: 465
-        username: AKIAJXGAL4MTHD23BDIA
-        password: Am52hi0eECHPFxsX0DwnmrkSAGGP2FNhenhn8Pf0Eh30
-        protocol: smtps
-        debug: true
-        properties.mail.smtp: 
-            starttls.enable: true
-            starttls.required: true
-            ssl.enable: true
-        properties.mail.smtps:
-            auth: true
+        host: localhost
+        port: 25
+        username:
+        password:
     thymeleaf:
         cache: true
     zipkin: # Use the "zipkin" Maven profile to have the Spring Cloud Zipkin dependencies
@@ -120,8 +112,8 @@ jhipster:
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: brian@doushi.app
-        base-url: https://doushi.app # Modify according to your server's URL
+        from: doushi@localhost
+        base-url: http://my-server-url-to-change # Modify according to your server's URL
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         graphite:
