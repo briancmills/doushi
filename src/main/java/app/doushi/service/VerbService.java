@@ -1,5 +1,6 @@
 package app.doushi.service;
 
+import java.time.ZonedDateTime;
 import java.util.*;
 
 import org.slf4j.*;
@@ -85,24 +86,30 @@ public class VerbService {
         verbRepository.delete(id);
     }
 
-    public Verb getVerbToStudy() {
+    public Verb getVerbToStudy(boolean lesson) {
         String login = SecurityUtils.getCurrentUserLogin().get();
         userLevelInitializationHelper.initializeUserVerbProgress(login);
         
-        Page<Verb> page = verbRepository.getVerbToStudy(
-                login, 
-                /*
-                ZonedDateTime.now().minusHours(4), 
-                ZonedDateTime.now().minusHours(8),
-                ZonedDateTime.now().minusDays(1),
-                ZonedDateTime.now().minusDays(2),
-                ZonedDateTime.now().minusDays(3),
-                ZonedDateTime.now().minusWeeks(1),
-                ZonedDateTime.now().minusWeeks(2),
-                ZonedDateTime.now().minusMonths(1),
-                ZonedDateTime.now().minusMonths(4),
-                */
-                new PageRequest(0, 10));
+        Page<Verb> page;
+        
+        if (lesson) {
+            page = verbRepository.getVerbToStudyForLesson(
+                    login, 
+                    new PageRequest(0, 1));
+        } else {
+            page = verbRepository.getVerbToStudy(
+                    login, 
+                    ZonedDateTime.now().minusHours(4), 
+                    ZonedDateTime.now().minusHours(8),
+                    ZonedDateTime.now().minusDays(1),
+                    ZonedDateTime.now().minusDays(2),
+                    ZonedDateTime.now().minusDays(3),
+                    ZonedDateTime.now().minusWeeks(1),
+                    ZonedDateTime.now().minusWeeks(2),
+                    ZonedDateTime.now().minusMonths(1),
+                    ZonedDateTime.now().minusMonths(4),
+                    new PageRequest(0, 1));
+        }
         
         if (page.hasContent()) {
             return page.getContent().get(0);
@@ -112,25 +119,27 @@ public class VerbService {
     }
 
     
-    public List<Verb> getVerbsAvailableToStudy() {
+    public List<Verb> getVerbsAvailableToStudy(boolean lesson) {
         String login = SecurityUtils.getCurrentUserLogin().get();
         userLevelInitializationHelper.initializeUserVerbProgress(login);
-        log.info("\n\n\n {} \n\n\n", login);
-        Page<Verb> page = verbRepository.getVerbToStudy(
-                login, 
-                /*
-                ZonedDateTime.now().minusHours(4), 
-                ZonedDateTime.now().minusHours(8),
-                ZonedDateTime.now().minusDays(1),
-                ZonedDateTime.now().minusDays(2),
-                ZonedDateTime.now().minusDays(3),
-                ZonedDateTime.now().minusWeeks(1),
-                ZonedDateTime.now().minusWeeks(2),
-                ZonedDateTime.now().minusMonths(1),
-                ZonedDateTime.now().minusMonths(4),
-                */
-                new PageRequest(0, 10));
-        
+        Page<Verb> page;
+        if (lesson) {
+            page = verbRepository.getVerbToStudyForLesson(login, new PageRequest(0, 10));
+        } else {
+            page = verbRepository.getVerbToStudy(
+                    login, 
+                    ZonedDateTime.now().minusHours(4), 
+                    ZonedDateTime.now().minusHours(8),
+                    ZonedDateTime.now().minusDays(1),
+                    ZonedDateTime.now().minusDays(2),
+                    ZonedDateTime.now().minusDays(3),
+                    ZonedDateTime.now().minusWeeks(1),
+                    ZonedDateTime.now().minusWeeks(2),
+                    ZonedDateTime.now().minusMonths(1),
+                    ZonedDateTime.now().minusMonths(4),
+                    new PageRequest(0, 10));
+        }
+
         if (page.hasContent()) {
             return page.getContent();
         } else {

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
 import app.doushi.domain.*;
+import app.doushi.domain.enumeration.KyuDan;
 
 /**
  * Spring Data JPA repository for the UserVerbFormLevel entity.
@@ -17,6 +18,8 @@ public interface UserVerbFormLevelRepository extends JpaRepository<UserVerbFormL
     List<UserVerbFormLevel> findByUserIsCurrentUser();
 
     List<UserVerbFormLevel> findAllByUserLogin(String login);
+    
+    Long countAllByUserLoginAndLevel(String login, KyuDan level);
 
     UserVerbFormLevel findOneByUserAndVerb(User user, Verb verb);
     

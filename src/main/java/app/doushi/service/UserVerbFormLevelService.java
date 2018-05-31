@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import app.doushi.domain.UserVerbFormLevel;
+import app.doushi.domain.enumeration.KyuDan;
 import app.doushi.repository.UserVerbFormLevelRepository;
 import app.doushi.security.SecurityUtils;
+import app.doushi.service.dto.UserProgressDTO;
 
 
 /**
@@ -75,5 +77,16 @@ public class UserVerbFormLevelService {
     public List<UserVerbFormLevel> findAllMine() {
         String login = SecurityUtils.getCurrentUserLogin().get();        
         return userVerbFormLevelRepository.findAllByUserLogin(login);
+    }
+
+    public UserProgressDTO getProgress() { 
+        // in order to load less data lets just get a count for each level
+        // ultimately this would be faster via SQL but this should be good enough
+        String login = SecurityUtils.getCurrentUserLogin().get();      
+        UserProgressDTO progress = new UserProgressDTO();
+        for(KyuDan level: KyuDan.values()) {
+            progress.getProgress().put(level, userVerbFormLevelRepository.countAllByUserLoginAndLevel(login, level));
+        }
+        return progress;
     }
 }

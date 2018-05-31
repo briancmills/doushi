@@ -14,6 +14,7 @@ import com.codahale.metrics.annotation.Timed;
 
 import app.doushi.domain.UserVerbFormLevel;
 import app.doushi.service.UserVerbFormLevelService;
+import app.doushi.service.dto.UserProgressDTO;
 import app.doushi.web.rest.errors.BadRequestAlertException;
 import app.doushi.web.rest.util.*;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -93,15 +94,15 @@ public class UserVerbFormLevelResource {
     }
     
     /**
-     * GET  /user-verb-form-levels/mine : get all the userVerbFormLevels for the current user.
+     * GET  /user-verb-form-levels/progress : Get the current users progress
      *
      */
-    @GetMapping("/user-verb-form-levels/mine")
+    @GetMapping("/user-verb-form-levels/progress")
     @Timed
-    public ResponseEntity<List<UserVerbFormLevel>> getAllMyUserVerbFormLevels() {
-        log.debug("REST request to get a page of getAllMyUserVerbFormLevels");
-        List<UserVerbFormLevel> mine = userVerbFormLevelService.findAllMine();
-        return new ResponseEntity<>(mine, HttpStatus.OK);
+    public ResponseEntity<UserProgressDTO> getProgress() {
+        log.debug("REST request to get a page of getProgress");
+        UserProgressDTO progress = userVerbFormLevelService.getProgress();
+        return new ResponseEntity<>(progress, HttpStatus.OK);
     }
 
 

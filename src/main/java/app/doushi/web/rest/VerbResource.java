@@ -5,6 +5,7 @@ import java.util.*;
 
 import javax.validation.Valid;
 
+import org.apache.commons.lang.BooleanUtils;
 import org.slf4j.*;
 import org.springframework.data.domain.*;
 import org.springframework.http.*;
@@ -113,9 +114,9 @@ public class VerbResource {
      */
     @GetMapping("/verbs/study")
     @Timed
-    public ResponseEntity<Verb> getVerbToStudy() {
-        log.debug("REST request to get getVerbToStudy : ");
-        Verb verb = verbService.getVerbToStudy();
+    public ResponseEntity<Verb> getVerbToStudy(@RequestParam(value = "lesson" , required = false) Boolean lesson) {
+        log.debug("REST request to get getVerbToStudy : lesson? {}", lesson);
+        Verb verb = verbService.getVerbToStudy(BooleanUtils.isTrue(lesson));
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(verb));
     }
     
@@ -127,9 +128,9 @@ public class VerbResource {
      */
     @GetMapping("/verbs/study/available")
     @Timed
-    public ResponseEntity<List<Verb>> getVerbsAvailableToStudy() {
-        log.debug("REST request to get getVerbsAvailableToStudy : ");
-        List<Verb> verbs = verbService.getVerbsAvailableToStudy();
+    public ResponseEntity<List<Verb>> getVerbsAvailableToStudy(@RequestParam(value = "lesson" , required = false) Boolean lesson) {
+        log.debug("REST request to get getVerbsAvailableToStudy : lesson? {}", lesson);
+        List<Verb> verbs = verbService.getVerbsAvailableToStudy(BooleanUtils.isTrue(lesson));
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(verbs));
     }
     

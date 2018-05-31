@@ -172,16 +172,16 @@ public class UserVerbFormLevelResourceIntTest {
     @Test
     @Transactional
     @WithMockUser(username="user",authorities={"ROLE_USER"}, password = "user")
-    public void getAllMyUserVerbFormLevels() throws Exception {
+    public void getUserProgress() throws Exception {
         // Initialize the database
         userVerbFormLevel.setUser(userRepository.findOneByLogin("user").get());
         userVerbFormLevelRepository.saveAndFlush(userVerbFormLevel);
 
         // Get all the userVerbFormLevelList
-        restUserVerbFormLevelMockMvc.perform(get("/api/user-verb-form-levels/mine"))
+        restUserVerbFormLevelMockMvc.perform(get("/api/user-verb-form-levels/progress"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$[0].id").exists());
+            .andExpect(jsonPath("$.progress").exists());
     }
 
     @Test

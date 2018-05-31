@@ -44,7 +44,7 @@ export class LessonComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
-        this.verbService.findForStudy().subscribe(
+        this.verbService.findForStudy({lesson: true}).subscribe(
             (res: HttpResponse<Verb>) => this.onSuccess(res.body, res.headers),
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -130,7 +130,7 @@ export class LessonComponent implements OnInit, OnDestroy {
 
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
-        if (error.indexOf('404 Not Found') > -1) {
+        if (error.indexOf('404') > -1) {
           this.nothingMoreToStudy = true;
           this.verb = undefined;
         }
