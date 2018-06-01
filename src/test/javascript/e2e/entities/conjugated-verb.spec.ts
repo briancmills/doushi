@@ -34,10 +34,10 @@ describe('ConjugatedVerb e2e test', () => {
    /* it('should create and save ConjugatedVerbs', () => {
         conjugatedVerbComponentsPage.clickOnCreateButton();
         conjugatedVerbDialogPage.conjugationTypeSelectLastOption();
-        conjugatedVerbDialogPage.setEnglishInput('english');
-        expect(conjugatedVerbDialogPage.getEnglishInput()).toMatch('english');
-        conjugatedVerbDialogPage.setJapaneseInput('japanese');
-        expect(conjugatedVerbDialogPage.getJapaneseInput()).toMatch('japanese');
+        conjugatedVerbDialogPage.setRomanjiTextInput('romanjiText');
+        expect(conjugatedVerbDialogPage.getRomanjiTextInput()).toMatch('romanjiText');
+        conjugatedVerbDialogPage.setKanjiTextInput('kanjiText');
+        expect(conjugatedVerbDialogPage.getKanjiTextInput()).toMatch('kanjiText');
         conjugatedVerbDialogPage.verbSelectLastOption();
         conjugatedVerbDialogPage.save();
         expect(conjugatedVerbDialogPage.getSaveButton().isPresent()).toBeFalsy();
@@ -85,20 +85,20 @@ export class ConjugatedVerbDialogPage {
     conjugationTypeSelectLastOption = function() {
         this.conjugationTypeSelect.all(by.tagName('option')).last().click();
     };
-    setEnglishInput = function(english) {
-        this.englishInput.sendKeys(english);
+    setRomanjiTextInput = function(english) {
+        this.romanjiTextInput.sendKeys(english);
     };
 
-    getEnglishInput = function() {
-        return this.englishInput.getAttribute('value');
+    getRomanjiTextInput = function() {
+        return this.romanjiTextInput.getAttribute('value');
     };
 
-    setJapaneseInput = function(japanese) {
-        this.japaneseInput.sendKeys(japanese);
+    setKanjiTextInput = function(japanese) {
+        this.kanjiTextInput.sendKeys(japanese);
     };
 
-    getJapaneseInput = function() {
-        return this.japaneseInput.getAttribute('value');
+    getKanjiTextInput = function() {
+        return this.kanjiTextInput.getAttribute('value');
     };
 
     verbSelectLastOption = function() {

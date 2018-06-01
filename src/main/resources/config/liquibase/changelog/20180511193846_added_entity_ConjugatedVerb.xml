@@ -25,10 +25,10 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="english" type="varchar(100)">
+            <column name="romanji_text" type="varchar(100)">
             </column>
 
-            <column name="japanese" type="varchar(100)">
+            <column name="kanji_text" type="varchar(100)">
                 <constraints nullable="false" />
             </column>
 

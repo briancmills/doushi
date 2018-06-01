@@ -17,9 +17,9 @@
                 "title": "Conjugated Verb"
             },
             "conjugationType": "Conjugation Type",
-            "english": "English",
+            "romanjiText": "Romanji",
             "answer": "Answer",
-            "japanese": "Japanese",
+            "kanjiText": "Japanese",
             "verb": "Verb",
             "definitions": "Definitions"
         }

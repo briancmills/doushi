@@ -42,11 +42,11 @@ public class ConjugatedVerbResourceIntTest {
     private static final ConjugationType DEFAULT_CONJUGATION_TYPE = ConjugationType.dictionary;
     private static final ConjugationType UPDATED_CONJUGATION_TYPE = ConjugationType.masu;
 
-    private static final String DEFAULT_ENGLISH = "AAAAAAAAAA";
-    private static final String UPDATED_ENGLISH = "BBBBBBBBBB";
+    private static final String DEFAULT_ROMANJI = "AAAAAAAAAA";
+    private static final String UPDATED_ROMANJI = "BBBBBBBBBB";
 
-    private static final String DEFAULT_JAPANESE = "AAAAAAAAAA";
-    private static final String UPDATED_JAPANESE = "BBBBBBBBBB";
+    private static final String DEFAULT_KANJI = "AAAAAAAAAA";
+    private static final String UPDATED_KANJI = "BBBBBBBBBB";
 
     @Autowired
     private ConjugatedVerbRepository conjugatedVerbRepository;
@@ -93,8 +93,8 @@ public class ConjugatedVerbResourceIntTest {
     public static ConjugatedVerb createEntity(EntityManager em) {
         ConjugatedVerb conjugatedVerb = new ConjugatedVerb()
             .conjugationType(DEFAULT_CONJUGATION_TYPE)
-            .english(DEFAULT_ENGLISH)
-            .japanese(DEFAULT_JAPANESE);
+            .romanjiText(DEFAULT_ROMANJI)
+            .kanjiText(DEFAULT_KANJI);
         // Add required entity
         Verb verb = VerbResourceIntTest.createEntity(em);
         em.persist(verb);
@@ -124,8 +124,8 @@ public class ConjugatedVerbResourceIntTest {
         assertThat(conjugatedVerbList).hasSize(databaseSizeBeforeCreate + 1);
         ConjugatedVerb testConjugatedVerb = conjugatedVerbList.get(conjugatedVerbList.size() - 1);
         assertThat(testConjugatedVerb.getConjugationType()).isEqualTo(DEFAULT_CONJUGATION_TYPE);
-        assertThat(testConjugatedVerb.getEnglish()).isEqualTo(DEFAULT_ENGLISH);
-        assertThat(testConjugatedVerb.getJapanese()).isEqualTo(DEFAULT_JAPANESE);
+        assertThat(testConjugatedVerb.getRomanjiText()).isEqualTo(DEFAULT_ROMANJI);
+        assertThat(testConjugatedVerb.getKanjiText()).isEqualTo(DEFAULT_KANJI);
     }
 
     @Test
@@ -170,7 +170,7 @@ public class ConjugatedVerbResourceIntTest {
     public void checkJapaneseIsRequired() throws Exception {
         int databaseSizeBeforeTest = conjugatedVerbRepository.findAll().size();
         // set the field null
-        conjugatedVerb.setJapanese(null);
+        conjugatedVerb.setKanjiText(null);
 
         // Create the ConjugatedVerb, which fails.
 
@@ -195,8 +195,8 @@ public class ConjugatedVerbResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(conjugatedVerb.getId().intValue())))
             .andExpect(jsonPath("$.[*].conjugationType").value(hasItem(DEFAULT_CONJUGATION_TYPE.toString())))
-            .andExpect(jsonPath("$.[*].english").value(hasItem(DEFAULT_ENGLISH.toString())))
-            .andExpect(jsonPath("$.[*].japanese").value(hasItem(DEFAULT_JAPANESE.toString())));
+            .andExpect(jsonPath("$.[*].romanjiText").value(hasItem(DEFAULT_ROMANJI.toString())))
+            .andExpect(jsonPath("$.[*].kanjiText").value(hasItem(DEFAULT_KANJI.toString())));
     }
     
 
@@ -226,8 +226,8 @@ public class ConjugatedVerbResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(conjugatedVerb.getId().intValue()))
             .andExpect(jsonPath("$.conjugationType").value(DEFAULT_CONJUGATION_TYPE.toString()))
-            .andExpect(jsonPath("$.english").value(DEFAULT_ENGLISH.toString()))
-            .andExpect(jsonPath("$.japanese").value(DEFAULT_JAPANESE.toString()));
+            .andExpect(jsonPath("$.romanjiText").value(DEFAULT_ROMANJI.toString()))
+            .andExpect(jsonPath("$.kanjiText").value(DEFAULT_KANJI.toString()));
     }
 
     @Test
@@ -276,8 +276,8 @@ public class ConjugatedVerbResourceIntTest {
         em.detach(updatedConjugatedVerb);
         updatedConjugatedVerb
             .conjugationType(UPDATED_CONJUGATION_TYPE)
-            .english(UPDATED_ENGLISH)
-            .japanese(UPDATED_JAPANESE);
+            .romanjiText(UPDATED_ROMANJI)
+            .kanjiText(UPDATED_KANJI);
 
         restConjugatedVerbMockMvc.perform(put("/api/conjugated-verbs")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -289,8 +289,8 @@ public class ConjugatedVerbResourceIntTest {
         assertThat(conjugatedVerbList).hasSize(databaseSizeBeforeUpdate);
         ConjugatedVerb testConjugatedVerb = conjugatedVerbList.get(conjugatedVerbList.size() - 1);
         assertThat(testConjugatedVerb.getConjugationType()).isEqualTo(UPDATED_CONJUGATION_TYPE);
-        assertThat(testConjugatedVerb.getEnglish()).isEqualTo(UPDATED_ENGLISH);
-        assertThat(testConjugatedVerb.getJapanese()).isEqualTo(UPDATED_JAPANESE);
+        assertThat(testConjugatedVerb.getRomanjiText()).isEqualTo(UPDATED_ROMANJI);
+        assertThat(testConjugatedVerb.getKanjiText()).isEqualTo(UPDATED_KANJI);
     }
 
     @Test

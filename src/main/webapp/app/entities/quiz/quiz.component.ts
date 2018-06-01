@@ -77,9 +77,9 @@ export class QuizComponent implements OnInit, OnDestroy {
       if (!this.conjugatedVerb.answer) {
         return;
       }
-      console.log(this.conjugatedVerb.japanese);
-      console.log(wanakana.toKana(this.conjugatedVerb.japanese));
-      if (this.conjugatedVerb.answer === this.conjugatedVerb.japanese) {
+      console.log(this.conjugatedVerb.kanjiText);
+      console.log(wanakana.toKana(this.conjugatedVerb.kanjiText));
+      if (this.conjugatedVerb.answer === this.conjugatedVerb.kanjiText) {
         this.correct = true;
       } else {
         this.correct = false;

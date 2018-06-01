@@ -30,13 +30,13 @@ public class ConjugatedVerb implements Serializable {
     private ConjugationType conjugationType;
 
     @Size(min = 0, max = 100)
-    @Column(name = "english", length = 100, nullable = true)
-    private String english;
+    @Column(name = "romanji_text", length = 100, nullable = true)
+    private String romanjiText;
 
     @NotNull
     @Size(min = 2, max = 100)
-    @Column(name = "japanese", length = 100, nullable = false)
-    private String japanese;
+    @Column(name = "kanji_text", length = 100, nullable = false)
+    private String kanjiText;
 
     @ManyToOne(optional = false)
     @NotNull
@@ -68,30 +68,30 @@ public class ConjugatedVerb implements Serializable {
         this.conjugationType = conjugationType;
     }
 
-    public String getEnglish() {
-        return english;
+    public String getRomanjiText() {
+        return romanjiText;
     }
 
-    public ConjugatedVerb english(String english) {
-        this.english = english;
+    public ConjugatedVerb romanjiText(String romanjiText) {
+        this.romanjiText = romanjiText;
         return this;
     }
 
-    public void setEnglish(String english) {
-        this.english = english;
+    public void setRomanjiText(String romanjiText) {
+        this.romanjiText = romanjiText;
     }
 
-    public String getJapanese() {
-        return japanese;
+    public String getKanjiText() {
+        return kanjiText;
     }
 
-    public ConjugatedVerb japanese(String japanese) {
-        this.japanese = japanese;
+    public ConjugatedVerb kanjiText(String kanjiText) {
+        this.kanjiText = kanjiText;
         return this;
     }
 
-    public void setJapanese(String japanese) {
-        this.japanese = japanese;
+    public void setKanjiText(String kanjiText) {
+        this.kanjiText = kanjiText;
     }
 
     public Verb getVerb() {
@@ -158,8 +158,8 @@ public class ConjugatedVerb implements Serializable {
         return "ConjugatedVerb{" +
             "id=" + getId() +
             ", conjugationType='" + getConjugationType() + "'" +
-            ", english='" + getEnglish() + "'" +
-            ", japanese='" + getJapanese() + "'" +
+            ", romanjiText='" + getRomanjiText() + "'" +
+            ", kanjiText='" + getKanjiText() + "'" +
             "}";
     }
 }

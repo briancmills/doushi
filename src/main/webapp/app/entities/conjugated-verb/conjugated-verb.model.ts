@@ -16,8 +16,8 @@ export class ConjugatedVerb implements BaseEntity {
     constructor(
         public id?: number,
         public conjugationType?: ConjugationType,
-        public english?: string,
-        public japanese?: string,
+        public romanjiText?: string,
+        public kanjiText?: string,
         public answer?: string,
         public verb?: Verb,
         public definitions?: BaseEntity[],
