@@ -29,7 +29,7 @@
         <dt><span jhiTranslate="doushiApp.answer.conjugatedVerb">Conjugated Verb</span></dt>
         <dd>
             <div *ngIf="answer.conjugatedVerb">
-                <a [routerLink]="['/conjugated-verb', answer.conjugatedVerb?.id]">{{answer.conjugatedVerb?.japanese}}</a>
+                <a [routerLink]="['/conjugated-verb', answer.conjugatedVerb?.id]">{{answer.conjugatedVerb?.kanjiText}}</a>
             </div>
         </dd>
     </dl>

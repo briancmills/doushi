@@ -32,7 +32,7 @@
             <label class="form-control-label" jhiTranslate="doushiApp.conjugatedVerbDefinition.conjugatedVerb" for="field_conjugatedVerb">Conjugated Verb</label>
             <select class="form-control" id="field_conjugatedVerb" name="conjugatedVerb" [(ngModel)]="conjugatedVerbDefinition.conjugatedVerb"  required>
                 <option *ngIf="!editForm.value.conjugatedVerb" [ngValue]="null" selected></option>
-                <option [ngValue]="conjugatedVerbOption.id === conjugatedVerbDefinition.conjugatedVerb?.id ? conjugatedVerbDefinition.conjugatedVerb : conjugatedVerbOption" *ngFor="let conjugatedVerbOption of conjugatedverbs; trackBy: trackConjugatedVerbById">{{conjugatedVerbOption.japanese}}</option>
+                <option [ngValue]="conjugatedVerbOption.id === conjugatedVerbDefinition.conjugatedVerb?.id ? conjugatedVerbDefinition.conjugatedVerb : conjugatedVerbOption" *ngFor="let conjugatedVerbOption of conjugatedverbs; trackBy: trackConjugatedVerbById">{{conjugatedVerbOption.kanjiText}}</option>
             </select>
         </div>
         <div [hidden]="!(editForm.controls.conjugatedVerb?.dirty && editForm.controls.conjugatedVerb?.invalid)">

@@ -18,7 +18,7 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="definition"><span jhiTranslate="doushiApp.conjugatedVerbDefinition.definition">Definition</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="conjugatedVerb.japanese"><span jhiTranslate="doushiApp.conjugatedVerbDefinition.conjugatedVerb">Conjugated Verb</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="conjugatedVerb.kanjiText"><span jhiTranslate="doushiApp.conjugatedVerbDefinition.conjugatedVerb">Conjugated Verb</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -28,7 +28,7 @@
                 <td>{{conjugatedVerbDefinition.definition}}</td>
                 <td>
                     <div *ngIf="conjugatedVerbDefinition.conjugatedVerb">
-                        <a [routerLink]="['../conjugated-verb', conjugatedVerbDefinition.conjugatedVerb?.id ]" >{{conjugatedVerbDefinition.conjugatedVerb?.japanese}}</a>
+                        <a [routerLink]="['../conjugated-verb', conjugatedVerbDefinition.conjugatedVerb?.id ]" >{{conjugatedVerbDefinition.conjugatedVerb?.kanjiText}}</a>
                     </div>
                 </td>
                 <td class="text-right">

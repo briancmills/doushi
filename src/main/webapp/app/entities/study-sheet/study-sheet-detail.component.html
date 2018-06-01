@@ -43,7 +43,7 @@
 					<th><span
 						jhiTranslate="doushiApp.conjugatedVerb.conjugationType">Conjugation
 							Type</span></th>
-					<th><span jhiTranslate="doushiApp.conjugatedVerb.japanese">Japanese</span></th>
+					<th><span jhiTranslate="doushiApp.conjugatedVerb.kanjiText">Japanese</span></th>
 					<th></th>
 				</tr>
 			</thead>
@@ -51,7 +51,7 @@
 				<tr *ngFor="let conjugatedVerb of conjugatedVerbs ;trackBy: trackId">
 					<td
 						jhiTranslate="{{'doushiApp.ConjugationType.' + conjugatedVerb.conjugationType}}">{{conjugatedVerb.conjugationType}}</td>
-					<td>{{conjugatedVerb.japanese}}</td>
+					<td>{{conjugatedVerb.kanjiText}}</td>
 					<td class="text-right"></td>
 				</tr>
 			</tbody>

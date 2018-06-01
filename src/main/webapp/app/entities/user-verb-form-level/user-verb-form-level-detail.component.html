@@ -21,7 +21,7 @@
         <dt><span jhiTranslate="doushiApp.userVerbFormLevel.conjugatedVerb">Conjugated Verb</span></dt>
         <dd>
             <div *ngIf="userVerbFormLevel.conjugatedVerb">
-                <a [routerLink]="['/conjugated-verb', userVerbFormLevel.conjugatedVerb?.id]">{{userVerbFormLevel.conjugatedVerb?.japanese}}</a>
+                <a [routerLink]="['/conjugated-verb', userVerbFormLevel.conjugatedVerb?.id]">{{userVerbFormLevel.conjugatedVerb?.kanjiText}}</a>
             </div>
         </dd>
     </dl>

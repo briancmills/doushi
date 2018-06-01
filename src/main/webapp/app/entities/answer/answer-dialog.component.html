@@ -84,7 +84,7 @@
             <label class="form-control-label" jhiTranslate="doushiApp.answer.conjugatedVerb" for="field_conjugatedVerb">Conjugated Verb</label>
             <select class="form-control" id="field_conjugatedVerb" name="conjugatedVerb" [(ngModel)]="answer.conjugatedVerb" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="conjugatedVerbOption.id === answer.conjugatedVerb?.id ? answer.conjugatedVerb : conjugatedVerbOption" *ngFor="let conjugatedVerbOption of conjugatedverbs; trackBy: trackConjugatedVerbById">{{conjugatedVerbOption.japanese}}</option>
+                <option [ngValue]="conjugatedVerbOption.id === answer.conjugatedVerb?.id ? answer.conjugatedVerb : conjugatedVerbOption" *ngFor="let conjugatedVerbOption of conjugatedverbs; trackBy: trackConjugatedVerbById">{{conjugatedVerbOption.kanjiText}}</option>
             </select>
         </div>
     </div>
