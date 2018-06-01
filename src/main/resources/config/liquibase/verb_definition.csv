@@ -5,13 +5,16 @@ id;definition;verb_id
 15;to come;14
 16;to approach;14
 17;to arrive​;14
-28;"to go; to move";27
+28;"to go";27
+29;"to move";27
 39;to read;38
 50;to eat​;49
 61;to swim;60
 72;to write;71
 83;to drink;82
-94;"to see; to look; to watch";93
+94;"to see";93
+95;"to look";93
+96;"to watch";93
 105;to listen;104
 116;to hand over;115
 127;to breath;126
@@ -52,8 +55,7 @@ id;definition;verb_id
 442;to own;440
 453;to say;452
 454;to tell;452
-465;to fall (rain;464
-466;snow);464
+465;to fall (rain/snow);464
 477;can do;476
 488;to take;487
 489;to ride;487
