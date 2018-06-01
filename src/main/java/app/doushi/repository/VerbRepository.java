@@ -27,18 +27,28 @@ public interface VerbRepository extends JpaRepository<Verb, Long> {
             + ") "
             + "ORDER BY v.id ")
     List<Verb> findVerbsWithNoProgress(@Param("login") String login);
+    
 
     @Query("SELECT v "
             + "FROM Verb v "
             + "WHERE v NOT IN ( "
-            + " SELECT av "
-            + " FROM UserVerbFormLevel level, Answer a "
-            + " JOIN a.verb av "
-            + " WHERE level.user = a.user "
-            + " AND level.verb = av  "
-            + " AND a.correct = TRUE "
-            + " AND level.level = 'KYUKYU' "
-            + " AND a.user.login = :login "
+            + " SELECT uv "
+            + " FROM UserVerbSet uvs "
+            + " JOIN uvs.verbs uv "
+            + " WHERE uvs.user.login = :login "
+            + ") "
+            + "ORDER BY v.id ")
+    Page<Verb> findVerbsNotInSet(@Param("login") String login, Pageable pageable);
+    
+
+    @Query("SELECT v "
+            + "FROM Verb v "
+            + "WHERE v IN ( "
+            + " SELECT v "
+            + " FROM UserVerbFormLevel level "
+            + " JOIN level.verb v "
+            + " WHERE level.user.login = :login "
+            + " AND level.level = 'MUKYU' "
             + ") AND v IN ( "
             + " SELECT v "
             + " FROM UserVerbSet uvs "
@@ -59,7 +69,6 @@ public interface VerbRepository extends JpaRepository<Verb, Long> {
             + " WHERE level.user = a.user "
             + " AND level.verb = av  "
             + " AND a.correct = TRUE "
-            + " AND level.level = 'KYUKYU' "
             + " AND ( "
             + "     (level.level = 'KYUKYU' AND a.date >= :fourHoursAgo ) "
             + "     OR "
@@ -82,7 +91,16 @@ public interface VerbRepository extends JpaRepository<Verb, Long> {
             + "     (level.level = 'SHODAN' AND a.date >= :fourMonthsAgo ) "
             + " ) "
             + " AND a.user.login = :login "
-            + ") AND v IN ( "
+            + ") "
+            // also exclude any MUKYU verbs since those are for lessons only
+            + "AND v NOT IN ( "
+            + " SELECT v "
+            + " FROM UserVerbFormLevel level "
+            + " JOIN level.verb v "
+            + " WHERE level.user.login = :login "
+            + " AND level.level = 'MUKYU' "
+            + ") "
+            + "AND v IN ( "
             + " SELECT v "
             + " FROM UserVerbSet uvs "
             + " JOIN uvs.verbs v"

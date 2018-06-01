@@ -3,16 +3,19 @@
         <span jhiTranslate="doushiApp.quiz.home.title">Quiz</span>
     </h2>
     
-    <div *ngIf="nothingMoreToStudy" class="card">
+    <div *ngIf="noMoreVerbs && noMoreConjugatedVerbs" class="card">
         <div class="card-body">
-            <h5 class="card-title" jhiTranslate="doushiApp.quiz.nothingMore">No more lessons right now</h5>
+            <h5 class="card-title" jhiTranslate="doushiApp.quiz.nothingMore">No more quizzes right now</h5>
             <div class="card-text" jhiTranslate="doushiApp.quiz.nothingMoreDetails"></div>
         </div>
     </div>
-    <div *ngIf="conjugatedVerb" class="card">
+    <div *ngIf="!loading && conjugatedVerb && !lastQuizWasVerb" class="card">
+    
+          <div class="card-header">
+            Conjugate: {{conjugatedVerb.verb.kanjiText}}
+                        {{conjugatedVerb.verb.definition}}
+          </div>
         <div class="card-body">
-            <h5 class="card-title">{{conjugatedVerb.verb.kanjiText}}
-                {{conjugatedVerb.verb.definition}}</h5>
             <div class="card-text">
                 <p jhiTranslate="doushiApp.quiz.instructions" translateValues="{verbName: '{{conjugatedVerb.verb.verbText}}', form: '{{'doushiApp.ConjugationType.' + conjugatedVerb.conjugationType | translate}}'}"></p>
                 
@@ -37,7 +40,7 @@
                             </small>
                         </div>
                         <div [hidden]="correct || correct===undefined">
-                            <small class="form-text text-danger" jhiTranslate="doushiApp.quiz.incorrect" translateValues="{ answer: '{{conjugatedVerb.japanese}}' }">
+                            <small class="form-text text-danger" jhiTranslate="doushiApp.quiz.incorrect" translateValues="{ answer: '{{conjugatedVerb.kanaText}}' }">
                                Nope!
                             </small>
                         </div>
@@ -51,7 +54,58 @@
                     <button type="submit" [hidden]="correct!==undefined" class="btn btn-primary" (click)="check()">
                         <span class="fa fa-check"></span>&nbsp;<span jhiTranslate="doushiApp.quiz.check">Check</span>
                     </button>
-                    <button type="submit" [hidden]="correct===undefined" [disabled]="correct===undefined" class="btn btn-primary" (click)="next()">
+                    <button type="button" [hidden]="correct===undefined" [disabled]="correct===undefined" class="btn btn-primary" (click)="next()">
+                        <span class="fa fa-long-arrow-alt-right"></span>&nbsp;<span jhiTranslate="doushiApp.quiz.next">Next</span>
+                    </button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!loading && verb && lastQuizWasVerb" class="card">
+          <div class="card-header bg-dark text-white">
+           Verb: {{verb.definition}}
+          </div>
+        <div class="card-body">
+            <div class="card-text">
+                <p jhiTranslate="doushiApp.quiz.verbInstructions" translateValues="{definition: '{{verb.definition}}'}"></p>
+                
+                <form name="quizForm" role="form" novalidate #quizForm="ngForm">
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="doushiApp.verb.answer" for="field_answer">Answer</label>
+                        <input autofocus #inputFocus2 type="text" class="form-control" name="answer" id="field_answer" autocomplete="off"
+                            [(ngModel)]="verb.answer" 
+                            [disabled]="correct!==undefined" />
+                        <div [hidden]="!(quizForm.controls.answer?.dirty && quizForm.controls.answer?.invalid)">
+                            <small class="form-text text-danger"
+                               [hidden]="!quizForm.controls.answer?.errors?.required" jhiTranslate="entity.validation.required">
+                               This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                               [hidden]="!quizForm.controls.answer?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 2 }">
+                               This field is required to be at least 2 characters.
+                            </small>
+                            <small class="form-text text-danger"
+                               [hidden]="!quizForm.controls.answer?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 100 }">
+                               This field cannot be longer than 100 characters.
+                            </small>
+                        </div>
+                        <div [hidden]="correct || correct===undefined">
+                            <small class="form-text text-danger" jhiTranslate="doushiApp.quiz.incorrect" translateValues="{ answer: '{{verb.kanaText}}' }">
+                               Nope!
+                            </small>
+                        </div>
+                        <div [hidden]="!correct===true">
+                            <small class="form-text text-success" jhiTranslate="doushiApp.quiz.correct">
+                               Yup!
+                            </small>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" [hidden]="correct!==undefined" class="btn btn-primary" (click)="check()">
+                        <span class="fa fa-check"></span>&nbsp;<span jhiTranslate="doushiApp.quiz.check">Check</span>
+                    </button>
+                    <button type="button" [hidden]="correct===undefined" [disabled]="correct===undefined" class="btn btn-primary" (click)="next()">
                         <span class="fa fa-long-arrow-alt-right"></span>&nbsp;<span jhiTranslate="doushiApp.quiz.next">Next</span>
                     </button>
                 </form>

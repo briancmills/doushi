@@ -319,7 +319,7 @@ public class VerbResourceIntTest {
     @WithMockUser(username="user",authorities={"ROLE_USER"}, password = "user")
     public void getVerbToStudy() throws Exception {
         // Get the conjugatedVerb to study 
-        restVerbMockMvc.perform(get("/api/verbs/study"))
+        restVerbMockMvc.perform(get("/api/verbs/study?lesson=true"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").isNotEmpty());

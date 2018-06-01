@@ -1,5 +1,6 @@
 import { BaseEntity } from './../../shared';
 import { Verb } from '../verb/verb.model';
+declare var wanakana: any;
 
 export const enum ConjugationType {
     'dictionary',
@@ -18,6 +19,7 @@ export class ConjugatedVerb implements BaseEntity {
         public conjugationType?: ConjugationType,
         public romanjiText?: string,
         public kanjiText?: string,
+        public kanaText?: string,
         public answer?: string,
         public verb?: Verb,
         public definitions?: BaseEntity[],

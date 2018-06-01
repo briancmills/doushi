@@ -9,8 +9,8 @@
             },
             "error": "Unable to save answer",
             "created": "Your answer has been saved.",
-            "updated": "A Answer is updated with identifier {{ param }}",
-            "deleted": "A Answer is deleted with identifier {{ param }}",
+            "updated": "An Answer is updated with identifier {{ param }}",
+            "deleted": "An Answer is deleted with identifier {{ param }}",
             "delete": {
                 "question": "Are you sure you want to delete Answer {{ id }}?"
             },

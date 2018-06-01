@@ -5,7 +5,7 @@
             "home": {
                 "title": "Verb Lessons"
             },
-            "instructions": "Please review all of the information below for the verb: '{{verbName}}' ({{romanjiText}}).  Then type the verb (including Kanji if any) into the Answer area.  This is just practice to make sure you can type Japanese on your computer.  When you answer correctly the lesson will complete and unlock the conjugation quiz. ",
+            "instructions": "Please review all of the information below for the verb: {{verbName}} ({{romanjiText}}).  Then type the verb (it should convert to Kana automatically) into the Answer area.  When you answer correctly the lesson will complete and unlock the conjugation quiz. ",
             "incorrect": "The correct answer is {{answer}}",
             "correct": "That is right!",
             "next": "Next",

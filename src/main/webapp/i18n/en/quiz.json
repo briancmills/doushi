@@ -6,12 +6,13 @@
                 "title": "Quiz"
             },
             "instructions": "Please conjugate '{{verbName}}' into the {{form}}. ",
+            "verbInstructions": "Please type the Japanese (kana) for the verb '{{definition}}'. ",
             "incorrect": "The correct answer is {{answer}}",
             "correct": "That is right!",
             "next": "Next",
             "check": "Check Answer",
             "nothingMore": "Nothing More To Study",
-            "nothingMoreDetails": "You are out of quizes at the moment.  Take a break!"
+            "nothingMoreDetails": "You are out of quizzes at the moment.  Take a break!"
         }
     }
 }

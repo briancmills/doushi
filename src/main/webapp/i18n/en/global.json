@@ -6,7 +6,7 @@
             "home": "Home",
             "studySheet": "Study",
             "quiz": "Quiz",
-            "lesson": "Lessons",
+            "lesson": "Lesson",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",

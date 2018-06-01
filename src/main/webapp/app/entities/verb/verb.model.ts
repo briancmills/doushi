@@ -40,6 +40,7 @@ export class Verb implements BaseEntity {
         public ending?: VerbEnding,
         public verbText?: string,
         public kanjiText?: string,
+        public kanaText?: string,
         public romanjiText?: string,
         public definitions?: BaseEntity[],
         public searchText?: string,

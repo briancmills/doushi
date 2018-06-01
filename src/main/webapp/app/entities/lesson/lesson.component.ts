@@ -11,6 +11,7 @@ import { Verb } from '../verb/verb.model';
 import { VerbService } from '../verb/verb.service';
 import { ConjugatedVerb } from '../conjugated-verb/conjugated-verb.model';
 import { ConjugatedVerbService } from '../conjugated-verb/conjugated-verb.service';
+declare var wanakana: any;
 
 @Component({
     selector: 'jhi-verb',
@@ -60,6 +61,12 @@ export class LessonComponent implements OnInit, OnDestroy {
         this.principal.identity().then((account) => {
             this.currentAccount = account;
         });
+        setTimeout(() => {
+          if (this.inputFocus && this.inputFocus.first) {
+            wanakana.bind(this.inputFocus.first.nativeElement);
+            this.inputFocus.first.nativeElement.focus();
+          }
+        }, 1000);
     }
 
     ngOnDestroy() {
@@ -70,9 +77,11 @@ export class LessonComponent implements OnInit, OnDestroy {
       if (!this.verb.answer) {
         return;
       }
-      if (this.verb.answer === this.verb.kanjiText) {
+      if (wanakana.toKana(this.verb.answer) === wanakana.toKana(this.verb.romanjiText)) {
         this.correct = true;
       } else {
+        // hack to get the display text to be in kana
+        this.verb.kanaText = wanakana.toKana(this.verb.romanjiText);
         this.correct = false;
       }
 
@@ -80,7 +89,7 @@ export class LessonComponent implements OnInit, OnDestroy {
         undefined,
         this.correct,
         new Date().toISOString().replace( 'Z', '' ),
-        this.verb.answer,
+        wanakana.toKana(this.verb.answer),
         this.currentAccount,
         this.verb,
         undefined
@@ -111,13 +120,7 @@ export class LessonComponent implements OnInit, OnDestroy {
 
   　next() {
       this.correct = undefined;
-      this.verbService.findForStudy().subscribe(
-            (res: HttpResponse<Verb>) => this.onSuccess(res.body, res.headers),
-            (res: HttpErrorResponse) => this.onError(res.message)
-      );
-      if (this.inputFocus && this.inputFocus.first) {
-        setTimeout(() => { if (this.inputFocus && this.inputFocus.first) { this.inputFocus.first.nativeElement.focus(); } }, 1000);
-      }
+      this.loadAll();
     }
 
     private onSuccess(data, headers) {
@@ -126,6 +129,11 @@ export class LessonComponent implements OnInit, OnDestroy {
             .subscribe((conjugatedVerbResponse: HttpResponse<ConjugatedVerb[]>) => {
                 this.conjugatedVerbs = conjugatedVerbResponse.body;
             });
+        setTimeout(() => {
+          if (this.inputFocus && this.inputFocus.first) {
+            this.inputFocus.first.nativeElement.focus();
+          }
+        }, 1000);
     }
 
     private onError(error) {

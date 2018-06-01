@@ -25,6 +25,8 @@ public class AnswerService {
     private final AnswerRepository answerRepository;
 
     private final UserVerbFormLevelRepository userVerbFormLevelRepository;
+
+    private final UserLevelInitializationHelper userLevelInitializationHelper;
     
     private final UserVerbSetRepository userVerbSetRepository;
     
@@ -33,12 +35,14 @@ public class AnswerService {
     public AnswerService(AnswerRepository answerRepository, 
             UserVerbFormLevelRepository userVerbFormLevelRepository, 
             UserVerbSetRepository userVerbSetRepository,
-            ConjugatedVerbRepository conjugatedVerbRepository) {
+            ConjugatedVerbRepository conjugatedVerbRepository,
+            UserLevelInitializationHelper userLevelInitializationHelper) {
         
         this.answerRepository = answerRepository;
         this.userVerbFormLevelRepository = userVerbFormLevelRepository;
         this.userVerbSetRepository = userVerbSetRepository;
         this.conjugatedVerbRepository = conjugatedVerbRepository;
+        this.userLevelInitializationHelper = userLevelInitializationHelper;
     }
 
     /**
@@ -89,7 +93,7 @@ public class AnswerService {
                     log.debug("conjugatedVerb: {}", conjugatedVerb);
                     log.debug("cvLevel: {}", cvLevel);
                     if (cvLevel.getLevel().ordinal() <= userVerbSet.getLevel().ordinal()) {
-                        log.debug("not going to increase level of set {} because of {} ", userVerbSet, conjugatedVerb);
+                        log.debug("not going to increase level of set {} because of {} ", userVerbSet.getId(), conjugatedVerb);
                         increaseLevel = false;
                         break;
                     }
@@ -98,6 +102,12 @@ public class AnswerService {
                 if (increaseLevel) {
                     userVerbSet.setLevel(KyuDan.valueOf(userVerbSet.getLevel().ordinal()+1));
                     userVerbSetRepository.saveAndFlush(userVerbSet);
+                    log.debug("set level {}", userVerbSet.getLevel());
+                    // any time a new set of verbs goes to 8th kyu we should unlock the next set
+                    if (userVerbSet.getLevel() == KyuDan.HACHIKYU) {
+                        log.debug("init new set of verbs");
+                        userLevelInitializationHelper.initStudySet(true);
+                    }
                 }
             }
             

@@ -48,7 +48,7 @@ public class UserLevelInitializationHelper {
     public synchronized void initializeUserVerbProgress(String login) {
         User user = userRepository.findOneByLogin(login).get();
         
-        initFirstStudySet();
+        initStudySet(false);
         
         verbRepository.findVerbsWithNoProgress(login).stream().forEach(v -> {
             UserVerbFormLevel level = new UserVerbFormLevel()
@@ -71,20 +71,20 @@ public class UserLevelInitializationHelper {
     /**
      * TODO: make sure this still works well when you have more than one web server
      */
-    private synchronized void initFirstStudySet() {
+    public synchronized void initStudySet(boolean levelUp) {
         // if the user has no study sets we build the first one automatically
         String login = SecurityUtils.getCurrentUserLogin().get();
         Optional<User> match = userRepository.findOneByLogin(login);
         if (match.isPresent()) {
             List<UserVerbSet> sets = userVerbSetRepository.findAllByUserLogin(login);
-            if (sets.isEmpty()) {
+            if (sets.isEmpty() || levelUp) {
                 User user = match.get();
                 final UserVerbSet set = new UserVerbSet()
                         .user(user)
                         .level(KyuDan.MUKYU);
                 
-                // find the first 10 verbs to study
-                verbRepository.findAll(new PageRequest(0, 10)).getContent().stream().forEach(verb -> {
+                // find the first 5 verbs not in a set to study
+                verbRepository.findVerbsNotInSet(login, new PageRequest(0, 5)).getContent().stream().forEach(verb -> {
                     set.getVerbs().add(verb);
                 });
                 userVerbSetRepository.saveAndFlush(set);

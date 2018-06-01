@@ -20,7 +20,7 @@
             <th jhiSortBy="level"><span jhiTranslate="doushiApp.userVerbFormLevel.level">Level</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="user.login"><span jhiTranslate="doushiApp.userVerbFormLevel.user">User</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="verb.kanjiText"><span jhiTranslate="doushiApp.userVerbFormLevel.verb">Verb</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="conjugatedVerb.japanese"><span jhiTranslate="doushiApp.userVerbFormLevel.conjugatedVerb">Conjugated Verb</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="conjugatedVerb.kanjiText"><span jhiTranslate="doushiApp.userVerbFormLevel.conjugatedVerb">Conjugated Verb</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -38,7 +38,7 @@
                 </td>
                 <td>
                     <div *ngIf="userVerbFormLevel.conjugatedVerb">
-                        <a [routerLink]="['../conjugated-verb', userVerbFormLevel.conjugatedVerb?.id ]" >{{userVerbFormLevel.conjugatedVerb?.japanese}}</a>
+                        <a [routerLink]="['../conjugated-verb', userVerbFormLevel.conjugatedVerb?.id ]" >{{userVerbFormLevel.conjugatedVerb?.kanjiText}}</a>
                     </div>
                 </td>
                 <td class="text-right">

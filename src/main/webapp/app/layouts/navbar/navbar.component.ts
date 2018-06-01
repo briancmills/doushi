@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiLanguageService, JhiEventManager } from 'ng-jhipster';
 
@@ -28,7 +28,8 @@ export class NavbarComponent implements OnInit {
     modalRef: NgbModalRef;
     version: string;
     lessonCount: number;
-    quizCount: number;
+    verbQuizCount: number;
+    conjugatedVerbQuizCount: number;
 
     constructor(
         private loginService: LoginService,
@@ -44,6 +45,13 @@ export class NavbarComponent implements OnInit {
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
+        this.verbQuizCount = 0;
+        this.conjugatedVerbQuizCount = 0;
+        router.events.subscribe((val) => {
+            if (val instanceof NavigationEnd) {
+              this.refreshCounts();
+            }
+        });
     }
 
     ngOnInit() {
@@ -67,9 +75,13 @@ export class NavbarComponent implements OnInit {
             .subscribe((verbResponse: HttpResponse<Verb[]>) => {
                 this.lessonCount = verbResponse.body.length;
             });
+      　this.verbService.queryAvailableForStudy({lesson: false})
+            .subscribe((verbResponse: HttpResponse<Verb[]>) => {
+                this.verbQuizCount = verbResponse.body.length;
+            });
         this.conjugatedVerbService.queryAvailableForStudy()
             .subscribe((verbResponse: HttpResponse<ConjugatedVerb[]>) => {
-               this.quizCount = verbResponse.body.length;
+               this.conjugatedVerbQuizCount = verbResponse.body.length;
             });
     }
 
