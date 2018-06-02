@@ -33,8 +33,10 @@ export class ConjugatedVerbDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.verbService.query()
-            .subscribe((res: HttpResponse<Verb[]>) => { this.verbs = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.verbService.query({
+            page: 0,
+            size: 10000
+        }).subscribe((res: HttpResponse<Verb[]>) => { this.verbs = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
