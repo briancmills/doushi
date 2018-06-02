@@ -41,9 +41,9 @@
 			<thead>
 				<tr>
 					<th><span
-						jhiTranslate="doushiApp.conjugatedVerb.conjugationType">Conjugation
-							Type</span></th>
-					<th><span jhiTranslate="doushiApp.conjugatedVerb.kanjiText">Japanese</span></th>
+						jhiTranslate="doushiApp.conjugatedVerb.conjugationType">Conjugation Type</span></th>
+                    <th><span jhiTranslate="doushiApp.conjugatedVerb.kanjiText">Japanese</span></th>
+                    <th><span jhiTranslate="doushiApp.conjugatedVerb.romanjiText">Romanji</span></th>
 					<th></th>
 				</tr>
 			</thead>
@@ -52,7 +52,8 @@
 					<td
 						jhiTranslate="{{'doushiApp.ConjugationType.' + conjugatedVerb.conjugationType}}">{{conjugatedVerb.conjugationType}}</td>
 					<td>{{conjugatedVerb.kanjiText}}</td>
-					<td class="text-right"></td>
+                    <td>{{conjugatedVerb.romanjiText}}</td>
+                    <td class="text-right"></td>
 				</tr>
 			</tbody>
 		</table>
