@@ -1,5 +1,6 @@
 package app.doushi.service;
 
+import java.time.ZonedDateTime;
 import java.util.*;
 
 import org.apache.commons.lang3.BooleanUtils;
@@ -57,6 +58,9 @@ public class AnswerService {
         UserVerbFormLevel level = null;
         User user = answer.getUser();
         Verb verb = answer.getVerb() != null ? answer.getVerb() : answer.getConjugatedVerb().getVerb();
+        if (answer.getDate() == null) {
+            answer.setDate(ZonedDateTime.now());
+        }
         
         if (answer.getVerb() != null) {
             level = userVerbFormLevelRepository.findOneByUserAndVerb(user, answer.getVerb());

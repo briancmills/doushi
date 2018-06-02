@@ -1,12 +1,12 @@
 package app.doushi.domain;
 
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.Objects;
+
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
 /**
  * A Answer.
@@ -26,7 +26,6 @@ public class Answer implements Serializable {
     @Column(name = "correct", nullable = false)
     private Boolean correct;
 
-    @NotNull
     @Column(name = "date", nullable = false)
     private ZonedDateTime date;
 

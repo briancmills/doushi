@@ -169,24 +169,6 @@ public class AnswerResourceIntTest {
 
     @Test
     @Transactional
-    public void checkDateIsRequired() throws Exception {
-        int databaseSizeBeforeTest = answerRepository.findAll().size();
-        // set the field null
-        answer.setDate(null);
-
-        // Create the Answer, which fails.
-
-        restAnswerMockMvc.perform(post("/api/answers")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(answer)))
-            .andExpect(status().isBadRequest());
-
-        List<Answer> answerList = answerRepository.findAll();
-        assertThat(answerList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkInputIsRequired() throws Exception {
         int databaseSizeBeforeTest = answerRepository.findAll().size();
         // set the field null

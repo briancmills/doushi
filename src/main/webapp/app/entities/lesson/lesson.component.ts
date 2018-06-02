@@ -88,7 +88,7 @@ export class LessonComponent implements OnInit, OnDestroy {
       const a = new Answer(
         undefined,
         this.correct,
-        new Date().toISOString().replace( 'Z', '' ),
+        undefined, // let the backend fill the date in
         wanakana.toKana(this.verb.answer),
         this.currentAccount,
         this.verb,
