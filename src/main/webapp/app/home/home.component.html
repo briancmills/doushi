@@ -19,8 +19,8 @@
             </div>
         </div>
         
-        <div *ngIf="levelProgress && isAuthenticated()">
-            <table class="table table-striped">
+        <div *ngIf="levelProgress && isAuthenticated()" class="table-responsive">
+            <table class="table table-striped d-none d-md-table d-lg-table d-xl-table">
                 <thead>
                     <tr>
                         <th jhiTranslate="doushiApp.KyuDan.KYUKYU"></th>
@@ -44,6 +44,53 @@
                         <td>{{(levelProgress && levelProgress.YONKYU ? levelProgress.YONKYU : 0) | number}}</td>
                         <td>{{(levelProgress && levelProgress.SANKYU ? levelProgress.SANKYU : 0) | number}}</td>
                         <td>{{(levelProgress && levelProgress.NIKYU ? levelProgress.NIKYU : 0) | number}}</td>
+                        <td>{{(levelProgress && levelProgress.IKKYU ? levelProgress.IKKYU : 0) | number}}</td>
+                    </tr>
+                </tbody>
+            </table>
+ 
+            <table class="table table-striped d-md-none d-lg-none d-xl-none">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th jhiTranslate="doushiApp.KyuDan.KYUKYU"></th>
+                        <td>{{(levelProgress && levelProgress.KYUKYU ? levelProgress.KYUKYU : 0) | number}}</td>
+                    </tr>
+                    <tr>
+                        <th jhiTranslate="doushiApp.KyuDan.HACHIKYU"></th>
+                        <td>{{(levelProgress && levelProgress.HACHIKYU ? levelProgress.HACHIKYU : 0) | number}}</td>
+                    </tr>
+                    <tr>
+                        <th jhiTranslate="doushiApp.KyuDan.NANAKYU"></th>
+                        <td>{{(levelProgress && levelProgress.NANAKYU ? levelProgress.NANAKYU : 0) | number}}</td>
+                    </tr>
+                    <tr>
+                        <th jhiTranslate="doushiApp.KyuDan.ROKYU"></th>
+                        <td>{{(levelProgress && levelProgress.ROKYU ? levelProgress.ROKYU : 0) | number}}</td>
+                    </tr>
+                    <tr>
+                        <th jhiTranslate="doushiApp.KyuDan.GOKYU"></th>
+                        <td>{{(levelProgress && levelProgress.GOKYU ? levelProgress.GOKYU : 0) | number}}</td>
+                    </tr>
+                    <tr>
+                        <th jhiTranslate="doushiApp.KyuDan.YONKYU"></th>
+                        <td>{{(levelProgress && levelProgress.YONKYU ? levelProgress.YONKYU : 0) | number}}</td>
+                    </tr>
+                    <tr>
+                        <th jhiTranslate="doushiApp.KyuDan.SANKYU"></th>
+                        <td>{{(levelProgress && levelProgress.SANKYU ? levelProgress.SANKYU : 0) | number}}</td>
+                    </tr>
+                    <tr>
+                        <th jhiTranslate="doushiApp.KyuDan.NIKYU"></th>
+                        <td>{{(levelProgress && levelProgress.NIKYU ? levelProgress.NIKYU : 0) | number}}</td>
+                    </tr>
+                    <tr>
+                        <th jhiTranslate="doushiApp.KyuDan.IKKYU"></th>
                         <td>{{(levelProgress && levelProgress.IKKYU ? levelProgress.IKKYU : 0) | number}}</td>
                     </tr>
                 </tbody>
