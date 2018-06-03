@@ -1,27 +1,22 @@
 package app.doushi.web.rest;
 
+import java.net.*;
+import java.util.*;
+
+import javax.validation.Valid;
+
+import org.slf4j.*;
+import org.springframework.data.domain.*;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
+
 import com.codahale.metrics.annotation.Timed;
+
 import app.doushi.domain.Answer;
 import app.doushi.service.AnswerService;
 import app.doushi.web.rest.errors.BadRequestAlertException;
-import app.doushi.web.rest.util.HeaderUtil;
-import app.doushi.web.rest.util.PaginationUtil;
+import app.doushi.web.rest.util.*;
 import io.github.jhipster.web.util.ResponseUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * REST controller for managing Answer.
@@ -95,6 +90,21 @@ public class AnswerResource {
         Page<Answer> page = answerService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/answers");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    
+
+    /**
+     * GET  /incorrect : get top 5 incorrect answers
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of answers in body
+     */
+    @GetMapping("/answers/incorrect")
+    @Timed
+    public ResponseEntity<List<Answer>> getIncorrectAnswers(Pageable pageable) {
+        log.debug("REST request to get top 5 incorrect Answers");
+        List<Answer> answers = answerService.getIncorrectAnswers();
+        return new ResponseEntity<>(answers, HttpStatus.OK);
     }
 
     /**

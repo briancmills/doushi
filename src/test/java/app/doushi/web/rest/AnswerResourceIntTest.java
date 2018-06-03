@@ -19,6 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -53,6 +54,9 @@ public class AnswerResourceIntTest {
 
     @Autowired
     private VerbRepository verbRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private AnswerService answerService;
@@ -199,6 +203,41 @@ public class AnswerResourceIntTest {
             .andExpect(jsonPath("$.[*].correct").value(hasItem(DEFAULT_CORRECT.booleanValue())))
             .andExpect(jsonPath("$.[*].date").value(hasItem(sameInstant(DEFAULT_DATE))))
             .andExpect(jsonPath("$.[*].input").value(hasItem(DEFAULT_INPUT.toString())));
+    }
+    
+    @Test
+    @Transactional
+    @WithMockUser(username="user",authorities={"ROLE_USER"}, password = "user")
+    public void getIncorrectAnswers() throws Exception {
+        // Initialize the database
+        answerRepository.saveAndFlush(answer);
+
+        // Get all the answerList
+        restAnswerMockMvc.perform(get("/api/answers/incorrect"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$").isArray())
+            .andExpect(jsonPath("$").isEmpty());
+        
+        // now make some incorrect answers
+        User u = userRepository.findOneByLogin("user").get();
+        Answer a1 = new Answer();
+        a1.setCorrect(Boolean.FALSE);
+        a1.setUser(u);
+        Verb verb = verbRepository.findAll().get(0);
+        a1.setVerb(verb);
+        a1.setDate(ZonedDateTime.now());
+        a1.setInput("Wrong");
+        answerRepository.saveAndFlush(a1);
+
+        restAnswerMockMvc.perform(get("/api/answers/incorrect"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$").isArray())
+            .andExpect(jsonPath("$").isNotEmpty())
+            .andExpect(jsonPath("$.[*].input").value(hasItem(a1.getInput())));;
+        
+        
     }
 
     @Test

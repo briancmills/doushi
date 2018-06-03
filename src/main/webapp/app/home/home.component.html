@@ -97,6 +97,28 @@
             </table>
         </div>
 
+        <div *ngIf="incorrectAnswers && isAuthenticated()" class="table-responsive">
+
+            <table class="table table-striped ">
+                <thead>
+                    <tr>
+                        <th>Frequently Incorrect</th>
+                        <th>Form</th>
+                        <th>Kana</th>
+                        <th>Recent Input</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let answer of incorrectAnswers">
+                        <td>{{answer.verb ? answer.verb.kanjiText : answer.conjugatedVerb.kanjiText}}</td>
+                        <td>{{answer.verb ? 'Dictionary' : ('doushiApp.ConjugationType.' + answer.conjugatedVerb.conjugationType | translate)}}</td>
+                        <td>{{answer.verb ? answer.verb.romanjiText : answer.conjugatedVerb.romanjiText}}</td>
+                        <td>{{answer.input}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <div>
             <h2><span jhiTranslate="home.background.header"></span></h2>
             <p jhiTranslate="home.background.explanation"></p>

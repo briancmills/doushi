@@ -153,4 +153,15 @@ public class AnswerService {
         log.debug("Request to delete Answer : {}", id);
         answerRepository.delete(id);
     }
+
+    public List<Answer> getIncorrectAnswers() {
+        
+        // load recent incorrect answers for the last week
+        // and return one representation of each according to the top 5
+        
+        Page<Answer> incorrectAnswers = answerRepository.findTopIncorrectAndUserIsCurrentUser(
+                new PageRequest(0, 5));
+
+        return incorrectAnswers.getContent();
+    }
 }
