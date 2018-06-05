@@ -97,7 +97,7 @@
             </table>
         </div>
 
-        <div *ngIf="incorrectAnswers.length > 0 && isAuthenticated()" class="table-responsive">
+        <div *ngIf="incorrectAnswers && incorrectAnswers.length > 0 && isAuthenticated()" class="table-responsive">
 
             <table class="table table-striped ">
                 <thead>
