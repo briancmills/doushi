@@ -20,4 +20,7 @@
     <include file="config/liquibase/changelog/20180528165541_userVerbSet.xml" relativeToChangelogFile="false"/>
     
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    
+    <include file="config/liquibase/changelog/20180607233613_changelog.xml" relativeToChangelogFile="false"/>
+    
 </databaseChangeLog>
