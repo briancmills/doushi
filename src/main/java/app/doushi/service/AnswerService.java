@@ -79,6 +79,11 @@ public class AnswerService {
                 currentLevel--;
             }
             
+            // we never set something back to MuKyu after it has gone above it
+            if (currentLevel == KyuDan.MUKYU.ordinal() && currentLevel < level.getLevel().ordinal()) {
+                currentLevel++;
+            }
+            
             level.setLevel(KyuDan.valueOf(currentLevel));
             userVerbFormLevelRepository.saveAndFlush(level);
             

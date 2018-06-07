@@ -20,7 +20,17 @@
             "covered": "What is covered?",
             "covered1": "170 verbs from JLPT N5 and N4",
             "covered2": "Dictionary and 10 conjugation forms for each verb.",
-            "covered3": "170 verbs from JLPT N5 and N4"
+            "covered3": "170 verbs from JLPT N5 and N4",
+            "srs": "Spaced Repetition System",
+            "level1": "Kukyu: 4 hours",
+            "level2": "Hachikyu: 8 hours",
+            "level3": "Nanakyu: 1 day",
+            "level4": "Rokyu: 2 days",
+            "level5": "Gokyu: 3 days",
+            "level6": "Yonkyu: 1 week",
+            "level7": "Sankyu: 2 weeks",
+            "level8": "Nikyu: 1 month",
+            "level9": "Ikkyu: 4 months"
         },
         "like": "If you like JHipster, don't forget to give us a star on",
         "github": "GitHub"
