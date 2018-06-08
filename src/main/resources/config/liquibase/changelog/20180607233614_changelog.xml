@@ -1,0 +1,33 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="brian (generated)" id="1528414584814-2">
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tsukete"/>
+            <where>id = 297</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tsukemasu"/>
+            <where>id = 298</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tsukeyou"/>
+            <where>id = 300</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tsuketa"/>
+            <where>id = 301</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tsukenakereba"/>
+            <where>id = 303</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tsukerareru"/>
+            <where>id = 304</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tsukerarenai"/>
+            <where>id = 305</where>
+        </update>
+    </changeSet>
+</databaseChangeLog>
