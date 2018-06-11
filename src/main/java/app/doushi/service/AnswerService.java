@@ -76,6 +76,8 @@ public class AnswerService {
             if (BooleanUtils.isTrue(answer.isCorrect())) {
                 currentLevel++;
             } else {
+                // when you make a mistake you lose two levels
+                currentLevel--;
                 currentLevel--;
             }
             

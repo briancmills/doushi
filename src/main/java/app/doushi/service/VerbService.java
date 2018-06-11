@@ -99,13 +99,13 @@ public class VerbService {
         } else {
             page = verbRepository.getVerbToStudy(
                     login, 
-                    ZonedDateTime.now().minusHours(4), 
-                    ZonedDateTime.now().minusHours(8),
+                    ZonedDateTime.now().minusHours(8), 
                     ZonedDateTime.now().minusDays(1),
                     ZonedDateTime.now().minusDays(2),
                     ZonedDateTime.now().minusDays(3),
                     ZonedDateTime.now().minusWeeks(1),
                     ZonedDateTime.now().minusWeeks(2),
+                    ZonedDateTime.now().minusWeeks(3),
                     ZonedDateTime.now().minusMonths(1),
                     ZonedDateTime.now().minusMonths(4),
                     new PageRequest(0, 1));
@@ -128,13 +128,13 @@ public class VerbService {
         } else {
             page = verbRepository.getVerbToStudy(
                     login, 
-                    ZonedDateTime.now().minusHours(4), 
-                    ZonedDateTime.now().minusHours(8),
+                    ZonedDateTime.now().minusHours(8), 
                     ZonedDateTime.now().minusDays(1),
                     ZonedDateTime.now().minusDays(2),
                     ZonedDateTime.now().minusDays(3),
                     ZonedDateTime.now().minusWeeks(1),
                     ZonedDateTime.now().minusWeeks(2),
+                    ZonedDateTime.now().minusWeeks(3),
                     ZonedDateTime.now().minusMonths(1),
                     ZonedDateTime.now().minusMonths(4),
                     new PageRequest(0, 10));

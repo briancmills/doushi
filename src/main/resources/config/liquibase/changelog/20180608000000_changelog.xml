@@ -1,0 +1,79 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="brian (generated)" id="1528414584814-4">
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tsukarete"/>
+            <where>id = 341</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tsukaremasu"/>
+            <where>id = 342</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tsukarenai"/>
+            <where>id = 343</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tsukareyou"/>
+            <where>id = 344</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tsukareta"/>
+            <where>id = 345</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tsukarereba"/>
+            <where>id = 346</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tsukarenakereba"/>
+            <where>id = 347</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tsukarerareru"/>
+            <where>id = 348</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tsukarerarenai"/>
+            <where>id = 349</where>
+        </update>
+    </changeSet>
+    <changeSet author="brian (generated)" id="1528414584814-5">
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tatete"/>
+            <where>id = 1764</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tatemasu"/>
+            <where>id = 1765</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tatenai"/>
+            <where>id = 1766</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tateyou"/>
+            <where>id = 1767</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tateta"/>
+            <where>id = 1768</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tatereba"/>
+            <where>id = 1769</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="tatenakereba"/>
+            <where>id = 1770</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="taterareru"/>
+            <where>id = 1771</where>
+        </update>
+        <update tableName="conjugated_verb">
+            <column name="romanji_text" type="varchar(255)" value="taterarenai"/>
+            <where>id = 1772</where>
+        </update>
+    </changeSet>    
+</databaseChangeLog>
